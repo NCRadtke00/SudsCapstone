@@ -1,8 +1,13 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<Clothes>
+
+@{
+    var pageName = "Home Page";
+    ViewData["Title"] = pageName;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div align="center">
+    <h1>Welcome to Sudys!</h1>
+    <h2>Laundry and Dry Cleaning at your convience!</h2>
 </div>
+
+@await Component.InvokeAsync("CarouselMenu")
