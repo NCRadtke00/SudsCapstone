@@ -86,7 +86,7 @@ namespace Sud.Controllers
                 return NotFound();
             }
             var orders = await db.Orders.Include(o => o.OrderLines).Include(o => o.User)
-                .SingleOrDefaultAsync(m => m.Id == id);
+                .SingleOrDefaultAsync(m => m.OrderId == id);
             var user = await um.GetUserAsync(HttpContext.User);
             var userRoles = await um.GetRolesAsync(user);
             bool isAdmin = userRoles.Any(r => r == "Admin");
@@ -103,7 +103,7 @@ namespace Sud.Controllers
                 }
             }
             var orderDetailsList = db.OrderDetails.Include(o => o.Clothes).Include(o => o.Order)
-                .Where(x => x.OrderId == orders.Id);
+                .Where(x => x.OrderId == orders.OrderId);
             ViewBag.OrderDetailsList = orderDetailsList;
             return View(orders);
         }
@@ -150,7 +150,7 @@ namespace Sud.Controllers
             }
 
             var order = await db.Orders.Include(o => o.User)
-                .SingleOrDefaultAsync(m => m.Id == id);
+                .SingleOrDefaultAsync(m => m.OrderId == id);
             if (order == null)
             {
                 return NotFound();
@@ -163,7 +163,7 @@ namespace Sud.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var order = await db.Orders.SingleOrDefaultAsync(m => m.Id == id);
+            var order = await db.Orders.SingleOrDefaultAsync(m => m.OrderId == id);
             db.Orders.Remove(order);
             await db.SaveChangesAsync();
 

@@ -14,7 +14,7 @@ namespace Sud.Models
     {
         [BindNever]
         [Key]
-        public int Id { get; set; }
+        public int OrderId { get; set; }
 
         public List<OrderDetail> OrderLines { get; set; }
 
