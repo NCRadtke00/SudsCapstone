@@ -25,7 +25,6 @@ namespace Sud.Controllers
             cr = (IClotheRepository)clotheRepository;
             sr = (IServicesRepository)servicesRepository;
         }
-
         public async Task<IActionResult> Index()
         {
             return View(await cr.GetAllIncludedAsync());
