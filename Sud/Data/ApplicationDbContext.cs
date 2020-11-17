@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Sud.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Sud.Data
 {
@@ -12,6 +13,31 @@ namespace Sud.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+        }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.Entity<IdentityRole>()
+                .HasData(
+                new IdentityRole
+                {
+                    Name = "Admin",
+                    NormalizedName = "ADMIN"
+                });
+            builder.Entity<IdentityRole>()
+             .HasData(
+             new IdentityRole
+             {
+                 Name = "Employee",
+                 NormalizedName = "EMPLOYEE"
+             });
+            builder.Entity<IdentityRole>()
+             .HasData(
+             new IdentityRole
+             {
+                 Name = "Customer",
+                 NormalizedName = "CUSTOMER"
+             });
         }
         public DbSet<Services> Services { get; set; }
         public DbSet<Clothes> Clothes { get; set; }
