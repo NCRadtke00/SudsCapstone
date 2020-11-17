@@ -38,7 +38,7 @@ namespace Sud.Controllers
                 return NotFound();
             }
 
-            var clothes = await _context.Clothes
+            var clothes = await db.Clothes
                 .Include(c => c.Services)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (clothes == null)
@@ -52,7 +52,7 @@ namespace Sud.Controllers
         // GET: Clothes/Create
         public IActionResult Create()
         {
-            ViewData["ServicesId"] = new SelectList(_context.Services, "Id", "Name");
+            ViewData["ServicesId"] = new SelectList(db.Services, "Id", "Name");
             return View();
         }
 
@@ -65,11 +65,11 @@ namespace Sud.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(clothes);
-                await _context.SaveChangesAsync();
+                db.Add(clothes);
+                await db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ServicesId"] = new SelectList(_context.Services, "Id", "Name", clothes.ServicesId);
+            ViewData["ServicesId"] = new SelectList(db.Services, "Id", "Name", clothes.ServicesId);
             return View(clothes);
         }
 
@@ -81,12 +81,12 @@ namespace Sud.Controllers
                 return NotFound();
             }
 
-            var clothes = await _context.Clothes.FindAsync(id);
+            var clothes = await db.Clothes.FindAsync(id);
             if (clothes == null)
             {
                 return NotFound();
             }
-            ViewData["ServicesId"] = new SelectList(_context.Services, "Id", "Name", clothes.ServicesId);
+            ViewData["ServicesId"] = new SelectList(db.Services, "Id", "Name", clothes.ServicesId);
             return View(clothes);
         }
 
@@ -106,8 +106,8 @@ namespace Sud.Controllers
             {
                 try
                 {
-                    _context.Update(clothes);
-                    await _context.SaveChangesAsync();
+                    db.Update(clothes);
+                    await db.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -122,7 +122,7 @@ namespace Sud.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ServicesId"] = new SelectList(_context.Services, "Id", "Name", clothes.ServicesId);
+            ViewData["ServicesId"] = new SelectList(db.Services, "Id", "Name", clothes.ServicesId);
             return View(clothes);
         }
 
@@ -134,7 +134,7 @@ namespace Sud.Controllers
                 return NotFound();
             }
 
-            var clothes = await _context.Clothes
+            var clothes = await db.Clothes
                 .Include(c => c.Services)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (clothes == null)
@@ -150,15 +150,15 @@ namespace Sud.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var clothes = await _context.Clothes.FindAsync(id);
-            _context.Clothes.Remove(clothes);
-            await _context.SaveChangesAsync();
+            var clothes = await db.Clothes.FindAsync(id);
+            db.Clothes.Remove(clothes);
+            await db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ClothesExists(int id)
         {
-            return _context.Clothes.Any(e => e.Id == id);
+            return db.Clothes.Any(e => e.Id == id);
         }
     }
 }
