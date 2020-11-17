@@ -17,10 +17,10 @@ namespace Sud.Controllers
     {
         private readonly ApplicationDbContext db;
         private readonly IServicesRepository cr;
-        public ServicesController(ApplicationDbContext context, ServicesRepository categoryRepo)
+        public ServicesController(ApplicationDbContext context, ServicesRepository serviceRepo)
         {
             db = context;
-            cr = (IServicesRepository)categoryRepo;
+            cr = (IServicesRepository)serviceRepo;
         }
         public async Task<IActionResult> Index()
         {
