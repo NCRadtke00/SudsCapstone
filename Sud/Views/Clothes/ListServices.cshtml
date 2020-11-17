@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Clothes>
+
+@{
+    var pageName = ViewBag.CurrentServices;
+    ViewData["Title"] = pageName;
+}
+
+<h2>@pageName</h2>
+<hr />
+
+@foreach (var clothes in Model)
+{
+    @Html.PartialAsync("ClothesSummary", clothes)
+}
+<br />
