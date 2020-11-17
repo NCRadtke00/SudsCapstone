@@ -12,7 +12,7 @@ namespace Sud.Models
         {
             Clothes = new HashSet<Clothes>();
         }
-
+        [Key]
         public int Id { get; set; }
 
         [StringLength(100, MinimumLength = 2)]
