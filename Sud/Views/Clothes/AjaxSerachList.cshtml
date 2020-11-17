@@ -1,0 +1,8 @@
+﻿@model List<Clothes>
+
+<h4>Search Results</h4>
+
+@foreach (var clothes in Model)
+{
+    @Html.PartialAsync("ClothesSummary", clothes)
+}
