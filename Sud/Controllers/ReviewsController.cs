@@ -182,9 +182,8 @@ namespace Sud.Controllers
             if (ModelState.IsValid)
             {
                 var userId = _userManager.GetUserId(HttpContext.User);
-                reviews.UserId = userId;
+                reviews.Id = Convert.ToInt32(userId);
                 reviews.Date = DateTime.Now;
-
                 db.Add(reviews);
                 await db.SaveChangesAsync();
                 return Redirect($"ClothesReviews?clothesId={clothesId}");
