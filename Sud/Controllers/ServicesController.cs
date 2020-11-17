@@ -32,12 +32,12 @@ namespace Sud.Controllers
             {
                 return NotFound();
             }
-            var categories = await cr.GetByIdAsync(id);
-            if (categories == null)
+            var services = await cr.GetByIdAsync(id);
+            if (services == null)
             {
                 return NotFound();
             }
-            return View(categories);
+            return View(services);
         }
         public IActionResult Create()
         {
@@ -45,15 +45,15 @@ namespace Sud.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description")] Services categories)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description")] Services services)
         {
             if (ModelState.IsValid)
             {
-                cr.Add(categories);
+                cr.Add(services);
                 await cr.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(categories);
+            return View(services);
         }
         public async Task<IActionResult> Edit(int? id)
         {
@@ -61,18 +61,18 @@ namespace Sud.Controllers
             {
                 return NotFound();
             }
-            var categories = await cr.GetByIdAsync(id);
-            if (categories == null)
+            var services = await cr.GetByIdAsync(id);
+            if (services == null)
             {
                 return NotFound();
             }
-            return View(categories);
+            return View(services);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description")] Services categories)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description")] Services services)
         {
-            if (id != categories.Id)
+            if (id != services.Id)
             {
                 return NotFound();
             }
@@ -80,12 +80,12 @@ namespace Sud.Controllers
             {
                 try
                 {
-                    cr.Update(categories);
+                    cr.Update(services);
                     await cr.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoriesExists(categories.Id))
+                    if (!ServicesExists(services.Id))
                     {
                         return NotFound();
                     }
@@ -96,7 +96,7 @@ namespace Sud.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            return View(categories);
+            return View(services);
         }
         public async Task<IActionResult> Delete(int? id)
         {
@@ -104,23 +104,23 @@ namespace Sud.Controllers
             {
                 return NotFound();
             }
-            var categories = await cr.GetByIdAsync(id);
-            if (categories == null)
+            var services = await cr.GetByIdAsync(id);
+            if (services == null)
             {
                 return NotFound();
             }
-            return View(categories);
+            return View(services);
         }
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var categories = await cr.GetByIdAsync(id);
-            cr.Remove(categories);
+            var services = await cr.GetByIdAsync(id);
+            cr.Remove(services);
             await cr.SaveChangesAsync();
             return RedirectToAction("Index");
         }
-        private bool CategoriesExists(int id)
+        private bool ServicesExists(int id)
         {
             return cr.Exists(id);
         }
