@@ -19,8 +19,6 @@ namespace Sud.Controllers
         private readonly ApplicationDbContext db;
         private readonly IClotheRepository cr;
         private readonly IServicesRepository sr;
-
-
         public ClothesController(ApplicationDbContext context, IClotheRepository clotheRepository, IServicesRepository servicesRepository)
         {
             db = context;
