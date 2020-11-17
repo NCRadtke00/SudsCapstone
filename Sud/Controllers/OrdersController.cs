@@ -2,127 +2,146 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Sud.Data;
 using Sud.Models;
+using Sud.Repositories;
 
 namespace Sud.Controllers
 {
+    [Authorize]
     public class OrdersController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IOrderRepository or;
+        private readonly ShoppingCart sc;
+        private readonly ApplicationDbContext db;
+        private readonly UserManager<IdentityUser> um;
 
-        public OrdersController(ApplicationDbContext context)
+        public OrdersController(OrderRepository orderRepository,
+            ShoppingCart shoppingCart, ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
-            _context = context;
+            or = (IOrderRepository)orderRepository;
+            sc = shoppingCart;
+            db = context;
+            um = userManager;
         }
-
-        // GET: Orders
-        public async Task<IActionResult> Index()
+        [Authorize]
+        public IActionResult Checkout()
         {
-            var applicationDbContext = _context.Orders.Include(o => o.User);
-            return View(await applicationDbContext.ToListAsync());
-        }
-
-        // GET: Orders/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var order = await _context.Orders
-                .Include(o => o.User)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (order == null)
-            {
-                return NotFound();
-            }
-
-            return View(order);
-        }
-
-        // GET: Orders/Create
-        public IActionResult Create()
-        {
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
-
-        // POST: Orders/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,AddressLine1,AddressLine2,ZipCode,City,State,Country,PhoneNumber,Email,UserId")] Order order)
+        public async Task<IActionResult> Checkout(Order order)
         {
+            var userId = um.GetUserId(HttpContext.User);
+            order.UserId = userId;
+            var items = await sc.GetShoppingCartItemsAsync();
+            sc.ShoppingCartItems = items;
+            if (sc.ShoppingCartItems.Count == 0)
+            {
+                ModelState.AddModelError("", "Your cart is empty.");
+            }
             if (ModelState.IsValid)
             {
-                _context.Add(order);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                await or.CreateOrderAsync(order);
+                await sc.ClearCartAsync();
+                return RedirectToAction("CheckoutComplete");
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", order.UserId);
             return View(order);
         }
-
-        // GET: Orders/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult CheckoutComplete()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var order = await _context.Orders.FindAsync(id);
-            if (order == null)
-            {
-                return NotFound();
-            }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", order.UserId);
-            return View(order);
+            ViewBag.CheckoutCompleteMessage = $"Thanks for your order, We'll collect your order soon!";
+            return View();
         }
+        [Authorize]
+        public async Task<IActionResult> Index()
+        {
+            var user = await um.GetUserAsync(HttpContext.User);
+            bool isAdmin = await um.IsInRoleAsync(user, "Admin");
 
-        // POST: Orders/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+            if (isAdmin)
+            {
+                var allOrders = await db.Orders.Include(o => o.OrderLines).Include(o => o.User).ToListAsync();
+                return View(allOrders);
+            }
+            else
+            {
+                var orders = await db.Orders.Include(o => o.OrderLines).Include(o => o.User)
+                    .Where(r => r.User == user).ToListAsync();
+                return View(orders);
+            }
+        }
+        [Authorize]
+        public async Task<IActionResult> Details(int id)
+        {
+            if (id == 0)
+            {
+                return NotFound();
+            }
+            var orders = await db.Orders.Include(o => o.OrderLines).Include(o => o.User)
+                .SingleOrDefaultAsync(m => m.Id == id);
+            var user = await um.GetUserAsync(HttpContext.User);
+            var userRoles = await um.GetRolesAsync(user);
+            bool isAdmin = userRoles.Any(r => r == "Admin");
+            if (orders == null)
+            {
+                return NotFound();
+            }
+            if (isAdmin == false)
+            {
+                var userId = um.GetUserId(HttpContext.User);
+                if (orders.UserId != userId)
+                {
+                    return BadRequest("You do not have permissions to view this order.");
+                }
+            }
+            var orderDetailsList = db.OrderDetails.Include(o => o.Clothes).Include(o => o.Order)
+                .Where(x => x.OrderId == orders.Id);
+            ViewBag.OrderDetailsList = orderDetailsList;
+            return View(orders);
+        }
+        public IActionResult Create()
+        {
+            return View();
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,AddressLine1,AddressLine2,ZipCode,City,State,Country,PhoneNumber,Email,UserId")] Order order)
+        public IActionResult Create(IFormCollection collection)
         {
-            if (id != order.Id)
+            try
             {
-                return NotFound();
+                return RedirectToAction("Index");
             }
-
-            if (ModelState.IsValid)
+            catch
             {
-                try
-                {
-                    _context.Update(order);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!OrderExists(order.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                return View();
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", order.UserId);
-            return View(order);
         }
-
-        // GET: Orders/Delete/5
+        public IActionResult Edit(int id)
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -130,9 +149,8 @@ namespace Sud.Controllers
                 return NotFound();
             }
 
-            var order = await _context.Orders
-                .Include(o => o.User)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var order = await db.Orders.Include(o => o.User)
+                .SingleOrDefaultAsync(m => m.Id == id);
             if (order == null)
             {
                 return NotFound();
@@ -140,21 +158,16 @@ namespace Sud.Controllers
 
             return View(order);
         }
-
-        // POST: Orders/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var order = await _context.Orders.FindAsync(id);
-            _context.Orders.Remove(order);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+            var order = await db.Orders.SingleOrDefaultAsync(m => m.Id == id);
+            db.Orders.Remove(order);
+            await db.SaveChangesAsync();
 
-        private bool OrderExists(int id)
-        {
-            return _context.Orders.Any(e => e.Id == id);
+            return RedirectToAction("Index");
         }
     }
 }
