@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Sud.Models;
 
 namespace Sud.Data
 {
@@ -12,5 +13,12 @@ namespace Sud.Data
             : base(options)
         {
         }
+        public DbSet<Services> Services { get; set; }
+        public DbSet<Clothes> Clothes { get; set; }
+        public DbSet<Reviews> Reviews { get; set; }
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+
     }
 }

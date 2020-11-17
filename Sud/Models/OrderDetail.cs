@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sud.Models
 {
-    public class OrderDetails
+    public class OrderDetail
     {
         [Key]
         public int Id { get; set; }
