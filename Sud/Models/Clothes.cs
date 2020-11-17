@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,6 +15,7 @@ namespace Sud.Models
 
             Reviews = new HashSet<Reviews>();
         }
+        [Key]
         public int Id { get; set; }
 
         [StringLength(100, MinimumLength = 2)]
@@ -33,6 +35,7 @@ namespace Sud.Models
         public bool IsPopularItem { get; set; }
 
         [DisplayName("Select Services")]
+        [ForeignKey("Services")]
         public int ServicesId { get; set; }
 
         public virtual Services Services { get; set; }
