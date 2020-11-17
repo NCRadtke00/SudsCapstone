@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Clothes>
+
+@{
+    var ModelName = "Search Clothes";
+    ViewData["Title"] = ModelName;
+}
+
+<h2>@ModelName</h2>
+<hr />
+
+@foreach (var clothes in Model)
+{
+    @Html.PartialAsync("ClothesSummary", clothes)
+}
+<br />
+
