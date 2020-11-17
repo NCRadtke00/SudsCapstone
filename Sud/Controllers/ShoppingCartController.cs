@@ -23,47 +23,38 @@ namespace Sud.Controllers
             sc = shoppingCart;
             db = context;
         }
-
         public async Task<IActionResult> Index()
         {
             var items = await sc.GetShoppingCartItemsAsync();
             sc.ShoppingCartItems = items;
-
             var shoppingCartViewModel = new ShoppingCartViewModel
             {
                 ShoppingCart = sc,
                 ShoppingCartTotal = sc.GetShoppingCartTotal()
             };
-
             return View(shoppingCartViewModel);
         }
-
         public async Task<IActionResult> AddToShoppingCart(int clothesId)
         {
             var selectedClothes = await cr.GetByIdAsync(clothesId);
-
             if (selectedClothes != null)
             {
                 await sc.AddToCartAsync(selectedClothes, 1);
             }
             return RedirectToAction("Index");
         }
-
         public async Task<IActionResult> RemoveFromShoppingCart(int clothesId)
         {
             var selectedClothes = await cr.GetByIdAsync(clothesId);
-
             if (selectedClothes != null)
             {
                 await sc.RemoveFromCartAsync(selectedClothes);
             }
             return RedirectToAction("Index");
         }
-
         public async Task<IActionResult> ClearCart()
         {
             await sc.ClearCartAsync();
-
             return RedirectToAction("Index");
         }
     }
