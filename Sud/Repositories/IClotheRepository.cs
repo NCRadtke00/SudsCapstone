@@ -6,7 +6,7 @@ using Sud.Models;
 
 namespace Sud.Repositories
 {
-    interface IClotheRepository
+    public interface IClotheRepository
     {
         IEnumerable<Clothes> Clothes { get; }
         IEnumerable<Clothes> PopularItem { get; }

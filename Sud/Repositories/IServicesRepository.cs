@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sud.Repositories
 {
-    interface IServicesRepository
+    public interface IServicesRepository
     {
         IEnumerable<Services> Services { get; }
         Services GetById(int? id);

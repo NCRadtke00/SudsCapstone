@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace Sud.Repositories
 {
-    public class ReviewRepository
+    public class ReviewRepository : IReviewRepository
+
     {
         private readonly ApplicationDbContext db;
         public ReviewRepository(ApplicationDbContext context)

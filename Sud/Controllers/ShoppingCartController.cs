@@ -16,7 +16,7 @@ namespace Sud.Controllers
         private readonly ApplicationDbContext db;
         private readonly ShoppingCart sc;
 
-        public ShoppingCartController(ClotheRepository clothesRepository,
+        public ShoppingCartController(IClotheRepository clothesRepository,
             ShoppingCart shoppingCart, ApplicationDbContext context)
         {
             cr = (IClotheRepository)clothesRepository;

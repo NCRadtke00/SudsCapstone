@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sud.Repositories
 {
-    interface IReviewRepository
+    public interface IReviewRepository
     {
         IEnumerable<Reviews> Reviews { get; }
         Reviews GetById(int? id);

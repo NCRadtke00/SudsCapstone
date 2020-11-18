@@ -17,7 +17,7 @@ namespace Sud.Controllers
     {
         private readonly ApplicationDbContext db;
         private readonly IServicesRepository cr;
-        public ServicesController(ApplicationDbContext context, ServicesRepository serviceRepo)
+        public ServicesController(ApplicationDbContext context, IServicesRepository serviceRepo)
         {
             db = context;
             cr = (IServicesRepository)serviceRepo;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sud.Repositories
 {
-    interface IOrderRepository
+    public interface IOrderRepository
     {
         Task CreateOrderAsync(Order order);
     }
