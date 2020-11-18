@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -20,11 +23,24 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Sudys</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a asp-controller="Clothes" asp-action="ListAll">Clothes</a></li>
+                                @await Component.InvokeAsync("ServiceMenu")
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    <li><a asp-controller="Reviews" asp-action="Index">Reviews</a></li>
+                                    <li><a asp-controller="Orders" asp-action="Index">Orders</a></li>
+                                }
+                                else
+                                {
+                                    <li><a asp-controller="Reviews" asp-action="ListAll">Reviews</a></li>
+                                }
+                                @await Component.InvokeAsync("ShoppingCartSummary")
+                            </ul>
+                        </div>
                     </ul>
                 </div>
             </div>
@@ -37,9 +53,9 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - Sud - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+       <a asp-area="" asp-controller="Home" asp-action="About"><b>About</b></a>
+       <a asp-area="" asp-controller="Home" asp-action="Contact"><b>Contact</b></a>
+        &copy; Radtke, Nicholas 2020, viewed on @DateTime.Now.Date
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
