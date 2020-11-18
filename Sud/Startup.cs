@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Sud.ActionFilters;
 using Sud.Data;
+using Sud.Models;
+using Sud.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,8 +39,17 @@ namespace Sud
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
+            services.AddTransient<IClotheRepository, ClotheRepository>();
+            services.AddTransient<IServicesRepository, ServicesRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+         
             services.AddScoped<ClaimsPrincipal>(s =>
               s.GetService<IHttpContextAccessor>().HttpContext.User);
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(sp => ShoppingCart.GetCart(sp));
+            services.AddMvc();
+            services.AddMemoryCache();
+            services.AddSession();
             services.AddControllers(config =>
             {
                 config.Filters.Add(typeof(GlobalRouting));
@@ -64,6 +75,8 @@ namespace Sud
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
+            app.UseSession();
+            
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
