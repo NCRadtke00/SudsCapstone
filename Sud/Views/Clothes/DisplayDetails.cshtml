@@ -7,20 +7,16 @@
 
 <h2>@ModelName</h2>
 <hr />
-
-<p>
-    <a class="btn btn-primary" asp-action="ListAll">Back to List</a>
-</p>
-
 <div class="thumbnail">
-    <img alt="@Model.Name" src="@Model.ImageUrl" height="800" width="800" class="img-responsive">
+    <img alt="@Model.Name" src="@Model.ImageUrl" height="400" width="400" class="img-responsive">
     <div class="caption-full">
-        <h2 class="pull-right">@Model.Price.ToString("c")</h2>
+
         <h2>
             <a href="">@Model.Name</a>
         </h2>
+        <h2 class="pull-right">@Model.Price.ToString("c")</h2>
         <div>
-            <h4>Services: <b> @Model.Services.Name </b></h4>
+            <h4><b> @Model.Services.Name </b></h4>
 
             <p>
                 @if (ViewBag.AverageReviewScore > 0)
@@ -75,16 +71,19 @@
 
             </p>
             <p>
-                <h4>
+                @*<h4>
                     <a class="btn btn-primary" asp-controller="Reviews" asp-action="ClothesReviews" asp-route-clothesId="@Model.Id">Reviews</a>
-                </h4>
+                </h4>*@
             </p>
         </div>
 
         <br />
         <p class="button">
             <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="AddToShoppingCart"
-               asp-route-clothesId="@Model.Id">Add Item</a>
+               asp-route-clothesId="@Model.Id">Add Item to cart</a>
+        </p>
+        <p>
+            <a class="btn btn-primary" asp-action="ListAll">Back to List</a>
         </p>
     </div>
 </div>
