@@ -256,6 +256,8 @@ namespace Sud.Data
         public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Sud.Models.Customer> Customer { get; set; }
+        public DbSet<Sud.Models.Employee> Employee { get; set; }
 
     }
 }
