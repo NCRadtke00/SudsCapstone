@@ -33,7 +33,8 @@
                                 }
                                 else
                                 {
-                                    <li><a asp-controller="Reviews" asp-action="ListAll" class="text-white">Reviews</a></li>
+                                    <li><a asp-controller="Home" asp-action="Info" class="text-white">How it works!</a></li>
+                                    <li><a asp-controller="Home" asp-action="Contact" class="text-white">Contact</a></li>
                                 }
                                 @await Component.InvokeAsync("ShoppingCartSummary")
                             </ul>
@@ -50,8 +51,7 @@
     </div>
 
     <footer class="border-top footer text-white bg-primary">
-       <a asp-area="" asp-controller="Home" asp-action="About" class="text-white"><b>About</b></a>
-       <a asp-area="" asp-controller="Home" asp-action="Contact" class="text-white"><b>Contact</b></a>
+       <a asp-area="" asp-controller="Home" asp-action="About" class="text-white"><b>About the project</b></a>
         &copy; Radtke, Nicholas 2020, viewed on @DateTime.Now.Date
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
