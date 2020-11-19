@@ -66,7 +66,8 @@ namespace Sud.Data
                      Name = " 50lb bag",
                      Price = 7.00m,
                      ImageUrl = " https://www.dhresource.com/0x0/f2/albu/g8/M00/9D/98/rBVaV16NgMmAfTd8AAMVeqw4gzY314.jpg/set-of-4-drawstring-mesh-laundry-bag-wash.jpg ",
-                     IsPopularItem = false
+                     IsPopularItem = false,
+                     ServicesId = 1
                  },
                 new Clothes
                 {
@@ -74,7 +75,8 @@ namespace Sud.Data
                     Name = " 40lb bag",
                     Price = 6.00m,
                     ImageUrl = " https://www.dhresource.com/0x0/f2/albu/g8/M00/9D/98/rBVaV16NgMmAfTd8AAMVeqw4gzY314.jpg/set-of-4-drawstring-mesh-laundry-bag-wash.jpg",
-                    IsPopularItem = true
+                    IsPopularItem = true,
+                    ServicesId = 1
                 },
                 new Clothes
                 {
@@ -82,7 +84,8 @@ namespace Sud.Data
                     Name = " 30lb bag",
                     Price = 5.00m,
                     ImageUrl = " https://www.dhresource.com/0x0/f2/albu/g8/M00/9D/98/rBVaV16NgMmAfTd8AAMVeqw4gzY314.jpg/set-of-4-drawstring-mesh-laundry-bag-wash.jpg",
-                    IsPopularItem = false
+                    IsPopularItem = false,
+                    ServicesId = 1
                 },
                 new Clothes
                 {
@@ -90,7 +93,8 @@ namespace Sud.Data
                     Name = " 20lb bag",
                     Price = 4.00m,
                     ImageUrl = " https://www.dhresource.com/0x0/f2/albu/g8/M00/9D/98/rBVaV16NgMmAfTd8AAMVeqw4gzY314.jpg/set-of-4-drawstring-mesh-laundry-bag-wash.jpg",
-                    IsPopularItem = false
+                    IsPopularItem = false,
+                    ServicesId = 1
                 },
                 new Clothes
                 {
@@ -98,7 +102,8 @@ namespace Sud.Data
                     Name = " Fold laundry",
                     Price = 2.00m,
                     ImageUrl = " https://4jlaundromat.com/wp-content/uploads/2016/10/shutterstock_250385533.jpg",
-                    IsPopularItem = true
+                    IsPopularItem = true,
+                    ServicesId = 3
                 },
                 new Clothes
                 {
@@ -106,7 +111,8 @@ namespace Sud.Data
                     Name = " Delivery fee",
                     Price = 4.00m,
                     ImageUrl = " https://www.rexrx.com/_next/static/images/free-delivery-0a4599ba95770c3c93c524d1626e7d76.png",
-                    IsPopularItem = false
+                    IsPopularItem = false,
+                    ServicesId = 3
                 },
                 new Clothes
                 {
@@ -114,7 +120,8 @@ namespace Sud.Data
                     Name = "Same day Rush Service",
                     Price = 20.00m,
                     ImageUrl = " https://images.squarespace-cdn.com/content/v1/5e599564293347515fe2eabc/1583701071232-CFTFT5DHM16PJ08P6M6D/ke17ZwdGBToddI8pDm48kEoJmA0Abk1RrrM77uDVNFhZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIecCtomI4OQXCfULyDTUGqI_q-TQiniCLvIy8yIJMAmQKMshLAGzx4R3EDFOm1kBS/rushservice.jpg",
-                    IsPopularItem = false
+                    IsPopularItem = false,
+                    ServicesId = 3
                 },
                 new Clothes
                 {
@@ -122,15 +129,17 @@ namespace Sud.Data
                     Name = "Next day Rush Service",
                     Price = 10.00M,
                     ImageUrl = " https://images.squarespace-cdn.com/content/v1/5e599564293347515fe2eabc/1583701071232-CFTFT5DHM16PJ08P6M6D/ke17ZwdGBToddI8pDm48kEoJmA0Abk1RrrM77uDVNFhZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIecCtomI4OQXCfULyDTUGqI_q-TQiniCLvIy8yIJMAmQKMshLAGzx4R3EDFOm1kBS/rushservice.jpg ",
-                    IsPopularItem = true
+                    IsPopularItem = true,
+                    ServicesId = 3
                 },
                 new Clothes
                 {
                     Id = 9,
-                    Name = " Additional Charge for Down",
+                    Name = " Additional Charge for Down, Silk, and other rare fabrics materials",
                     Price = 5.00M,
                     ImageUrl = " https://images.allergybuyersclub.com/img/CD-CO-WLAS-500.jpg ",
-                    IsPopularItem = false
+                    IsPopularItem = false,
+                    ServicesId = 3
                 },
                 new Clothes
                 {
@@ -138,7 +147,8 @@ namespace Sud.Data
                     Name = " 2PC SUIT",
                     Price = 10.50m,
                     ImageUrl = " https://images-na.ssl-images-amazon.com/images/I/814MCsg4BrL._AC_UL1500_.jpg ",
-                    IsPopularItem = false
+                    IsPopularItem = false,
+                    ServicesId = 2
                 },
                 new Clothes
                 {
@@ -146,7 +156,8 @@ namespace Sud.Data
                     Name = " 2PC DRESS",
                     Price = 11.50m,
                     ImageUrl = " https://ae01.alicdn.com/kf/H38607873036b479183e42158db72def2A/Cultiseed-Female-Dress-Set-2020-Women-New-Sexy-Strapless-Puff-Sleeve-2pc-Dress-Set-Suits-Ladies.jpg",
-                    IsPopularItem = false
+                    IsPopularItem = false,
+                    ServicesId = 2
                 },
                 new Clothes
                 {
@@ -154,7 +165,8 @@ namespace Sud.Data
                     Name = "3PC SUIT",
                     Price = 12.50m,
                     ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQQsevtEvUk7_dBBHP9x8Vwg25ILuQhBVnJUg&usqp=CAU",
-                    IsPopularItem = true
+                    IsPopularItem = true,
+                    ServicesId = 2
                 },
                 new Clothes
                 {
@@ -162,7 +174,8 @@ namespace Sud.Data
                     Name = "BLOUSE (WOMAN’S)",
                     Price = 3.60m,
                     ImageUrl = " https://media.missguided.com/i/missguided/TW423587_01 ",
-                    IsPopularItem = false
+                    IsPopularItem = false,
+                    ServicesId = 2
                 },
                 new Clothes
                 {
@@ -170,7 +183,8 @@ namespace Sud.Data
                     Name = "DRESS",
                     Price = 7.70m,
                     ImageUrl = " https://www.dhresource.com/0x0/f2/albu/g8/M00/9D/98/rBVaV16NgMmAfTd8AAMVeqw4gzY314.jpg/set-of-4-drawstring-mesh-laundry-bag-wash.jpg",
-                    IsPopularItem = true
+                    IsPopularItem = true,
+                    ServicesId = 2
                 },
                 new Clothes
                 {
@@ -178,7 +192,8 @@ namespace Sud.Data
                     Name = "DRESS-FANCY/EVENING",
                     Price = 9.60m,
                     ImageUrl = "https://i.etsystatic.com/13385002/r/il/af0dbd/1197944229/il_570xN.1197944229_8bpp.jpg",
-                    IsPopularItem = false
+                    IsPopularItem = false,
+                    ServicesId = 2
                 });
             builder.Entity<Order>()
                 .HasData(
