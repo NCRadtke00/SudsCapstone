@@ -1,14 +1,19 @@
-﻿@{
-    ViewData["Title"] = "Contact";
+﻿@model IEnumerable<Clothes>
+
+@{
+    var pageName = "Contact";
+    ViewData["Title"] = pageName;
 }
+<div align="center">
+    <h2>Contact Us</h2>
 
-<h2>Contact Us</h2>
+    <h4>
+        If you have any questions please contact us by clicking the links below.
+    </h4>
 
-<h4>
-    If you have any questions please contact us by clicking the links below.
-</h4>
-
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@Sudys.com">Support@Sudys.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@Sudys.com">Marketing@Sudys.com</a>
-</address>
+    <address>
+        <strong>Tech Support:</strong> <a href="mailto:TechSupport@Sudys.com">TechSupport@Sudys.com</a><br />
+        <strong>Customer Support:</strong> <a href="mailto:CustomerSupport@Sudys.com">CustomerSupport@Sudys.com</a><br />
+        <strong>Marketing:</strong> <a href="mailto:Marketing@Sudys.com">Marketing@Sudys.com</a>
+    </address>
+</div>
