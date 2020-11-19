@@ -22,10 +22,10 @@ namespace Sud.Controllers
         private readonly ApplicationDbContext db;
         private readonly UserManager<IdentityUser> um;
 
-        public OrdersController(OrderRepository orderRepository,
+        public OrdersController(IOrderRepository orderRepository,
             ShoppingCart shoppingCart, ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
-            or = (IOrderRepository)orderRepository;
+            or = orderRepository;
             sc = shoppingCart;
             db = context;
             um = userManager;

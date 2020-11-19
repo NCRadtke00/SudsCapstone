@@ -19,11 +19,11 @@ namespace Sud.Controllers
         private readonly ApplicationDbContext db;
         private readonly IClotheRepository cr;
         private readonly IServicesRepository sr;
-        public ClothesController(ApplicationDbContext context, ClotheRepository clotheRepository, ServicesRepository servicesRepository)
+        public ClothesController(ApplicationDbContext context, IClotheRepository clotheRepository, IServicesRepository servicesRepository)
         {
             db = context;
-            cr = (IClotheRepository)clotheRepository;
-            sr = (IServicesRepository)servicesRepository;
+            cr = clotheRepository;
+            sr = servicesRepository;
         }
         public async Task<IActionResult> Index()
         {

@@ -19,7 +19,7 @@ namespace Sud.Controllers
         public ShoppingCartController(IClotheRepository clothesRepository,
             ShoppingCart shoppingCart, ApplicationDbContext context)
         {
-            cr = (IClotheRepository)clothesRepository;
+            cr = clothesRepository;
             sc = shoppingCart;
             db = context;
         }

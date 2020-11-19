@@ -14,10 +14,10 @@ namespace Sud.Controllers
     {
         private readonly ApplicationDbContext db;
         private readonly IClotheRepository cr;
-        public ClothesOldController(ApplicationDbContext context, ClotheRepository clothesRepo)
+        public ClothesOldController(ApplicationDbContext context, IClotheRepository clothesRepo)
         {
             db = context;
-            cr = (IClotheRepository)clothesRepo;
+            cr = clothesRepo;
         }
         public async Task<IActionResult> Index()
         {

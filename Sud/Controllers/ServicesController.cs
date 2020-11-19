@@ -20,7 +20,7 @@ namespace Sud.Controllers
         public ServicesController(ApplicationDbContext context, IServicesRepository serviceRepo)
         {
             db = context;
-            cr = (IServicesRepository)serviceRepo;
+            cr = serviceRepo;
         }
         public async Task<IActionResult> Index()
         {
