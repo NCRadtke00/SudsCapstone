@@ -29,11 +29,11 @@ a {
 html {
   font-size: 14px;
 }
-@media (min-width: 768px) {
+/*@media (min-width: 768px) {
   html {
     font-size: 16px;
   }
-}
+}*/
 
 .border-top {
   border-top: 1px solid #e5e5e5;
@@ -58,9 +58,22 @@ html {
   min-height: 100%;
 }
 
-body {
+/*body {*/
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  /*margin-bottom: 60px;
+}*/
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-image: url('');
+    background-repeat: repeat;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #f2f6f9;
 }
 .footer {
   position: absolute;
@@ -68,4 +81,62 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+.carousel-holder {
+    margin-bottom: 30px;
+}
+
+.carousel-control,
+.item {
+    border-radius: 4px;
+}
+.thumbnail {
+    padding: 0;
+}
+
+    .thumbnail .caption-full {
+        padding: 9px;
+        color: #333;
+    }
+
+footer {
+    margin: 25px 0;
+}
+.slide-image {
+    min-height: 600px;
+    max-height: 600px;
+}
+
+#carousel-example-generic {
+    max-width: 800px;
+    min-width: 600px;
+    margin: 25px;
+}
+
+.review-stars {
+    max-width: 150px;
 }
