@@ -24,7 +24,7 @@
                     <ul class="navbar-nav flex-grow-1">
                         <div class="navbar-collapse collapse">
                             <ul class="nav navbar-nav text-white">
-                                <li><a asp-controller="Clothes" asp-action="ListAll" class="nav-link text-white"> Clothes </a></li>
+                                @*<li><a asp-controller="Clothes" asp-action="ListAll" class="nav-link text-white"> Clothes </a></li>*@
                                 @await Component.InvokeAsync("ServiceMenu")
                                 @if (SignInManager.IsSignedIn(User))
                                 {
