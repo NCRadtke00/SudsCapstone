@@ -12,9 +12,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-primary border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Sud</a>
+                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">Sud</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -22,21 +22,18 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Sudys</a>
-                        </li>
                         <div class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">
-                                <li><a asp-controller="Clothes" asp-action="ListAll">Clothes</a></li>
+                            <ul class="nav navbar-nav text-white">
+                                <li><a asp-controller="Clothes" asp-action="ListAll" class="text-white">Clothes</a></li>
                                 @await Component.InvokeAsync("ServiceMenu")
                                 @if (SignInManager.IsSignedIn(User))
                                 {
-                                    <li><a asp-controller="Reviews" asp-action="Index">Reviews</a></li>
-                                    <li><a asp-controller="Orders" asp-action="Index">Orders</a></li>
+                                    <li><a asp-controller="Reviews" asp-action="Index" class="text-white">Reviews</a></li>
+                                    <li><a asp-controller="Orders" asp-action="Index" class="text-white">Orders</a></li>
                                 }
                                 else
                                 {
-                                    <li><a asp-controller="Reviews" asp-action="ListAll">Reviews</a></li>
+                                    <li><a asp-controller="Reviews" asp-action="ListAll" class="text-white">Reviews</a></li>
                                 }
                                 @await Component.InvokeAsync("ShoppingCartSummary")
                             </ul>
@@ -52,9 +49,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-       <a asp-area="" asp-controller="Home" asp-action="About"><b>About</b></a>
-       <a asp-area="" asp-controller="Home" asp-action="Contact"><b>Contact</b></a>
+    <footer class="border-top footer text-white bg-primary">
+       <a asp-area="" asp-controller="Home" asp-action="About" class="text-white"><b>About</b></a>
+       <a asp-area="" asp-controller="Home" asp-action="Contact" class="text-white"><b>Contact</b></a>
         &copy; Radtke, Nicholas 2020, viewed on @DateTime.Now.Date
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
