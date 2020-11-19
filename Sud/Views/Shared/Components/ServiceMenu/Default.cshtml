@@ -2,13 +2,13 @@
 
 <li class="dropdown">
     <a asp-controller="Clothes" asp-action="ListAll"
-       class="dropdown-toggle text-white" data-toggle="dropdown">Services<b class="caret"></b></a>
+       class="dropdown-toggle text-white" data-toggle="dropdown"> Services <b class="caret"></b></a>
     <ul class="dropdown-menu">
         @foreach (var services in Model)
         {
             <li>
                 <a asp-controller="Clothes" asp-action="ListServices"
-                   asp-route-servicesName="@services.Name">@services.Name</a>
+                   asp-route-serviceName="@services.Name">@services.Name</a>
             </li>
         }
         <li class="divider"></li>

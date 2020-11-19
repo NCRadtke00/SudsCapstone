@@ -109,7 +109,7 @@ namespace Sud.Controllers
             {
                 return NotFound();
             }
-            bool anyClothes = await db.Clothes.AnyAsync(x => x.Services == service);
+            bool anyClothes = await db.Clothes.AnyAsync(s => s.Services == service);
             if (!anyClothes)
             {
                 return NotFound($"No items were found in: {serviceName}");
