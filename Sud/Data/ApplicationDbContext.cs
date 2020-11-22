@@ -249,6 +249,80 @@ namespace Sud.Data
                     Date = DateTime.Now,
                     ClothesId = 3
                 });
+            builder.Entity<PickUpDay>()
+                .HasData(
+                    new PickUpDay
+                    {
+                        Id = 1,
+                        Date = "Monday"
+                    },
+                    new PickUpDay
+                    {
+                        Id = 2,
+                        Date = "Tuesday"
+                    },
+                    new PickUpDay
+                    {
+                        Id = 3,
+                        Date = "Wednesday"
+                    },
+                    new PickUpDay
+                    {
+                        Id = 4,
+                        Date = "Thursday"
+                    },
+                    new PickUpDay
+                    {
+                        Id = 5,
+                        Date = "Friday"
+                    },
+                    new PickUpDay
+                    {
+                        Id = 6,
+                        Date = "Saturday"
+                    },
+                    new PickUpDay
+                    {
+                        Id = 7,
+                        Date = "Sunday"
+                    });
+            builder.Entity<DropOffDay>()
+                .HasData(
+                    new DropOffDay
+                    {
+                        Id = 1,
+                        Date = "Monday"
+                    },
+                    new DropOffDay
+                    {
+                        Id = 2,
+                        Date = "Tuesday"
+                    },
+                    new DropOffDay
+                    {
+                        Id = 3,
+                        Date = "Wednesday"
+                    },
+                    new DropOffDay
+                    {
+                        Id = 4,
+                        Date = "Thursday"
+                    },
+                    new DropOffDay
+                    {
+                        Id = 5,
+                        Date = "Friday"
+                    },
+                    new DropOffDay
+                    {
+                        Id = 6,
+                        Date = "Saturday"
+                    },
+                    new DropOffDay
+                    {
+                        Id = 7,
+                        Date = "Sunday"
+                    });
         }
         public DbSet<Services> Services { get; set; }
         public DbSet<Clothes> Clothes { get; set; }
@@ -256,8 +330,10 @@ namespace Sud.Data
         public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
-        public DbSet<Sud.Models.Customer> Customer { get; set; }
-        public DbSet<Sud.Models.Employee> Employee { get; set; }
+        public DbSet<Customer> Customer { get; set; }
+        public DbSet<Employee> Employee { get; set; }
+        public DbSet<PickUpDay> PickUpDays { get; set; }
+        public DbSet<DropOffDay> DropOffDays { get; set; }
 
     }
 }

@@ -16,7 +16,7 @@ namespace Sud.Models
         [Display(Name = "Name")]
         public string Name { get; set; }
         [Display(Name = "Zip Code")]
-        public string ZipCode { get; set; }
+        public int ZipCode { get; set; }
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sud.Data;
 
 namespace Sud.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201120215406_emp")]
+    partial class emp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,22 +50,22 @@ namespace Sud.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c9c3e4ee-37f8-40d7-b1a6-e88cc2139a11",
-                            ConcurrencyStamp = "799d896d-9405-453c-83f9-98dd3ae15643",
+                            Id = "e32bdd6a-d811-42f5-90ef-2bdfd3870887",
+                            ConcurrencyStamp = "ecedba8b-e453-4b48-b35c-865d2746d65b",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "8d33a528-a704-4a54-815c-080d66d9a07a",
-                            ConcurrencyStamp = "22cefff8-201a-429d-9c00-c3c02cf474df",
+                            Id = "bcba3bf0-f1b7-4728-a40c-2117b8b21f0a",
+                            ConcurrencyStamp = "64e6fcfc-2ca8-48fc-b206-a8dcdfe6d66f",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "1c7322e6-12db-4b51-8304-5c93f4c1d540",
-                            ConcurrencyStamp = "d38fb8da-0a12-4b8e-8a21-12a60fbe21de",
+                            Id = "d69d46fa-6a5e-448b-8136-a999fce30f06",
+                            ConcurrencyStamp = "54b3e2bd-6b3a-4c7f-8de4-d7b801d300ee",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -476,43 +478,6 @@ namespace Sud.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("DropOffDays");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Date = "Monday"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Date = "Tuesday"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Date = "Wednesday"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Date = "Thursday"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Date = "Friday"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Date = "Saturday"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Date = "Sunday"
-                        });
                 });
 
             modelBuilder.Entity("Sud.Models.Employee", b =>
@@ -617,7 +582,7 @@ namespace Sud.Migrations
                             Email = "NevS@gmail.com",
                             FirstName = "Nevin",
                             LastName = "Sei",
-                            OrderPlaced = new DateTime(2020, 11, 18, 14, 37, 11, 275, DateTimeKind.Local).AddTicks(7703),
+                            OrderPlaced = new DateTime(2020, 11, 17, 15, 54, 5, 305, DateTimeKind.Local).AddTicks(4176),
                             OrderTotal = 95.00m,
                             PhoneNumber = "4142292255",
                             State = "Wisconsin",
@@ -632,7 +597,7 @@ namespace Sud.Migrations
                             Email = "NJac@gmail.com",
                             FirstName = "Nick",
                             LastName = "Jac",
-                            OrderPlaced = new DateTime(2020, 11, 18, 14, 37, 11, 283, DateTimeKind.Local).AddTicks(2725),
+                            OrderPlaced = new DateTime(2020, 11, 17, 15, 54, 5, 310, DateTimeKind.Local).AddTicks(67),
                             OrderTotal = 20.00m,
                             PhoneNumber = "4142293030",
                             State = "Wisconsin",
@@ -762,7 +727,7 @@ namespace Sud.Migrations
                         {
                             Id = 1,
                             ClothesId = 2,
-                            Date = new DateTime(2020, 11, 21, 14, 37, 11, 284, DateTimeKind.Local).AddTicks(263),
+                            Date = new DateTime(2020, 11, 20, 15, 54, 5, 310, DateTimeKind.Local).AddTicks(6752),
                             Description = "Eveything smelled like a fresh medow, and was folded perfectly.",
                             Grade = 4,
                             Title = "WOW"
@@ -771,7 +736,7 @@ namespace Sud.Migrations
                         {
                             Id = 2,
                             ClothesId = 3,
-                            Date = new DateTime(2020, 11, 21, 14, 37, 11, 284, DateTimeKind.Local).AddTicks(2793),
+                            Date = new DateTime(2020, 11, 20, 15, 54, 5, 310, DateTimeKind.Local).AddTicks(8543),
                             Description = "The guy picked everthing up, and dropped it off 6 hours later.",
                             Grade = 5,
                             Title = "Legen-dry"
