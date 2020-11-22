@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -19,6 +20,34 @@ namespace Sud.Models
         public string Email { get; set; }
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
+        //adding below
+        [Display(Name = "Street Address")]
+        public string StreetAddress { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        [Display(Name = "Zip Code")]
+        public int ZipCode { get; set; }
+        [ForeignKey("PickUpDay")]
+        [Display(Name = "Pickup Day")]
+        public int PickUpDayId { get; set; }
+        public PickUpDay PickUpDay { get; set; }
+        [ForeignKey("DropOffDay")]
+        [Display(Name = "Drop off Day")]
+        public int DropOffDayId { get; set; }
+        public DropOffDay DropOffDay { get; set; }
+        [NotMapped]
+        public SelectList Days { get; set; }
+        [NotMapped]
+        public SelectList Dates { get; set; }
+        [Display(Name = "Check the box to confirm order has been pick up!")]
+        public bool ConfirmPickUp { get; set; }
+        [Display(Name = "Check the box to confirm order has been dropped off!")]
+        public bool ConfirmDropoff { get; set; }
+        [NotMapped]
+        public DateTime? DatePickedUp { get; set; }
+        [NotMapped]
+        public DateTime? DateDropoff { get; set; }
+        //adding above
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }
