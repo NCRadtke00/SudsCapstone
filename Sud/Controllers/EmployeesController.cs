@@ -1,160 +1,159 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Sud.Data;
 using Sud.Models;
+using Sud.Models.ViewModels;
 
 namespace Sud.Controllers
 {
-    public class EmployeesController : Controller
+    public class EmployeeController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _db;
 
-        public EmployeesController(ApplicationDbContext context)
+        public EmployeeController(ApplicationDbContext context)
         {
-            _context = context;
+            _db = context;
         }
 
-        // GET: Employees
-        public async Task<IActionResult> Index()
+        public ActionResult Index()
         {
-            var applicationDbContext = _context.Employee.Include(e => e.IdentityUser);
-            return View(await applicationDbContext.ToListAsync());
-        }
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var employee = _db.Employee.Where(c => c.IdentityUserId == userId).SingleOrDefault();
+            ResetPickUp();
 
-        // GET: Employees/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var employee = await _context.Employee
-                .Include(e => e.IdentityUser)
-                .FirstOrDefaultAsync(m => m.Id == id);
             if (employee == null)
             {
-                return NotFound();
+                return RedirectToAction("Create");
+
             }
-
-            return View(employee);
+            else
+            {
+                var customers = _db.Customer.Include(c => c.PickUpDay).ToList();
+                var customersInEmployeeZipCode = customers.Where(c => c.ZipCode == employee.ZipCode && c.ConfirmPickUp == false && c.ConfirmDropoff == false).ToList();
+                var dayOfWeekString = DateTime.Now.DayOfWeek.ToString();
+                var todayString = DateTime.Today.ToString();
+                var today = DateTime.Today;
+                var customersInEmployeeZipCodeAndToday = customersInEmployeeZipCode.Where(c => c.PickUpDay.Date == dayOfWeekString || c.DropOffDay.Date == dayOfWeekString).ToList();
+                return View(customersInEmployeeZipCodeAndToday);
+            }
         }
 
-        // GET: Employees/Create
-        public IActionResult Create()
+        public ActionResult FilterResults() // get
         {
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
-            return View();
+            CustomersByPickUpAndDropOffDay customersList = new CustomersByPickUpAndDropOffDay();
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var employee = _db.Employee.Where(c => c.IdentityUserId == userId).SingleOrDefault();
+            var customers = _db.Customer.Include(c => c.PickUpDay).Include(c => c.DropOffDay).ToList();
+            customersList.Customers = customers.Where(c => c.ZipCode == employee.ZipCode).ToList();
+            customersList.DaySelection = new SelectList(_db.PickUpDays, "Date", "Date");
+            customersList.DaySelection = new SelectList(_db.DropOffDays, "Date", "Date");
+            return View(customersList);
         }
-
-        // POST: Employees/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,ZipCode,IdentityUserId")] Employee employee)
+        public ActionResult FilterResults(CustomersByPickUpAndDropOffDay customer)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(employee);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", employee.IdentityUserId);
-            return View(employee);
+            CustomersByPickUpAndDropOffDay customersList = new CustomersByPickUpAndDropOffDay();
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var employee = _db.Employee.Where(c => c.IdentityUserId == userId).SingleOrDefault();
+            var selected = customer.DaySelected;
+            var customers = _db.Customer.Include(c => c.PickUpDay).Include(c => c.DropOffDay).ToList();
+            customersList.Customers = customers.Where(c => c.ZipCode == employee.ZipCode && c.PickUpDay.Date == selected && c.DropOffDay.Date == selected).ToList();
+            customersList.DaySelection = new SelectList(_db.PickUpDays, "Date", "Date");
+            customersList.DaySelection = new SelectList(_db.DropOffDays, "Date", "Date");
+            return View("FilterResults", customersList);
         }
 
-        // GET: Employees/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public ActionResult Create()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var employee = await _context.Employee.FindAsync(id);
-            if (employee == null)
-            {
-                return NotFound();
-            }
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", employee.IdentityUserId);
+            Employee employee = new Employee();
             return View(employee);
         }
-
-        // POST: Employees/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,ZipCode,IdentityUserId")] Employee employee)
+        public ActionResult Create(Employee employee)
         {
-            if (id != employee.Id)
+            try
             {
-                return NotFound();
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                employee.IdentityUserId = userId;
+                _db.Add(employee);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
             }
-
-            if (ModelState.IsValid)
+            catch
             {
-                try
-                {
-                    _context.Update(employee);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!EmployeeExists(employee.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                return View(employee);
             }
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", employee.IdentityUserId);
-            return View(employee);
         }
 
-        // GET: Employees/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        private void ResetPickUp()
         {
-            if (id == null)
+            var customers = _db.Customer.Include(m => m.PickUpDay).ToList();
+            DateTime today = DateTime.Today;
+            DateTime yesterday = today.AddDays(-1);
+            foreach (Customer customer in customers)
             {
-                return NotFound();
+                if (customer.DatePickedUp == yesterday)
+                {
+                    customer.ConfirmPickUp = false;
+                }
+                if (customer.DateDropoff == yesterday)
+                {
+                    customer.ConfirmDropoff = false;
+                }
             }
-
-            var employee = await _context.Employee
-                .Include(e => e.IdentityUser)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (employee == null)
-            {
-                return NotFound();
-            }
-
-            return View(employee);
         }
 
-        // POST: Employees/Delete/5
-        [HttpPost, ActionName("Delete")]
+        public ActionResult Confirm(int id)
+        {
+            var customer = _db.Customer.Where(c => c.Id == id).Single();
+            return View(customer);
+        }
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public ActionResult Confirm(Customer customer)
         {
-            var employee = await _context.Employee.FindAsync(id);
-            _context.Employee.Remove(employee);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                if (customer.ConfirmPickUp == true)
+                {
+                    customer.DatePickedUp = DateTime.Today;
+                    
+                }
+                if (customer.ConfirmDropoff == true)
+                {
+                    customer.DateDropoff = DateTime.Today;
+                }
+                _db.Customer.Update(customer);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View("Index");
+            }
         }
-
-        private bool EmployeeExists(int id)
-        {
-            return _context.Employee.Any(e => e.Id == id);
-        }
+        //public ActionResult Map(int id) // for adding google maps
+        //{
+        //    CustomerAddress address = new CustomerAddress();
+        //    var locationService = new GoogleLocationService(apikey: "AIzaSyC8E3PXqKgVRYxAwL7v3V_1K7Af6EnzHX8"); // hide this api key from project
+        //    var customer = _db.Customer.Find(id);
+        //    address.StreetAddress = customer.StreetAddress;
+        //    address.City = customer.City;
+        //    address.State = customer.State;
+        //    address.ZipCode = customer.ZipCode;
+        //    var customerAddress = $"{address.StreetAddress}{address.City}{address.State}{address.ZipCode}";
+        //    var pin = locationService.GetLatLongFromAddress(customerAddress);
+        //    address.Longitude = pin.Longitude;
+        //    address.Latitude = pin.Latitude;
+        //    return View(address);
+        //}
     }
 }
