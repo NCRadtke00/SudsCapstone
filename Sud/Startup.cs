@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Stripe;
 
 namespace Sud
 {
@@ -25,6 +26,9 @@ namespace Sud
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            StripeConfiguration.ApiKey = configuration.GetValue<string>("Stripe:SecretKey");
+
+
         }
 
         public IConfiguration Configuration { get; }

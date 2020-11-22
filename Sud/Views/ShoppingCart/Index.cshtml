@@ -20,7 +20,7 @@
         @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
         {
             <tr>
-                <td class="text-center"><a class="btn btn-default" asp-action="RemoveFromShoppingCart" asp-route-clothesId="@line.Clothes.Id"><b>-</b></a>          <b>@line.Amount</b>          <a class="btn btn-default" asp-action="AddToShoppingCart" asp-route-clothesId="@line.Clothes.Id"><b>+</b></a></td>
+                <td class="text-center"><a class="btn btn-primary" asp-action="RemoveFromShoppingCart" asp-route-clothesId="@line.Clothes.Id"><b>-</b></a>          <b>@line.Amount</b>          <a class="btn btn-primary" asp-action="AddToShoppingCart" asp-route-clothesId="@line.Clothes.Id"><b>+</b></a></td>
                 <td class="text-left">@line.Clothes.Name</td>
                 <td class="text-right">@line.Clothes.Price.ToString("c")</td>
                 <td class="text-right">
@@ -38,7 +38,15 @@
         </tr>
     </tfoot>
 </table>
+<stripe src="https://checkout.stripe.com/checkout.js"
+        class="stipe-button"
+        data-ket="pk_test_51Hn9DtFfxvFC7Iq0iyfNbG2W1WpvsrknMUcCIzwJ2DgWYEV1vMQInmx4inXyacbqE6WsXzScNYLZE2JUbWks4nwQ00owATw32J"
+        date-name="Sud Payment"
+        data-description="@ViewBag.Order"
+        data-locale="en"
+        data-label="Confirm Payment - $@ViewBag.OrderTotal">
 
+</stripe>
 <div align="right">
     @if (Model.ShoppingCartTotal > 0)
     {
