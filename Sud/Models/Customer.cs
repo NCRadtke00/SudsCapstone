@@ -47,6 +47,9 @@ namespace Sud.Models
         public DateTime? DatePickedUp { get; set; }
         [NotMapped]
         public DateTime? DateDropoff { get; set; }
+
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
         //adding above
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
