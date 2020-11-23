@@ -104,21 +104,29 @@ namespace Sud.Controllers
                 {
                     customer.ConfirmPickUp = false;
                 }
+            }
+        }
+        private void ResetDropOff()
+        {
+            var customers = _db.Customer.Include(m => m.DropOffDay).ToList();
+            DateTime today = DateTime.Today;
+            DateTime yesterday = today.AddDays(-1);
+            foreach (Customer customer in customers)
+            {
                 if (customer.DateDropoff == yesterday)
                 {
                     customer.ConfirmDropoff = false;
                 }
             }
         }
-
-        public ActionResult Confirm(int id)
+        public ActionResult ConfirmPickUp(int id)
         {
             var customer = _db.Customer.Where(c => c.Id == id).Single();
             return View(customer);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Confirm(Customer customer)
+        public ActionResult ConfirmPickUp(Customer customer)
         {
             try
             {
@@ -127,6 +135,26 @@ namespace Sud.Controllers
                     customer.DatePickedUp = DateTime.Today;
                     
                 }
+                _db.Customer.Update(customer);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View("Index");
+            }
+        }
+        public ActionResult ConfirmDropoff(int id)
+        {
+            var customer = _db.Customer.Where(c => c.Id == id).Single();
+            return View(customer);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmDropoff(Customer customer)
+        {
+            try
+            {
                 if (customer.ConfirmDropoff == true)
                 {
                     customer.DateDropoff = DateTime.Today;
