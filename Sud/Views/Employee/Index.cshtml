@@ -178,7 +178,7 @@
     // parameter when you first load the API. For example:
     // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
     function initAutocomplete() {
-        const location = { lat:  @Html.DisplayFor(model => model.Latitude), lng: @Html.DisplayFor(model => model.Longitude) };
+        const location = { lat:  @Html.DisplayFor(model => model.Lat), lng: @Html.DisplayFor(model => model.Lng) };
         const map = new google.maps.Map(document.getElementById("map"), {
             center: { lat: 43.0389, lng: -87.9065 },
             zoom: 13,
