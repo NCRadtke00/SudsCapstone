@@ -57,7 +57,7 @@ namespace Sud.Controllers
         }
         public IActionResult CheckoutComplete()
         {
-            ViewBag.CheckoutCompleteMessage = $"Thanks for your order, We'll collect your order soon!";
+            ViewBag.CheckoutCompleteMessage = $"Thanks you for your order, We'll collect your order as requested!";
             return View();
         }
         [Authorize]

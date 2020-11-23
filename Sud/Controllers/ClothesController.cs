@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Sud.Data;
 using Sud.Models;
 using Microsoft.AspNetCore.Authorization;
-using Sud.Repositories;
+using Sud.Repositories; 
 using Sud.Models.ViewModels;
 
 namespace Sud.Controllers
