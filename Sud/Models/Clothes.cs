@@ -27,7 +27,7 @@ namespace Sud.Models
         [Range(0, 1000)]
         [DataType(DataType.Currency)]
         [Required]
-        public decimal Price { get; set; }
+        public double  Price { get; set; }
 
         [DataType(DataType.ImageUrl)]
         public string ImageUrl { get; set; }
