@@ -23,7 +23,7 @@ namespace Sud.Controllers
             sc = shoppingCart;
             db = context;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index()  
         {
             var items = await sc.GetShoppingCartItemsAsync();
             sc.ShoppingCartItems = items;
