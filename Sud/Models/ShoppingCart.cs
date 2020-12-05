@@ -88,7 +88,7 @@ namespace Sud.Models
 
             await db.SaveChangesAsync();
         }
-        public decimal GetShoppingCartTotal()
+        public double GetShoppingCartTotal()
         {
             var total = db.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId)
                 .Select(c => c.Clothes.Price * c.Amount).Sum();
