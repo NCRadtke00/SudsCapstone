@@ -10,14 +10,14 @@ using Sud.Data;
 namespace Sud.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201117020726_Initial")]
-    partial class Initial
+    [Migration("20201205041453_Int")]
+    partial class Int
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.9")
+                .HasAnnotation("ProductVersion", "3.1.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -50,22 +50,22 @@ namespace Sud.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "603144fd-3b98-448f-a69f-6e0dbdd84b69",
-                            ConcurrencyStamp = "fb848bcc-d546-4460-b3f4-649b7aa07e83",
+                            Id = "392bba24-2d3a-4ae0-8651-597d8e1028ae",
+                            ConcurrencyStamp = "6a75377b-0cee-4a91-84dd-ebeec9099efe",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "49f09eb4-de46-41df-b78e-7a4c7d8efd5b",
-                            ConcurrencyStamp = "a32f9da8-e514-41d0-b9ca-537106e0de3b",
+                            Id = "a51841d5-97c1-4231-8b9b-52f2120f92a1",
+                            ConcurrencyStamp = "0fd9fcf9-e81c-40a4-b25e-34c29a712281",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "4366e804-4c53-43f2-8da4-6de9aca8f01f",
-                            ConcurrencyStamp = "90e652b6-7035-4793-96ac-b41c8271b138",
+                            Id = "3c3021a4-059e-4cf0-9625-38a73b71b284",
+                            ConcurrencyStamp = "6b8111e4-6f81-4870-a4f6-96b83c2544b2",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -187,12 +187,10 @@ namespace Sud.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -229,12 +227,10 @@ namespace Sud.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -242,6 +238,36 @@ namespace Sud.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Sud.Models.Address", b =>
+                {
+                    b.Property<int>("AddressId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StreetAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ZipCode")
+                        .HasColumnType("int");
+
+                    b.HasKey("AddressId");
+
+                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("Sud.Models.Clothes", b =>
@@ -262,8 +288,8 @@ namespace Sud.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<int>("ServicesId")
                         .HasColumnType("int");
@@ -273,32 +299,229 @@ namespace Sud.Migrations
                     b.HasIndex("ServicesId");
 
                     b.ToTable("Clothes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ImageUrl = " https://www.dhresource.com/0x0/f2/albu/g8/M00/9D/98/rBVaV16NgMmAfTd8AAMVeqw4gzY314.jpg/set-of-4-drawstring-mesh-laundry-bag-wash.jpg ",
+                            IsPopularItem = false,
+                            Name = " 50lb bag",
+                            Price = 7.0,
+                            ServicesId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ImageUrl = " https://www.dhresource.com/0x0/f2/albu/g8/M00/9D/98/rBVaV16NgMmAfTd8AAMVeqw4gzY314.jpg/set-of-4-drawstring-mesh-laundry-bag-wash.jpg",
+                            IsPopularItem = true,
+                            Name = " 40lb bag",
+                            Price = 6.0,
+                            ServicesId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ImageUrl = " https://www.dhresource.com/0x0/f2/albu/g8/M00/9D/98/rBVaV16NgMmAfTd8AAMVeqw4gzY314.jpg/set-of-4-drawstring-mesh-laundry-bag-wash.jpg",
+                            IsPopularItem = false,
+                            Name = " 30lb bag",
+                            Price = 5.0,
+                            ServicesId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ImageUrl = " https://www.dhresource.com/0x0/f2/albu/g8/M00/9D/98/rBVaV16NgMmAfTd8AAMVeqw4gzY314.jpg/set-of-4-drawstring-mesh-laundry-bag-wash.jpg",
+                            IsPopularItem = false,
+                            Name = " 20lb bag",
+                            Price = 4.0,
+                            ServicesId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ImageUrl = " https://4jlaundromat.com/wp-content/uploads/2016/10/shutterstock_250385533.jpg",
+                            IsPopularItem = true,
+                            Name = " Fold laundry",
+                            Price = 2.0,
+                            ServicesId = 3
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ImageUrl = " https://www.rexrx.com/_next/static/images/free-delivery-0a4599ba95770c3c93c524d1626e7d76.png",
+                            IsPopularItem = false,
+                            Name = " Delivery fee",
+                            Price = 4.0,
+                            ServicesId = 3
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ImageUrl = " https://images.squarespace-cdn.com/content/v1/5e599564293347515fe2eabc/1583701071232-CFTFT5DHM16PJ08P6M6D/ke17ZwdGBToddI8pDm48kEoJmA0Abk1RrrM77uDVNFhZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIecCtomI4OQXCfULyDTUGqI_q-TQiniCLvIy8yIJMAmQKMshLAGzx4R3EDFOm1kBS/rushservice.jpg",
+                            IsPopularItem = false,
+                            Name = "Same day Rush Service",
+                            Price = 20.0,
+                            ServicesId = 3
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ImageUrl = " https://images.squarespace-cdn.com/content/v1/5e599564293347515fe2eabc/1583701071232-CFTFT5DHM16PJ08P6M6D/ke17ZwdGBToddI8pDm48kEoJmA0Abk1RrrM77uDVNFhZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIecCtomI4OQXCfULyDTUGqI_q-TQiniCLvIy8yIJMAmQKMshLAGzx4R3EDFOm1kBS/rushservice.jpg ",
+                            IsPopularItem = true,
+                            Name = "Next day Rush Service",
+                            Price = 10.0,
+                            ServicesId = 3
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ImageUrl = " https://images.allergybuyersclub.com/img/CD-CO-WLAS-500.jpg ",
+                            IsPopularItem = false,
+                            Name = " Additional Charge for Down, Silk, and other rare fabrics materials",
+                            Price = 5.0,
+                            ServicesId = 3
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ImageUrl = " https://images-na.ssl-images-amazon.com/images/I/814MCsg4BrL._AC_UL1500_.jpg ",
+                            IsPopularItem = false,
+                            Name = " 2PC SUIT",
+                            Price = 10.5,
+                            ServicesId = 2
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ImageUrl = " https://ae01.alicdn.com/kf/H38607873036b479183e42158db72def2A/Cultiseed-Female-Dress-Set-2020-Women-New-Sexy-Strapless-Puff-Sleeve-2pc-Dress-Set-Suits-Ladies.jpg",
+                            IsPopularItem = false,
+                            Name = " 2PC DRESS",
+                            Price = 11.5,
+                            ServicesId = 2
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQQsevtEvUk7_dBBHP9x8Vwg25ILuQhBVnJUg&usqp=CAU",
+                            IsPopularItem = true,
+                            Name = "3PC SUIT",
+                            Price = 12.5,
+                            ServicesId = 2
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ImageUrl = " https://media.missguided.com/i/missguided/TW423587_01 ",
+                            IsPopularItem = false,
+                            Name = "BLOUSE (WOMAN’S)",
+                            Price = 3.6000000000000001,
+                            ServicesId = 2
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ImageUrl = "https://i.pinimg.com/originals/49/e2/23/49e2230bb5ae873356664aecc253e464.jpg",
+                            IsPopularItem = true,
+                            Name = "DRESS",
+                            Price = 7.7000000000000002,
+                            ServicesId = 2
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ImageUrl = "https://i.etsystatic.com/13385002/r/il/af0dbd/1197944229/il_570xN.1197944229_8bpp.jpg",
+                            IsPopularItem = false,
+                            Name = "DRESS-FANCY/EVENING",
+                            Price = 9.5999999999999996,
+                            ServicesId = 2
+                        });
                 });
 
-            modelBuilder.Entity("Sud.Models.Order", b =>
+            modelBuilder.Entity("Sud.Models.Customer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AddressLine1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("AddressLine2")
+                    b.Property<bool>("ConfirmDropoff")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ConfirmPickUp")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                    b.Property<string>("IdentityUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.HasIndex("IdentityUserId");
+
+                    b.ToTable("Customer");
+                });
+
+            modelBuilder.Entity("Sud.Models.Employee", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdentityUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ZipCode")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdentityUserId");
+
+                    b.ToTable("Employee");
+                });
+
+            modelBuilder.Entity("Sud.Models.Order", b =>
+                {
+                    b.Property<int>("OrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("ConfirmDropoff")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ConfirmPickUp")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("DropOffDay")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -318,27 +541,26 @@ namespace Sud.Migrations
                     b.Property<DateTime>("OrderPlaced")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("OrderTotal")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("OrderTotal")
+                        .HasColumnType("float");
+
+                    b.Property<double>("PaymentAmount")
+                        .HasColumnType("float");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(25)")
                         .HasMaxLength(25);
 
-                    b.Property<string>("State")
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10);
+                    b.Property<string>("PickUpDay")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ZipCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10);
+                    b.HasKey("OrderId");
 
-                    b.HasKey("Id");
+                    b.HasIndex("AddressId");
 
                     b.HasIndex("UserId");
 
@@ -352,8 +574,8 @@ namespace Sud.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
 
                     b.Property<int>("ClothesId")
                         .HasColumnType("int");
@@ -361,8 +583,8 @@ namespace Sud.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -409,6 +631,26 @@ namespace Sud.Migrations
                     b.HasIndex("IdentityUserId");
 
                     b.ToTable("Reviews");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ClothesId = 2,
+                            Date = new DateTime(2020, 12, 4, 22, 14, 52, 12, DateTimeKind.Local).AddTicks(6637),
+                            Description = "Eveything smelled like a fresh medow, and was folded perfectly.",
+                            Grade = 4,
+                            Title = "WOW"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ClothesId = 3,
+                            Date = new DateTime(2020, 12, 4, 22, 14, 52, 20, DateTimeKind.Local).AddTicks(100),
+                            Description = "The guy picked everthing up, and dropped it off 6 hours later.",
+                            Grade = 5,
+                            Title = "Legen-dry"
+                        });
                 });
 
             modelBuilder.Entity("Sud.Models.Services", b =>
@@ -430,6 +672,26 @@ namespace Sud.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Services");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Laundry done for you!",
+                            Name = "Laundry"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Dry cleaning at your convience!",
+                            Name = "DryCleaning"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Miscellaneous fee's.",
+                            Name = "Fee's"
+                        });
                 });
 
             modelBuilder.Entity("Sud.Models.ShoppingCartItem", b =>
@@ -515,8 +777,34 @@ namespace Sud.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Sud.Models.Customer", b =>
+                {
+                    b.HasOne("Sud.Models.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("IdentityUserId");
+                });
+
+            modelBuilder.Entity("Sud.Models.Employee", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("IdentityUserId");
+                });
+
             modelBuilder.Entity("Sud.Models.Order", b =>
                 {
+                    b.HasOne("Sud.Models.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");

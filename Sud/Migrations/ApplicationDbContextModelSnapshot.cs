@@ -48,22 +48,22 @@ namespace Sud.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c9c3e4ee-37f8-40d7-b1a6-e88cc2139a11",
-                            ConcurrencyStamp = "799d896d-9405-453c-83f9-98dd3ae15643",
+                            Id = "392bba24-2d3a-4ae0-8651-597d8e1028ae",
+                            ConcurrencyStamp = "6a75377b-0cee-4a91-84dd-ebeec9099efe",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "8d33a528-a704-4a54-815c-080d66d9a07a",
-                            ConcurrencyStamp = "22cefff8-201a-429d-9c00-c3c02cf474df",
+                            Id = "a51841d5-97c1-4231-8b9b-52f2120f92a1",
+                            ConcurrencyStamp = "0fd9fcf9-e81c-40a4-b25e-34c29a712281",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "1c7322e6-12db-4b51-8304-5c93f4c1d540",
-                            ConcurrencyStamp = "d38fb8da-0a12-4b8e-8a21-12a60fbe21de",
+                            Id = "3c3021a4-059e-4cf0-9625-38a73b71b284",
+                            ConcurrencyStamp = "6b8111e4-6f81-4870-a4f6-96b83c2544b2",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -238,6 +238,36 @@ namespace Sud.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Sud.Models.Address", b =>
+                {
+                    b.Property<int>("AddressId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StreetAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ZipCode")
+                        .HasColumnType("int");
+
+                    b.HasKey("AddressId");
+
+                    b.ToTable("Addresses");
+                });
+
             modelBuilder.Entity("Sud.Models.Clothes", b =>
                 {
                     b.Property<int>("Id")
@@ -256,8 +286,8 @@ namespace Sud.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<int>("ServicesId")
                         .HasColumnType("int");
@@ -275,7 +305,7 @@ namespace Sud.Migrations
                             ImageUrl = " https://www.dhresource.com/0x0/f2/albu/g8/M00/9D/98/rBVaV16NgMmAfTd8AAMVeqw4gzY314.jpg/set-of-4-drawstring-mesh-laundry-bag-wash.jpg ",
                             IsPopularItem = false,
                             Name = " 50lb bag",
-                            Price = 7.00m,
+                            Price = 7.0,
                             ServicesId = 1
                         },
                         new
@@ -284,7 +314,7 @@ namespace Sud.Migrations
                             ImageUrl = " https://www.dhresource.com/0x0/f2/albu/g8/M00/9D/98/rBVaV16NgMmAfTd8AAMVeqw4gzY314.jpg/set-of-4-drawstring-mesh-laundry-bag-wash.jpg",
                             IsPopularItem = true,
                             Name = " 40lb bag",
-                            Price = 6.00m,
+                            Price = 6.0,
                             ServicesId = 1
                         },
                         new
@@ -293,7 +323,7 @@ namespace Sud.Migrations
                             ImageUrl = " https://www.dhresource.com/0x0/f2/albu/g8/M00/9D/98/rBVaV16NgMmAfTd8AAMVeqw4gzY314.jpg/set-of-4-drawstring-mesh-laundry-bag-wash.jpg",
                             IsPopularItem = false,
                             Name = " 30lb bag",
-                            Price = 5.00m,
+                            Price = 5.0,
                             ServicesId = 1
                         },
                         new
@@ -302,7 +332,7 @@ namespace Sud.Migrations
                             ImageUrl = " https://www.dhresource.com/0x0/f2/albu/g8/M00/9D/98/rBVaV16NgMmAfTd8AAMVeqw4gzY314.jpg/set-of-4-drawstring-mesh-laundry-bag-wash.jpg",
                             IsPopularItem = false,
                             Name = " 20lb bag",
-                            Price = 4.00m,
+                            Price = 4.0,
                             ServicesId = 1
                         },
                         new
@@ -311,7 +341,7 @@ namespace Sud.Migrations
                             ImageUrl = " https://4jlaundromat.com/wp-content/uploads/2016/10/shutterstock_250385533.jpg",
                             IsPopularItem = true,
                             Name = " Fold laundry",
-                            Price = 2.00m,
+                            Price = 2.0,
                             ServicesId = 3
                         },
                         new
@@ -320,7 +350,7 @@ namespace Sud.Migrations
                             ImageUrl = " https://www.rexrx.com/_next/static/images/free-delivery-0a4599ba95770c3c93c524d1626e7d76.png",
                             IsPopularItem = false,
                             Name = " Delivery fee",
-                            Price = 4.00m,
+                            Price = 4.0,
                             ServicesId = 3
                         },
                         new
@@ -329,7 +359,7 @@ namespace Sud.Migrations
                             ImageUrl = " https://images.squarespace-cdn.com/content/v1/5e599564293347515fe2eabc/1583701071232-CFTFT5DHM16PJ08P6M6D/ke17ZwdGBToddI8pDm48kEoJmA0Abk1RrrM77uDVNFhZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIecCtomI4OQXCfULyDTUGqI_q-TQiniCLvIy8yIJMAmQKMshLAGzx4R3EDFOm1kBS/rushservice.jpg",
                             IsPopularItem = false,
                             Name = "Same day Rush Service",
-                            Price = 20.00m,
+                            Price = 20.0,
                             ServicesId = 3
                         },
                         new
@@ -338,7 +368,7 @@ namespace Sud.Migrations
                             ImageUrl = " https://images.squarespace-cdn.com/content/v1/5e599564293347515fe2eabc/1583701071232-CFTFT5DHM16PJ08P6M6D/ke17ZwdGBToddI8pDm48kEoJmA0Abk1RrrM77uDVNFhZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIecCtomI4OQXCfULyDTUGqI_q-TQiniCLvIy8yIJMAmQKMshLAGzx4R3EDFOm1kBS/rushservice.jpg ",
                             IsPopularItem = true,
                             Name = "Next day Rush Service",
-                            Price = 10.00m,
+                            Price = 10.0,
                             ServicesId = 3
                         },
                         new
@@ -347,7 +377,7 @@ namespace Sud.Migrations
                             ImageUrl = " https://images.allergybuyersclub.com/img/CD-CO-WLAS-500.jpg ",
                             IsPopularItem = false,
                             Name = " Additional Charge for Down, Silk, and other rare fabrics materials",
-                            Price = 5.00m,
+                            Price = 5.0,
                             ServicesId = 3
                         },
                         new
@@ -356,7 +386,7 @@ namespace Sud.Migrations
                             ImageUrl = " https://images-na.ssl-images-amazon.com/images/I/814MCsg4BrL._AC_UL1500_.jpg ",
                             IsPopularItem = false,
                             Name = " 2PC SUIT",
-                            Price = 10.50m,
+                            Price = 10.5,
                             ServicesId = 2
                         },
                         new
@@ -365,7 +395,7 @@ namespace Sud.Migrations
                             ImageUrl = " https://ae01.alicdn.com/kf/H38607873036b479183e42158db72def2A/Cultiseed-Female-Dress-Set-2020-Women-New-Sexy-Strapless-Puff-Sleeve-2pc-Dress-Set-Suits-Ladies.jpg",
                             IsPopularItem = false,
                             Name = " 2PC DRESS",
-                            Price = 11.50m,
+                            Price = 11.5,
                             ServicesId = 2
                         },
                         new
@@ -374,7 +404,7 @@ namespace Sud.Migrations
                             ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQQsevtEvUk7_dBBHP9x8Vwg25ILuQhBVnJUg&usqp=CAU",
                             IsPopularItem = true,
                             Name = "3PC SUIT",
-                            Price = 12.50m,
+                            Price = 12.5,
                             ServicesId = 2
                         },
                         new
@@ -383,16 +413,16 @@ namespace Sud.Migrations
                             ImageUrl = " https://media.missguided.com/i/missguided/TW423587_01 ",
                             IsPopularItem = false,
                             Name = "BLOUSE (WOMAN’S)",
-                            Price = 3.60m,
+                            Price = 3.6000000000000001,
                             ServicesId = 2
                         },
                         new
                         {
                             Id = 14,
-                            ImageUrl = " https://www.dhresource.com/0x0/f2/albu/g8/M00/9D/98/rBVaV16NgMmAfTd8AAMVeqw4gzY314.jpg/set-of-4-drawstring-mesh-laundry-bag-wash.jpg",
+                            ImageUrl = "https://i.pinimg.com/originals/49/e2/23/49e2230bb5ae873356664aecc253e464.jpg",
                             IsPopularItem = true,
                             Name = "DRESS",
-                            Price = 7.70m,
+                            Price = 7.7000000000000002,
                             ServicesId = 2
                         },
                         new
@@ -401,7 +431,7 @@ namespace Sud.Migrations
                             ImageUrl = "https://i.etsystatic.com/13385002/r/il/af0dbd/1197944229/il_570xN.1197944229_8bpp.jpg",
                             IsPopularItem = false,
                             Name = "DRESS-FANCY/EVENING",
-                            Price = 9.60m,
+                            Price = 9.5999999999999996,
                             ServicesId = 2
                         });
                 });
@@ -413,17 +443,14 @@ namespace Sud.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("ConfirmDropoff")
                         .HasColumnType("bit");
 
                     b.Property<bool>("ConfirmPickUp")
                         .HasColumnType("bit");
-
-                    b.Property<int>("DropOffDayId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -440,79 +467,13 @@ namespace Sud.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PickUpDayId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("State")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StreetAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ZipCode")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("DropOffDayId");
+                    b.HasIndex("AddressId");
 
                     b.HasIndex("IdentityUserId");
 
-                    b.HasIndex("PickUpDayId");
-
                     b.ToTable("Customer");
-                });
-
-            modelBuilder.Entity("Sud.Models.DropOffDay", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Date")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DropOffDays");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Date = "Monday"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Date = "Tuesday"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Date = "Wednesday"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Date = "Thursday"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Date = "Friday"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Date = "Saturday"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Date = "Sunday"
-                        });
                 });
 
             modelBuilder.Entity("Sud.Models.Employee", b =>
@@ -522,10 +483,13 @@ namespace Sud.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("IdentityUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ZipCode")
@@ -545,23 +509,17 @@ namespace Sud.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AddressLine1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("AddressLine2")
+                    b.Property<bool>("ConfirmDropoff")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ConfirmPickUp")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("DropOffDay")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -581,63 +539,30 @@ namespace Sud.Migrations
                     b.Property<DateTime>("OrderPlaced")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("OrderTotal")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("OrderTotal")
+                        .HasColumnType("float");
+
+                    b.Property<double>("PaymentAmount")
+                        .HasColumnType("float");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(25)")
                         .HasMaxLength(25);
 
-                    b.Property<string>("State")
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10);
+                    b.Property<string>("PickUpDay")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ZipCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10);
-
                     b.HasKey("OrderId");
+
+                    b.HasIndex("AddressId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Orders");
-
-                    b.HasData(
-                        new
-                        {
-                            OrderId = 1,
-                            AddressLine1 = "909 E Locust St",
-                            City = "Milwaukee",
-                            Country = "United State",
-                            Email = "NevS@gmail.com",
-                            FirstName = "Nevin",
-                            LastName = "Sei",
-                            OrderPlaced = new DateTime(2020, 11, 18, 14, 37, 11, 275, DateTimeKind.Local).AddTicks(7703),
-                            OrderTotal = 95.00m,
-                            PhoneNumber = "4142292255",
-                            State = "Wisconsin",
-                            ZipCode = "53212"
-                        },
-                        new
-                        {
-                            OrderId = 2,
-                            AddressLine1 = "1872 N Commerce St",
-                            City = "Milwaukee",
-                            Country = "United State",
-                            Email = "NJac@gmail.com",
-                            FirstName = "Nick",
-                            LastName = "Jac",
-                            OrderPlaced = new DateTime(2020, 11, 18, 14, 37, 11, 283, DateTimeKind.Local).AddTicks(2725),
-                            OrderTotal = 20.00m,
-                            PhoneNumber = "4142293030",
-                            State = "Wisconsin",
-                            ZipCode = "53212"
-                        });
                 });
 
             modelBuilder.Entity("Sud.Models.OrderDetail", b =>
@@ -647,8 +572,8 @@ namespace Sud.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
 
                     b.Property<int>("ClothesId")
                         .HasColumnType("int");
@@ -656,8 +581,8 @@ namespace Sud.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -666,58 +591,6 @@ namespace Sud.Migrations
                     b.HasIndex("OrderId");
 
                     b.ToTable("OrderDetails");
-                });
-
-            modelBuilder.Entity("Sud.Models.PickUpDay", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Date")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PickUpDays");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Date = "Monday"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Date = "Tuesday"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Date = "Wednesday"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Date = "Thursday"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Date = "Friday"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Date = "Saturday"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Date = "Sunday"
-                        });
                 });
 
             modelBuilder.Entity("Sud.Models.Reviews", b =>
@@ -762,7 +635,7 @@ namespace Sud.Migrations
                         {
                             Id = 1,
                             ClothesId = 2,
-                            Date = new DateTime(2020, 11, 21, 14, 37, 11, 284, DateTimeKind.Local).AddTicks(263),
+                            Date = new DateTime(2020, 12, 4, 22, 14, 52, 12, DateTimeKind.Local).AddTicks(6637),
                             Description = "Eveything smelled like a fresh medow, and was folded perfectly.",
                             Grade = 4,
                             Title = "WOW"
@@ -771,7 +644,7 @@ namespace Sud.Migrations
                         {
                             Id = 2,
                             ClothesId = 3,
-                            Date = new DateTime(2020, 11, 21, 14, 37, 11, 284, DateTimeKind.Local).AddTicks(2793),
+                            Date = new DateTime(2020, 12, 4, 22, 14, 52, 20, DateTimeKind.Local).AddTicks(100),
                             Description = "The guy picked everthing up, and dropped it off 6 hours later.",
                             Grade = 5,
                             Title = "Legen-dry"
@@ -904,21 +777,15 @@ namespace Sud.Migrations
 
             modelBuilder.Entity("Sud.Models.Customer", b =>
                 {
-                    b.HasOne("Sud.Models.DropOffDay", "DropOffDay")
+                    b.HasOne("Sud.Models.Address", "Address")
                         .WithMany()
-                        .HasForeignKey("DropOffDayId")
+                        .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
                         .WithMany()
                         .HasForeignKey("IdentityUserId");
-
-                    b.HasOne("Sud.Models.PickUpDay", "PickUpDay")
-                        .WithMany()
-                        .HasForeignKey("PickUpDayId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Sud.Models.Employee", b =>
@@ -930,6 +797,12 @@ namespace Sud.Migrations
 
             modelBuilder.Entity("Sud.Models.Order", b =>
                 {
+                    b.HasOne("Sud.Models.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");

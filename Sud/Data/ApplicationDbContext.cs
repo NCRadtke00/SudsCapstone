@@ -64,7 +64,7 @@ namespace Sud.Data
                  {
                      Id = 1,
                      Name = " 50lb bag",
-                     Price = 7.00m,
+                     Price = 7.00,
                      ImageUrl = " https://www.dhresource.com/0x0/f2/albu/g8/M00/9D/98/rBVaV16NgMmAfTd8AAMVeqw4gzY314.jpg/set-of-4-drawstring-mesh-laundry-bag-wash.jpg ",
                      IsPopularItem = false,
                      ServicesId = 1
@@ -73,7 +73,7 @@ namespace Sud.Data
                 {
                     Id = 2,
                     Name = " 40lb bag",
-                    Price = 6.00m,
+                    Price = 6.00,
                     ImageUrl = " https://www.dhresource.com/0x0/f2/albu/g8/M00/9D/98/rBVaV16NgMmAfTd8AAMVeqw4gzY314.jpg/set-of-4-drawstring-mesh-laundry-bag-wash.jpg",
                     IsPopularItem = true,
                     ServicesId = 1
@@ -82,7 +82,7 @@ namespace Sud.Data
                 {
                     Id = 3,
                     Name = " 30lb bag",
-                    Price = 5.00m,
+                    Price = 5.00,
                     ImageUrl = " https://www.dhresource.com/0x0/f2/albu/g8/M00/9D/98/rBVaV16NgMmAfTd8AAMVeqw4gzY314.jpg/set-of-4-drawstring-mesh-laundry-bag-wash.jpg",
                     IsPopularItem = false,
                     ServicesId = 1
@@ -91,7 +91,7 @@ namespace Sud.Data
                 {
                     Id = 4,
                     Name = " 20lb bag",
-                    Price = 4.00m,
+                    Price = 4.00,
                     ImageUrl = " https://www.dhresource.com/0x0/f2/albu/g8/M00/9D/98/rBVaV16NgMmAfTd8AAMVeqw4gzY314.jpg/set-of-4-drawstring-mesh-laundry-bag-wash.jpg",
                     IsPopularItem = false,
                     ServicesId = 1
@@ -100,7 +100,7 @@ namespace Sud.Data
                 {
                     Id = 5,
                     Name = " Fold laundry",
-                    Price = 2.00m,
+                    Price = 2.00,
                     ImageUrl = " https://4jlaundromat.com/wp-content/uploads/2016/10/shutterstock_250385533.jpg",
                     IsPopularItem = true,
                     ServicesId = 3
@@ -109,7 +109,7 @@ namespace Sud.Data
                 {
                     Id = 6,
                     Name = " Delivery fee",
-                    Price = 4.00m,
+                    Price = 4.00,
                     ImageUrl = " https://www.rexrx.com/_next/static/images/free-delivery-0a4599ba95770c3c93c524d1626e7d76.png",
                     IsPopularItem = false,
                     ServicesId = 3
@@ -118,7 +118,7 @@ namespace Sud.Data
                 {
                     Id = 7,
                     Name = "Same day Rush Service",
-                    Price = 20.00m,
+                    Price = 20.00,
                     ImageUrl = " https://images.squarespace-cdn.com/content/v1/5e599564293347515fe2eabc/1583701071232-CFTFT5DHM16PJ08P6M6D/ke17ZwdGBToddI8pDm48kEoJmA0Abk1RrrM77uDVNFhZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIecCtomI4OQXCfULyDTUGqI_q-TQiniCLvIy8yIJMAmQKMshLAGzx4R3EDFOm1kBS/rushservice.jpg",
                     IsPopularItem = false,
                     ServicesId = 3
@@ -127,7 +127,7 @@ namespace Sud.Data
                 {
                     Id = 8,
                     Name = "Next day Rush Service",
-                    Price = 10.00M,
+                    Price = 10.00,
                     ImageUrl = " https://images.squarespace-cdn.com/content/v1/5e599564293347515fe2eabc/1583701071232-CFTFT5DHM16PJ08P6M6D/ke17ZwdGBToddI8pDm48kEoJmA0Abk1RrrM77uDVNFhZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIecCtomI4OQXCfULyDTUGqI_q-TQiniCLvIy8yIJMAmQKMshLAGzx4R3EDFOm1kBS/rushservice.jpg ",
                     IsPopularItem = true,
                     ServicesId = 3
@@ -136,7 +136,7 @@ namespace Sud.Data
                 {
                     Id = 9,
                     Name = " Additional Charge for Down, Silk, and other rare fabrics materials",
-                    Price = 5.00M,
+                    Price = 5.00,
                     ImageUrl = " https://images.allergybuyersclub.com/img/CD-CO-WLAS-500.jpg ",
                     IsPopularItem = false,
                     ServicesId = 3
@@ -145,7 +145,7 @@ namespace Sud.Data
                 {
                     Id = 10,
                     Name = " 2PC SUIT",
-                    Price = 10.50m,
+                    Price = 10.50,
                     ImageUrl = " https://images-na.ssl-images-amazon.com/images/I/814MCsg4BrL._AC_UL1500_.jpg ",
                     IsPopularItem = false,
                     ServicesId = 2
@@ -154,7 +154,7 @@ namespace Sud.Data
                 {
                     Id = 11,
                     Name = " 2PC DRESS",
-                    Price = 11.50m,
+                    Price = 11.50,
                     ImageUrl = " https://ae01.alicdn.com/kf/H38607873036b479183e42158db72def2A/Cultiseed-Female-Dress-Set-2020-Women-New-Sexy-Strapless-Puff-Sleeve-2pc-Dress-Set-Suits-Ladies.jpg",
                     IsPopularItem = false,
                     ServicesId = 2
@@ -163,7 +163,7 @@ namespace Sud.Data
                 {
                     Id = 12,
                     Name = "3PC SUIT",
-                    Price = 12.50m,
+                    Price = 12.50,
                     ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQQsevtEvUk7_dBBHP9x8Vwg25ILuQhBVnJUg&usqp=CAU",
                     IsPopularItem = true,
                     ServicesId = 2
@@ -172,7 +172,7 @@ namespace Sud.Data
                 {
                     Id = 13,
                     Name = "BLOUSE (WOMAN’S)",
-                    Price = 3.60m,
+                    Price = 3.60,
                     ImageUrl = " https://media.missguided.com/i/missguided/TW423587_01 ",
                     IsPopularItem = false,
                     ServicesId = 2
@@ -181,8 +181,8 @@ namespace Sud.Data
                 {
                     Id = 14,
                     Name = "DRESS",
-                    Price = 7.70m,
-                    ImageUrl = " https://www.dhresource.com/0x0/f2/albu/g8/M00/9D/98/rBVaV16NgMmAfTd8AAMVeqw4gzY314.jpg/set-of-4-drawstring-mesh-laundry-bag-wash.jpg",
+                    Price = 7.70,
+                    ImageUrl = "https://i.pinimg.com/originals/49/e2/23/49e2230bb5ae873356664aecc253e464.jpg",
                     IsPopularItem = true,
                     ServicesId = 2
                 },
@@ -190,44 +190,10 @@ namespace Sud.Data
                 {
                     Id = 15,
                     Name = "DRESS-FANCY/EVENING",
-                    Price = 9.60m,
+                    Price = 9.60,
                     ImageUrl = "https://i.etsystatic.com/13385002/r/il/af0dbd/1197944229/il_570xN.1197944229_8bpp.jpg",
                     IsPopularItem = false,
                     ServicesId = 2
-                });
-            builder.Entity<Order>()
-                .HasData(
-                new Order
-                {
-                    OrderId = 1,
-                    FirstName = "Nevin",
-                    LastName = "Sei",
-                    AddressLine1 = "909 E Locust St",
-                    AddressLine2 = null,
-                    ZipCode = "53212",
-                    City = "Milwaukee",
-                    State = "Wisconsin",
-                    Country = "United State",
-                    PhoneNumber = "4142292255",
-                    Email = "NevS@gmail.com",
-                    OrderTotal = 95.00M,
-                    OrderPlaced = DateTime.Now.AddDays(-3),
-                },
-                new Order
-                {
-                    OrderId = 2,
-                    FirstName = "Nick",
-                    LastName = "Jac",
-                    AddressLine1 = "1872 N Commerce St",
-                    AddressLine2 = null,
-                    ZipCode = "53212",
-                    City = "Milwaukee",
-                    State = "Wisconsin",
-                    Country = "United State",
-                    PhoneNumber = "4142293030",
-                    Email = "NJac@gmail.com",
-                    OrderTotal = 20.00M,
-                    OrderPlaced = DateTime.Now.AddDays(-3),
                 });
             builder.Entity<Reviews>()
                 .HasData(
@@ -249,80 +215,6 @@ namespace Sud.Data
                     Date = DateTime.Now,
                     ClothesId = 3
                 });
-            builder.Entity<PickUpDay>()
-                .HasData(
-                    new PickUpDay
-                    {
-                        Id = 1,
-                        Date = "Monday"
-                    },
-                    new PickUpDay
-                    {
-                        Id = 2,
-                        Date = "Tuesday"
-                    },
-                    new PickUpDay
-                    {
-                        Id = 3,
-                        Date = "Wednesday"
-                    },
-                    new PickUpDay
-                    {
-                        Id = 4,
-                        Date = "Thursday"
-                    },
-                    new PickUpDay
-                    {
-                        Id = 5,
-                        Date = "Friday"
-                    },
-                    new PickUpDay
-                    {
-                        Id = 6,
-                        Date = "Saturday"
-                    },
-                    new PickUpDay
-                    {
-                        Id = 7,
-                        Date = "Sunday"
-                    });
-            builder.Entity<DropOffDay>()
-                .HasData(
-                    new DropOffDay
-                    {
-                        Id = 1,
-                        Date = "Monday"
-                    },
-                    new DropOffDay
-                    {
-                        Id = 2,
-                        Date = "Tuesday"
-                    },
-                    new DropOffDay
-                    {
-                        Id = 3,
-                        Date = "Wednesday"
-                    },
-                    new DropOffDay
-                    {
-                        Id = 4,
-                        Date = "Thursday"
-                    },
-                    new DropOffDay
-                    {
-                        Id = 5,
-                        Date = "Friday"
-                    },
-                    new DropOffDay
-                    {
-                        Id = 6,
-                        Date = "Saturday"
-                    },
-                    new DropOffDay
-                    {
-                        Id = 7,
-                        Date = "Sunday"
-                    });
         }
         public DbSet<Services> Services { get; set; }
         public DbSet<Clothes> Clothes { get; set; }
@@ -332,8 +224,7 @@ namespace Sud.Data
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Customer> Customer { get; set; }
         public DbSet<Employee> Employee { get; set; }
-        public DbSet<PickUpDay> PickUpDays { get; set; }
-        public DbSet<DropOffDay> DropOffDays { get; set; }
+        public DbSet<Address> Addresses { get; set; }
 
     }
 }
