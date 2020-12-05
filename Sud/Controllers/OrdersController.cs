@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -107,12 +107,14 @@ namespace Sud.Controllers
             {
                 await or.CreateOrderAsync(order);
                 await sc.ClearCartAsync();
-                return RedirectToAction("CheckoutComplete");
+                return RedirectToAction("MakePayment");
             }
             return View(order);
         }
+
         public IActionResult CheckoutComplete()
         {
+
             ViewBag.CheckoutCompleteMessage = $"Thanks you for your order, We'll collect your order as requested!";
             return View();
         }
@@ -162,7 +164,7 @@ namespace Sud.Controllers
                 .Where(x => x.OrderId == orders.OrderId);
             ViewBag.OrderDetailsList = orderDetailsList;
             return View(orders);
-        }
+        } 
         public IActionResult Create()
         {
             return View();
@@ -171,6 +173,7 @@ namespace Sud.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(IFormCollection collection)
         {
+
             try
             {
                 return RedirectToAction("Index");
