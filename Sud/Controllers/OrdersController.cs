@@ -11,6 +11,10 @@ using Microsoft.EntityFrameworkCore;
 using Sud.Data;
 using Sud.Models;
 using Sud.Repositories;
+using Stripe;
+using System.Security.Claims;
+using System.Net.Http;
+using Newtonsoft.Json.Linq;
 
 namespace Sud.Controllers
 {
@@ -29,6 +33,47 @@ namespace Sud.Controllers
             sc = shoppingCart;
             db = context;
             um = userManager;
+        }
+        public async Task<IActionResult> MakePayment(Models.Order order)
+        {
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
+
+            var orders = await db.Orders.FindAsync(order);
+
+            if (order == null)
+            {
+                return NotFound();
+            }
+            ViewData["AddressId"] = new SelectList(db.Addresses, "AddressId", "AddressId", order.AddressId);
+            return View(order);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> MakePayment(IFormCollection collection, double paymentAmount)
+        {
+            StripeConfiguration.ApiKey = "sk_test_51HfSXkEFx1Ks5Nyz8wSk7nbM01l4ECbTPczxs9gmnQeqbNeKlLc7bYsP573uJ2qbQEIkJhfvFvcUIPFLYYhXQFQz00XyHNXFNe";
+            var options = new ChargeCreateOptions
+            {
+                Amount = (long)paymentAmount * 100,
+                Currency = "usd",
+                Source = "tok_visa",
+                Description = "My First Test Charge (created for API docs)",
+            };
+            var service = new ChargeService();
+            service.Create(options);
+           
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var order = db.Orders.Include(o => o.Address).Where(o => o.UserId == userId).FirstOrDefault();
+            order.OrderTotal -= paymentAmount;
+           
+            db.Update(order);
+            await db.SaveChangesAsync();
+
+            return RedirectToAction("CheckoutComplete");
         }
         [Authorize]
         public IActionResult Checkout()
