@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
@@ -27,30 +27,13 @@ namespace Sud.Models
         [Display(Name = "Last name")]
         [StringLength(50)]
         public string LastName { get; set; }
-
-        [Required(ErrorMessage = "Please enter your address")]
-        [StringLength(100)]
-        [Display(Name = "Address 1")]
-        public string AddressLine1 { get; set; }
-
-        [Display(Name = "Address 2")]
-        public string AddressLine2 { get; set; }
-
-        [Required(ErrorMessage = "Please enter your zip code")]
-        [Display(Name = "Zip code")]
-        [StringLength(10, MinimumLength = 4)]
-        public string ZipCode { get; set; }
-
-        [Required(ErrorMessage = "Please enter your city")]
-        [StringLength(50)]
-        public string City { get; set; }
-
-        [StringLength(10)]
-        public string State { get; set; }
-
-        [Required(ErrorMessage = "Please enter your country")]
-        [StringLength(50)]
-        public string Country { get; set; }
+        [ForeignKey("Address")]
+        public int AddressId { get; set; }
+        public Address Address { get; set; }
+        [Display(Name = "Pick Up Day")]
+        public string PickUpDay { get; set; }
+        [Display(Name = "Drop Off Day")]
+        public string DropOffDay { get; set; }
 
         [Required(ErrorMessage = "Please enter your phone number")]
         [StringLength(25)]
