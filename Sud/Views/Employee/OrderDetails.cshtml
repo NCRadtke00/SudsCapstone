@@ -1,0 +1,84 @@
+﻿@model Sud.Models.Order
+@{
+    ViewData["Title"] = "FilterResults";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Order Details </h1>
+<div>
+    <h4>Order</h4>
+    <hr />
+    <div class="container">
+        <div class="row">
+            <dl class="col-lg-6">
+                <div class="row">
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.FirstName)
+                    </dd>
+                </div>
+                <div class="row">
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.LastName)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.LastName)
+                    </dd>
+                </div>
+                <div class="row">
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Address)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Address)
+                    </dd>
+                </div>
+                <div class="row">
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.PickUpDay)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.PickUpDay)
+                    </dd>
+                </div>
+                <div class="row">
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.DropOffDay)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.DropOffDay)
+                    </dd>
+                </div>
+                <input type="hidden" asp-for="Address.Latitude" />
+                <input type="hidden" asp-for="Address.Longitude" />
+                <a asp-action="Details" asp-route-id="@Model.OrderId" asp-controller="Orders" class="btn btn-primary">Details</a>
+            </dl>
+        </div>
+
+        <div class="col-lg-6">
+            <div id="map" style="height: 400px; width: 100%;"></div>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_adpkJU5A-_g8bLhkVesFuczwOOpiPtg&callback=initMap&libraries=&v=weekly"
+                    defer></script>
+            <script>
+                    let map;
+                function initMap() {
+                    const map = new google.maps.Map(document.getElementById("map"), {
+                        zoom: 13,
+                        center: { lat: 43.034395, lng: -87.911947 }
+                    });
+                   const marker = new google.maps.Marker({
+                        position: { lat: @Model.Address.Latitude, lng: @Model.Address.Longitude },
+                        map: map,
+                    });
+                }
+            </script>
+
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-primary">View Today's Orders</a>
+    <a asp-action="ViewAllOrders" class="btn btn-primary">View All Orders</a>
+</div>
