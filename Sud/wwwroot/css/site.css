@@ -140,3 +140,7 @@ textarea {
 .review-stars {
     max-width: 150px;
 }
+.imageThumbnail{
+    height:100px;
+    width:auto;
+}
