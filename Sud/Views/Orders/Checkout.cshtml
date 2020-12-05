@@ -1,13 +1,15 @@
-﻿@model Order
+﻿@model Sud.Models.Order
 
 @{
     ViewData["Title"] = "Check Out";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 <h2>Complete Your Order</h2>
 
-
-<form asp-action="Checkout" method="post" class="form-horizontal" role="form">
+@* this might need to be added to upload pic of stains enctype="multipart/form-data"*@
+<form asp-action="Checkout" method="post" class="form-inline" role="form">
     <h4>You're just one step away from finishing your order!</h4>
     <h4>Please fill in the information below</h4>
     <hr />
@@ -31,46 +33,32 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="AddressLine1" class="col-md-2 control-label"></label>
+        <label asp-for="Address.StreetAddress" class="col-md-2 control-label"></label>
         <div class="col-md-5">
-            <input asp-for="AddressLine1" class="form-control" />
-            <span asp-validation-for="AddressLine1" class="text-danger"></span>
+            <input asp-for="Address.StreetAddress" class="form-control" />
+            <span asp-validation-for="Address.StreetAddress" class="text-danger"></span>
         </div>
     </div>
 
     <div class="form-group">
-        <label asp-for="AddressLine2" class="col-md-2 control-label"></label>
+        <label asp-for="Address.City" class="col-md-2 control-label"></label>
         <div class="col-md-5">
-            <input asp-for="AddressLine2" class="form-control" />
-            <span asp-validation-for="AddressLine2" class="text-danger"></span>
+            <input asp-for="Address.City" class="form-control" />
+            <span asp-validation-for="Address.City" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
-        <label asp-for="City" class="col-md-2 control-label"></label>
+        <label asp-for="Address.State" class="col-md-2 control-label"></label>
         <div class="col-md-5">
-            <input asp-for="City" class="form-control" />
-            <span asp-validation-for="City" class="text-danger"></span>
+            <input asp-for="Address.State" class="form-control" />
+            <span asp-validation-for="Address.State" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
-        <label asp-for="State" class="col-md-2 control-label"></label>
+        <label asp-for="Address.ZipCode" class="col-md-2 control-label"></label>
         <div class="col-md-5">
-            <input asp-for="State" class="form-control" />
-            <span asp-validation-for="State" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group">
-        <label asp-for="Country" class="col-md-2 control-label"></label>
-        <div class="col-md-5">
-            <input asp-for="Country" class="form-control" />
-            <span asp-validation-for="Country" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group">
-        <label asp-for="ZipCode" class="col-md-2 control-label"></label>
-        <div class="col-md-5">
-            <input asp-for="ZipCode" class="form-control" />
-            <span asp-validation-for="ZipCode" class="text-danger"></span>
+            <input asp-for="Address.ZipCode" class="form-control" />
+            <span asp-validation-for="Address.ZipCode" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
@@ -80,15 +68,37 @@
             <span asp-validation-for="PhoneNumber" class="text-danger"></span>
         </div>
     </div>
-
     <div class="form-group">
-            <label asp-for="Email" class="col-md-2 control-label"></label>
-            <div class="col-md-5">
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
+        <label asp-for="Email" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
         </div>
- 
+    </div>
+    <div class="form-group">
+        <label asp-for="PickUpDay" class="control-label"></label><br />
+        <select asp-for="PickUpDay" asp-items="PickUpDay.PickupDay">
+            <option value="">Choose a day</option>
+        </select>
+        <span asp-validation-for="PickUpDay" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DropOffDay" class="control-label"></label><br />
+        <select asp-for="DropOffDay" asp-items="DropOffDay.DropoffDay">
+            <option value="">Choose a day</option>
+        </select>
+        <span asp-validation-for="DropOffDay" class="text-danger"></span>
+    </div>
+    @*<div class="form-group">
+            <label asp-for="Photo" class="col-md-2 control-label"></label>
+            <div class="col-md-5">
+                <div class="custom-file ">
+                    <input asp-for="Photo" class="form-control custom-file-input" />
+                    <span asp-validation-for="Photo" class="text-danger"></span>
+                    <label class="custom-file-label">Choose file...</label>
+                </div>
+            </div>
+        </div>*@
     <div class="form-group">
         <div class="col-md-offset-2 col-md-5">
             <input type="submit" class="btn btn-primary" value="Complete order" />
