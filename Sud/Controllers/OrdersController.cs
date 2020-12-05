@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -37,8 +37,19 @@ namespace Sud.Controllers
         }
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Checkout(Order order)
+        public async Task<IActionResult> Checkout(Models.Order order)
         {
+            string url = $"https://maps.googleapis.com/maps/api/geocode/json?address={order.Address.StreetAddress},+{order.Address.City},+{order.Address.State},{order.Address.ZipCode}&key=AIzaSyDXS87aNNUzLOl40Q1kuMBWqup20n-508M";
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync(url);
+            string jsonResult = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                JObject geoCode = JObject.Parse(jsonResult);
+                order.Address.Latitude = (double)geoCode["results"][0]["geometry"]["location"]["lat"];
+
+                order.Address.Longitude = (double)geoCode["results"][0]["geometry"]["location"]["lng"];
+            }
             var userId = um.GetUserId(HttpContext.User);
             order.UserId = userId;
             var items = await sc.GetShoppingCartItemsAsync();
