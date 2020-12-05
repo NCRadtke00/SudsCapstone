@@ -5,16 +5,18 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
 
-namespace Sud.Models.ViewModels
+namespace Sud.Models
 {
-    public class CustomerAddress
+    public class Address
     {
         [Key]
-        public int Id { get; set; }
+        public int AddressId { get; set; }
 
         [Display(Name = "Street Address")]
         public string StreetAddress { get; set; }
+        [Display(Name = "State")]
         public string State { get; set; }
+        [Display(Name = "City")]
         public string City { get; set; }
 
         [Display(Name = "Zip Code")]
