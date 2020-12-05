@@ -19,7 +19,7 @@ namespace Sud.Repositories
         public async Task CreateOrderAsync(Order order)
         {
             order.OrderPlaced = DateTime.Now;
-            decimal totalPrice = 0M;
+            double totalPrice = 0;
             var shoppingCartItems = _shoppingCart.ShoppingCartItems;
             foreach (var shoppingCartItem in shoppingCartItems)
             {
