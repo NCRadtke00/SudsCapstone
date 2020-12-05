@@ -21,24 +21,21 @@ namespace Sud.Models
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
         //adding below
-        [Display(Name = "Street Address")]
-        public string StreetAddress { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        [Display(Name = "Zip Code")]
-        public int ZipCode { get; set; }
-        [ForeignKey("PickUpDay")]
-        [Display(Name = "Pickup Day")]
-        public int PickUpDayId { get; set; }
-        public PickUpDay PickUpDay { get; set; }
-        [ForeignKey("DropOffDay")]
-        [Display(Name = "Drop off Day")]
-        public int DropOffDayId { get; set; }
-        public DropOffDay DropOffDay { get; set; }
-        [NotMapped]
-        public SelectList Days { get; set; }
-        [NotMapped]
-        public SelectList Dates { get; set; }
+        [ForeignKey("Address")]
+        public int AddressId { get; set; }
+        public Address Address { get; set; }
+        //[ForeignKey("PickUpDay")]
+        //[Display(Name = "Pickup Day")]
+        //public int PickUpDayId { get; set; }
+        //public PickUpDay PickUpDay { get; set; }
+        //[ForeignKey("DropOffDay")]
+        //[Display(Name = "Drop off Day")]
+        //public int DropOffDayId { get; set; }
+        //public DropOffDay DropOffDay { get; set; }
+        //[NotMapped]
+        //public SelectList Days { get; set; }
+        //[NotMapped]
+        //public SelectList Dates { get; set; }
         [Display(Name = "Check the box to confirm order has been pick up!")]
         public bool ConfirmPickUp { get; set; }
         [Display(Name = "Check the box to confirm order has been dropped off!")]
@@ -48,8 +45,6 @@ namespace Sud.Models
         [NotMapped]
         public DateTime? DateDropoff { get; set; }
 
-        public string Latitude { get; set; }
-        public string Longitude { get; set; }
         //adding above
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
