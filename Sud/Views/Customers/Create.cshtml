@@ -1,11 +1,11 @@
 ﻿@model Sud.Models.Customer
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "New customer registration";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create your account</h1>
+<h1>Create your new account</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -22,40 +22,31 @@
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="StreetAddress" class="control-label"></label>
-                <input asp-for="StreetAddress" class="form-control" />
-                <span asp-validation-for="StreetAddress" class="text-success"></span>
+                <label asp-for="Address.StreetAddress" class="control-label"></label>
+                <input asp-for="Address.StreetAddress" class="form-control" />
+                <span asp-validation-for="Address.StreetAddress" class="text-success"></span>
             </div>
             <div class="form-group">
-                <label asp-for="City" class="control-label"></label>
-                <input asp-for="City" class="form-control" />
-                <span asp-validation-for="City" class="text-success"></span>
+                <label asp-for="Address.City" class="control-label"></label>
+                <input asp-for="Address.City" class="form-control" />
+                <span asp-validation-for="Address.City" class="text-success"></span>
             </div>
             <div class="form-group">
-                <label asp-for="State" class="control-label"></label>
-                <input asp-for="State" class="form-control" />
-                <span asp-validation-for="State" class="text-success"></span>
+                <label asp-for="Address.State" class="control-label"></label>
+                <input asp-for="Address.State" class="form-control" />
+                <span asp-validation-for="Address.State" class="text-success"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ZipCode" class="control-label"></label>
-                <input asp-for="ZipCode" class="form-control" />
-                <span asp-validation-for="ZipCode" class="text-success"></span>
+                <label asp-for="Address.ZipCode" class="control-label"></label>
+                <input asp-for="Address.ZipCode" class="form-control" />
+                <span asp-validation-for="Address.ZipCode" class="text-success"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="PickUpDayId" class="control-label"></label>
-                <select asp-for="PickUpDayId" class="form-control" asp-items="Model.Days"></select>
-                <span asp-validation-for="PickUpDayId" class="text-success"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DropOffDayId" class="control-label"></label>
-                <select asp-for="DropOffDayId" class="form-control" asp-items="Model.Dates"></select>
-                <span asp-validation-for="DropOffDayId" class="text-success"></span>
-            </div>
-            @*<div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
-            </div>*@
+            </div>
             <div class="form-group">
                 <label asp-for="PhoneNumber" class="control-label"></label>
                 <input asp-for="PhoneNumber" class="form-control" />
@@ -70,7 +61,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-primary">Back to List</a>
 </div>
 
 @section Scripts {
