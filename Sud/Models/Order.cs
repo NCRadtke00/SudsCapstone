@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
@@ -51,12 +52,20 @@ namespace Sud.Models
         [BindNever]
         [ScaffoldColumn(false)]
         [DisplayName("Order Total")]
-        public decimal OrderTotal { get; set; }
-
+        public double OrderTotal { get; set; }
+        [Display(Name = "Payment Amount")]
+        [DisplayFormat(DataFormatString = "{0:C}")] 
+        public double PaymentAmount { get; set; }
         [BindNever]
         [ScaffoldColumn(false)]
         [DisplayName("Order Date")]
         public DateTime OrderPlaced { get; set; }
+        [Display(Name = "Check the box to confirm order has been pick up!")]
+        public bool ConfirmPickUp { get; set; }
+        [Display(Name = "Check the box to confirm order has been dropped off!")]
+        public bool ConfirmDropoff { get; set; }
+
+       // public IFormFile Photo { get; set; }
         [ForeignKey("IdentityUser")]
         public string UserId { get; set; }
 
