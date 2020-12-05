@@ -5,12 +5,39 @@
     ViewData["Title"] = pageName;
 }
 <div align="center">
-    <h2>Contact Us</h2>
-    <h3>(262)222-2222</h3>
-    <h4>
-        If you have any questions please contact us by clicking the links below.
-    </h4>
-
+    <h3>Contact Us</h3>
+    <h4>(262)222-2222</h4>
+    <h5>
+        If you need please contact us by clicking the links below.
+    </h5>
+    <div align="center">
+    <form action="~/home/ThankYou">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="Name">Name : </label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" id="Name">
+                </div>
+            
+            <label class="col-sm-2 col-form-label" for="E-mail">E-mail : </label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="email" id="E-mail">
+                </div>
+            
+            <label class="col-sm-2 col-form-label" for="Phone number">Phone# : </label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" id="Phonenumber">
+                </div>
+            
+            <label class="col-sm-2 col-form-label" for="Comments">Comments : </label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" id="Commets">
+                </div>
+                <div class="col-sm-10 offset-sm-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+        </div>
+    </form>
+    </div>
     <address>
         <strong>Tech Support:</strong> <a href="mailto:TechSupport@Sudys.com">TechSupport@Sudys.com</a><br />
         <strong>Customer Support:</strong> <a href="mailto:CustomerSupport@Sudys.com">CustomerSupport@Sudys.com</a><br />
