@@ -11,8 +11,8 @@ namespace Sud.Models
     {
         [Key]
         public int Id { get; set; }
-        public int Amount { get; set; }
-        public decimal Price { get; set; }
+        public double Amount { get; set; }
+        public double Price { get; set; }
         [ForeignKey("Clothes")]
         public int ClothesId { get; set; }
         public virtual Clothes Clothes { get; set; }
