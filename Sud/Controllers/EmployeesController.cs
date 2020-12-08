@@ -25,163 +25,170 @@ namespace Sud.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var employee = _db.Employee.Where(c => c.IdentityUserId == userId).SingleOrDefault();
-            ResetPickUp();
 
             if (employee == null)
             {
                 return RedirectToAction("Create");
 
             }
-            else
-            {
-                var customers = _db.Customer.Include(c => c.PickUpDay).ToList();
-                var customersInEmployeeZipCode = customers.Where(c => c.ZipCode == employee.ZipCode && c.ConfirmPickUp == false && c.ConfirmDropoff == false).ToList();
-                var dayOfWeekString = DateTime.Now.DayOfWeek.ToString();
-                var todayString = DateTime.Today.ToString();
-                var today = DateTime.Today;
-                var customersInEmployeeZipCodeAndToday = customersInEmployeeZipCode.Where(c => c.PickUpDay.Date == dayOfWeekString || c.DropOffDay.Date == dayOfWeekString).ToList();
-                return View(customersInEmployeeZipCodeAndToday);
-            }
-        }
+            UpdateDatabase();
+            var customers = GetCustomersOrders(employee);
+            return View("ViewTodaysOrders", customers);
 
-        public ActionResult FilterResults() // get
-        {
-            CustomersByPickUpAndDropOffDay customersList = new CustomersByPickUpAndDropOffDay();
-            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var employee = _db.Employee.Where(c => c.IdentityUserId == userId).SingleOrDefault();
-            var customers = _db.Customer.Include(c => c.PickUpDay).Include(c => c.DropOffDay).ToList();
-            customersList.Customers = customers.Where(c => c.ZipCode == employee.ZipCode).ToList();
-            customersList.DaySelection = new SelectList(_db.PickUpDays, "Date", "Date");
-            customersList.DaySelection = new SelectList(_db.DropOffDays, "Date", "Date");
-            return View(customersList);
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult FilterResults(CustomersByPickUpAndDropOffDay customer)
-        {
-            CustomersByPickUpAndDropOffDay customersList = new CustomersByPickUpAndDropOffDay();
-            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var employee = _db.Employee.Where(c => c.IdentityUserId == userId).SingleOrDefault();
-            var selected = customer.DaySelected;
-            var customers = _db.Customer.Include(c => c.PickUpDay).Include(c => c.DropOffDay).ToList();
-            customersList.Customers = customers.Where(c => c.ZipCode == employee.ZipCode && c.PickUpDay.Date == selected && c.DropOffDay.Date == selected).ToList();
-            customersList.DaySelection = new SelectList(_db.PickUpDays, "Date", "Date");
-            customersList.DaySelection = new SelectList(_db.DropOffDays, "Date", "Date");
-            return View("FilterResults", customersList);
-        }
-
         public ActionResult Create()
         {
             Employee employee = new Employee();
             return View(employee);
+            //might need to change to->     return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Employee employee)
+        public async Task<ActionResult> Create(Employee employee)
         {
-            try
+            if (ModelState.IsValid)
             {
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 employee.IdentityUserId = userId;
                 _db.Add(employee);
-                _db.SaveChanges();
-                return RedirectToAction("Index");
+                await _db.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View(employee);
-            }
+            return View(employee);
         }
 
-        private void ResetPickUp()
+
+
+        public async Task<IActionResult> ViewOrdersByDay(string dayOfWeek)
         {
-            var customers = _db.Customer.Include(m => m.PickUpDay).ToList();
-            DateTime today = DateTime.Today;
-            DateTime yesterday = today.AddDays(-1);
-            foreach (Customer customer in customers)
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var employee = _db.Employee.Where(c => c.IdentityUserId == userId).FirstOrDefault();
+            var orders = GetTodaysOrders(employee, dayOfWeek);
+            return View("ViewAllOrders", orders);
+        }
+        public async Task<IActionResult> ViewAllOrders(int? id)
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var employee = _db.Employee.Where(e => e.IdentityUserId == userId).FirstOrDefault();
+            var orders = _db.Orders.Include(o => o.Address).Where(o => o.Address.ZipCode == employee.ZipCode).ToList();
+            return View("ViewAllOrders", orders);
+        }
+        public async Task<IActionResult> OrderDetails(int? id)
+        {
+                        OrderDetails = new OrderAddress();
+            var locationService = new GoogleLocationService(apikey: "AIzaSyCEHL3q9kNjJIYYGy9GpLaO0Y3JGC6uvGU");
+            var order= _db.Orders.Find(id);
+            address.StreetAddress = order.StreetAddress;
+            address.City = order.City;
+            address.State = order.State;
+            address.ZipCode = order.ZipCode;
+            var orderAddress = $"{address.StreetAddress}{address.City}{address.State}{address.ZipCode}";
+            var pin = locationService.GetLatLongFromAddress(customerAddress);
+            address.Longitude = pin.Longitude;
+            address.Latitude = pin.Latitude;
+            return View("OrderDetails", orders);
+        }
+        public async Task<IActionResult> ConfirmPickup(int? id)
+        {
+            var order = _db.Orders.Where(o => o.OrderId == id).FirstOrDefault();
+            CompletePickUp(order);
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+        private static void CompletePickUp(Order order)
+        {
+            order.ConfirmPickUp = true;
+        }
+        public async Task<IActionResult> ConfirmDropOff(int? id)
+        {
+            var order = _db.Orders.Where(c => c.OrderId == id).FirstOrDefault();
+            CompleteDropOff(order);
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+        private static void CompleteDropOff(Order order)
+        {
+            order.ConfirmDropoff = true;
+        }
+
+
+
+        private List<Order> GetCustomersOrders(Employee employee)
+        {
+            var orders = GetTodaysOrders(employee);
+            orders = RemoveCompletedOrders(orders);
+            return orders;
+        }
+
+        private List<Order> RemoveCompletedOrders(List<Order> orders)
+        {
+            foreach (Order order in orders.ToList())
             {
-                if (customer.DatePickedUp == yesterday)
+                if (order.ConfirmPickUp == true)
                 {
-                    customer.ConfirmPickUp = false;
+                    orders.Remove(order);
+                }
+                else if (order.ConfirmDropoff == true)
+                {
+                    orders.Remove(order);
                 }
             }
+            return orders;
         }
-        private void ResetDropOff()
+
+        private List<Order> GetTodaysOrders(Employee employee)
         {
-            var customers = _db.Customer.Include(m => m.DropOffDay).ToList();
-            DateTime today = DateTime.Today;
-            DateTime yesterday = today.AddDays(-1);
-            foreach (Customer customer in customers)
+            List<Order> orders = new List<Order>();
+
+            foreach (Order order in _db.Orders.Include(o => o.Address))
             {
-                if (customer.DateDropoff == yesterday)
+                if (order.Address.ZipCode == employee.ZipCode && order.PickUpDay == DateTime.Now.DayOfWeek.ToString() && order.ConfirmPickUp == false)
                 {
-                    customer.ConfirmDropoff = false;
+                    orders.Add(order);
+                }
+                if (order.Address.ZipCode == employee.ZipCode && order.DropOffDay == DateTime.Now.DayOfWeek.ToString() && order.ConfirmDropoff == false)
+                {
+                    orders.Add(order);
+                }
+
+            }
+             return orders;
+        }
+        private List<Order> GetTodaysOrders(Employee employee, string dayOfWeek)
+        {
+            List<Order> orders = new List<Order>();
+            foreach (Order order in _db.Orders.Include(c => c.Address))
+            {
+                if (order.Address.ZipCode == employee.ZipCode && order.PickUpDay == dayOfWeek)
+                {
+                    orders.Add(order);
+                }
+                if (order.Address.ZipCode == employee.ZipCode && order.DropOffDay == dayOfWeek)
+                {
+                    orders.Add(order);
                 }
             }
+            return orders;
         }
-        public ActionResult ConfirmPickUp(int id)
+        private void UpdateDatabase()
         {
-            var customer = _db.Customer.Where(c => c.Id == id).Single();
-            return View(customer);
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult ConfirmPickUp(Customer customer)
-        {
-            try
+            foreach (Order order in _db.Orders)
             {
-                if (customer.ConfirmPickUp == true)
+                if (order.PickUpDay.Equals(DateTime.Now.AddDays(-1).DayOfWeek.ToString()))
                 {
-                    customer.DatePickedUp = DateTime.Today;
-                    
+                    _db.Update(order);
                 }
-                _db.Customer.Update(customer);
-                _db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View("Index");
-            }
-        }
-        public ActionResult ConfirmDropoff(int id)
-        {
-            var customer = _db.Customer.Where(c => c.Id == id).Single();
-            return View(customer);
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult ConfirmDropoff(Customer customer)
-        {
-            try
-            {
-                if (customer.ConfirmDropoff == true)
+                if (order.DropOffDay.Equals(DateTime.Now.AddDays(-1).DayOfWeek.ToString()))
                 {
-                    customer.DateDropoff = DateTime.Today;
+                    _db.Update(order);
                 }
-                _db.Customer.Update(customer);
-                _db.SaveChanges();
-                return RedirectToAction("Index");
             }
-            catch
-            {
-                return View("Index");
-            }
+            _db.SaveChanges();
         }
-        //public ActionResult Map(int id) // for adding google maps
-        //{
-        //    CustomerAddress address = new CustomerAddress();
-        //    var locationService = new GoogleLocationService(apikey: "AIzaSyC8E3PXqKgVRYxAwL7v3V_1K7Af6EnzHX8"); // hide this api key from project
-        //    var customer = _db.Customer.Find(id);
-        //    address.StreetAddress = customer.StreetAddress;
-        //    address.City = customer.City;
-        //    address.State = customer.State;
-        //    address.ZipCode = customer.ZipCode;
-        //    var customerAddress = $"{address.StreetAddress}{address.City}{address.State}{address.ZipCode}";
-        //    var pin = locationService.GetLatLongFromAddress(customerAddress);
-        //    address.Longitude = pin.Longitude;
-        //    address.Latitude = pin.Latitude;
-        //    return View(address);
-        //}
+
+
+
+
+
     }
 }
