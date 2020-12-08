@@ -36,17 +36,7 @@ namespace Sud.Controllers
         }
         public async Task<IActionResult> MakePayment(Models.Order order)
         {
-            //if (id == null)
-            //{
-            //    return NotFound();
-            //}
-
-            var orders = await db.Orders.FindAsync(order);
-
-            if (order == null)
-            {
-                return NotFound();
-            }
+            Checkout();
             ViewData["AddressId"] = new SelectList(db.Addresses, "AddressId", "AddressId", order.AddressId);
             return View(order);
         }
