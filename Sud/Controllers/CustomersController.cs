@@ -1,43 +1,50 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Sud.Data;
 using Sud.Models;
 
 namespace Sud.Controllers
 {
+
     public class CustomersController : Controller
     {
-        private readonly ApplicationDbContext _context;
-
+        private readonly ApplicationDbContext _db;
+        private static readonly HttpClient httpClient;
+        static CustomersController()
+        {
+            httpClient = new HttpClient();
+        }
         public CustomersController(ApplicationDbContext context)
         {
-            _context = context;
+            _db = context;
         }
 
         // GET: Customers
         public IActionResult Index()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var customer = _context.Customer.Where(c => c.IdentityUserId == userId).SingleOrDefault();
+            var customer = _db.Customer.Where(c => c.IdentityUserId == userId).SingleOrDefault();
             if (customer == null)
             {
                 return RedirectToAction("Create");
             }
-            else
-            {
-                return View("Details", customer);
-            }
+            return View("Details", customer);
         }
-        public IActionResult Details(Customer customer)
+        public IActionResult Details(int? id)
         {
-            customer.PickUpDay = _context.PickUpDays.Find(customer.PickUpDayId);
-            customer.DropOffDay = _context.DropOffDays.Find(customer.DropOffDayId);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = _db.Customer.Where(c => c.IdentityUserId == userId).SingleOrDefault();
             if (customer == null)
             {
                 return NotFound();
