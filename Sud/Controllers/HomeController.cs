@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Sud.Models;
 using System;
@@ -31,6 +31,10 @@ namespace Sud.Controllers
             return View();
         }
         public IActionResult Contact()
+        {
+            return View();
+        }
+        public IActionResult ThankYou()
         {
             return View();
         }
