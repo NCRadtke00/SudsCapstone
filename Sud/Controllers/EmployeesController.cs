@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using GoogleMaps.LocationServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -75,19 +76,19 @@ namespace Sud.Controllers
         }
         public async Task<IActionResult> OrderDetails(int? id)
         {
-                        OrderDetails = new OrderAddress();
+            Order order = new Order();
             var locationService = new GoogleLocationService(apikey: "AIzaSyCEHL3q9kNjJIYYGy9GpLaO0Y3JGC6uvGU");
-            var order= _db.Orders.Find(id);
-            address.StreetAddress = order.StreetAddress;
-            address.City = order.City;
-            address.State = order.State;
-            address.ZipCode = order.ZipCode;
-            var orderAddress = $"{address.StreetAddress}{address.City}{address.State}{address.ZipCode}";
-            var pin = locationService.GetLatLongFromAddress(customerAddress);
-            address.Longitude = pin.Longitude;
-            address.Latitude = pin.Latitude;
+            var orders = _db.Addresses.Find(id);
+            orders.StreetAddress = order.Address.StreetAddress;
+            orders.City = order.Address.City;
+            orders.State = order.Address.State;
+            orders.ZipCode = order.Address.ZipCode;
+            var orderAddress = $"{order.Address.StreetAddress}{order.Address.City}{order.Address.State}{order.Address.ZipCode}";
+            var pin = locationService.GetLatLongFromAddress(orderAddress);
+            order.Address.Longitude = pin.Longitude;
+            order.Address.Latitude = pin.Latitude;
             return View("OrderDetails", orders);
-        }
+        } 
         public async Task<IActionResult> ConfirmPickup(int? id)
         {
             var order = _db.Orders.Where(o => o.OrderId == id).FirstOrDefault();
