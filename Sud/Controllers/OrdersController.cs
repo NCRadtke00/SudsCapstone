@@ -137,7 +137,7 @@ namespace Sud.Controllers
                 .SingleOrDefaultAsync(m => m.OrderId == id);
             var user = await um.GetUserAsync(HttpContext.User);
             var userRoles = await um.GetRolesAsync(user);
-            bool isAdmin = userRoles.Any(r => r == "Admin");
+            bool isAdmin = userRoles.Any(r => r == "Employee");
             if (orders == null)
             {
                 return NotFound();

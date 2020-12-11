@@ -27,7 +27,7 @@
             @Html.DisplayNameFor(model => model.Address)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Address)
+            @Html.DisplayFor(model => model.Address.StreetAddress)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.PhoneNumber)
@@ -54,16 +54,14 @@
             @Html.DisplayFor(model => model.User.Email)
         </dd>
         <dt>
-            <br />----- Order
+            <br />----- Order Details -----
         </dt>
-        <dd>
-            <br /><b>Details -----</b>
-        </dd>
+       
         @{double subtotal = 0;}
         @foreach (OrderDetail orderDetail in ViewBag.OrderDetailsList)
         {
             <dt>
-                @Html.DisplayNameFor(model => orderDetail.Clothes)
+                Item
             </dt>
             <dd>
                 @Html.DisplayFor(model => orderDetail.Clothes.Name)
@@ -87,22 +85,16 @@
                 @{subtotal = orderDetail.Price * orderDetail.Amount;}
                 @subtotal.ToString("c")
             </dd>
-            <dt>
-                <br />
-            </dt>
-            <dd>
-                <br />
-            </dd>
         }
+
         <dt>
             Total Price
         </dt>
         <dd>
             @Model.OrderTotal.ToString("c")
         </dd>
-
     </dl>
 </div>
 <div>
-    <a class="btn btn-primary" asp-action="Index">Back to List</a>
+    <a class="btn btn-primary" asp-action="Index" asp-controller="Home">Back to Order list</a>
 </div>

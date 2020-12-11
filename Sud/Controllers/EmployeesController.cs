@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using GoogleMaps.LocationServices;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -16,10 +17,12 @@ namespace Sud.Controllers
     public class EmployeeController : Controller
     {
         private readonly ApplicationDbContext _db;
+        private readonly UserManager<IdentityUser> um;
 
-        public EmployeeController(ApplicationDbContext context)
+        public EmployeeController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _db = context;
+            um = userManager;
         }
 
         public ActionResult Index()
@@ -76,18 +79,46 @@ namespace Sud.Controllers
         }
         public async Task<IActionResult> OrderDetails(int? id)
         {
-            Order order = new Order();
-            var locationService = new GoogleLocationService(apikey: "AIzaSyCEHL3q9kNjJIYYGy9GpLaO0Y3JGC6uvGU");
-            var orders = _db.Addresses.Find(id);
-            orders.StreetAddress = order.Address.StreetAddress;
-            orders.City = order.Address.City;
-            orders.State = order.Address.State;
-            orders.ZipCode = order.Address.ZipCode;
-            var orderAddress = $"{order.Address.StreetAddress}{order.Address.City}{order.Address.State}{order.Address.ZipCode}";
-            var pin = locationService.GetLatLongFromAddress(orderAddress);
-            order.Address.Longitude = pin.Longitude;
-            order.Address.Latitude = pin.Latitude;
-            return View("OrderDetails", orders);
+            //Order order = new Order();
+            //var locationService = new GoogleLocationService(apikey: "AIzaSyCEHL3q9kNjJIYYGy9GpLaO0Y3JGC6uvGU");
+            //var orders = _db.Addresses.Find(id);
+            ////orders.StreetAddress = order.Address.StreetAddress;
+            ////orders.City = order.Address.City;
+            ////orders.State = order.Address.State;
+            ////orders.ZipCode = order.Address.ZipCode;
+            //var orderAddress = $"{orders.StreetAddress} {orders.City} {orders.State} {orders.ZipCode}";
+            //var pin = locationService.GetLatLongFromAddress(orderAddress);
+            //orders.Longitude = pin.Longitude;
+            //orders.Latitude = pin.Latitude;
+            //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //var employee = _db.Employee.Where(e => e.IdentityUserId == userId).FirstOrDefault();
+            //var orders = _db.Orders.Include(o => o.Address).Where(o => o.Address.ZipCode == employee.ZipCode).ToList();
+            //return View("OrderDetails", orders);
+            if (id == 0)
+            {
+                return NotFound();
+            }
+            var orders = await _db.Orders.Include(o => o.OrderLines).Include(o => o.User)
+                .SingleOrDefaultAsync(m => m.OrderId == id);
+            var user = await um.GetUserAsync(HttpContext.User);
+            var userRoles = await um.GetRolesAsync(user);
+            bool isEmployee = userRoles.Any(r => r == "Employee");
+            if (orders == null)
+            {
+                return NotFound();
+            }
+            if (isEmployee == false)
+            {
+                var userId = um.GetUserId(HttpContext.User);
+                if (orders.UserId != userId)
+                {
+                    return BadRequest("You do not have permissions to view this order.");
+                }
+            }
+            var orderDetailsList = _db.OrderDetails.Include(o => o.Clothes).Include(o => o.Order)
+                .Where(x => x.OrderId == orders.OrderId);
+            ViewBag.OrderDetailsList = orderDetailsList;
+            return View(orders);
         } 
         public async Task<IActionResult> ConfirmPickup(int? id)
         {
