@@ -85,10 +85,10 @@
 }
 <h1>Submit Payment</h1>
 @{
-    var orderTotal = (OrderDetail)ViewData["TotalPrice"];
+    var orderTotal = (Order)ViewData["OrderTotal"];
 }
 <h4>
-    Order Total : ViewData["OrderTotal"]
+    Order Total : @orderTotal
 </h4>
 <hr />
 <div class="row">
