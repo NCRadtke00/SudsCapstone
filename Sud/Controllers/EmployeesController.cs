@@ -79,21 +79,6 @@ namespace Sud.Controllers
         }
         public async Task<IActionResult> OrderDetails(int? id)
         {
-            //Order order = new Order();
-            //var locationService = new GoogleLocationService(apikey: "AIzaSyCEHL3q9kNjJIYYGy9GpLaO0Y3JGC6uvGU");
-            //var orders = _db.Addresses.Find(id);
-            ////orders.StreetAddress = order.Address.StreetAddress;
-            ////orders.City = order.Address.City;
-            ////orders.State = order.Address.State;
-            ////orders.ZipCode = order.Address.ZipCode;
-            //var orderAddress = $"{orders.StreetAddress} {orders.City} {orders.State} {orders.ZipCode}";
-            //var pin = locationService.GetLatLongFromAddress(orderAddress);
-            //orders.Longitude = pin.Longitude;
-            //orders.Latitude = pin.Latitude;
-            //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            //var employee = _db.Employee.Where(e => e.IdentityUserId == userId).FirstOrDefault();
-            //var orders = _db.Orders.Include(o => o.Address).Where(o => o.Address.ZipCode == employee.ZipCode).ToList();
-            //return View("OrderDetails", orders);
             if (id == 0)
             {
                 return NotFound();
