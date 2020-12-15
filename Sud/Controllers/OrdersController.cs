@@ -34,15 +34,16 @@ namespace Sud.Controllers
             db = context;
             um = userManager;
         }
-        public async Task<IActionResult> MakePayment(Models.Order order)
+        public async Task<IActionResult> MakePayment(int id)
         {
-            Checkout();
-            ViewData["AddressId"] = new SelectList(db.Addresses, "AddressId", "AddressId", order.AddressId);
-            return View(order);
+            //ViewData["OrderTotal"] = new SelectList(db.Orders, "OrderTotal", "OrderTotal", order.OrderTotal);
+            //ViewData["OrderTotal"] = (from Order in db.Orders where Order.OrderTotal == id select (double?)Order.OrderTotal);
+            //ViewData["AddressId"] = new SelectList(db.Addresses, "AddressId", "AddressId", order.AddressId);
+            return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> MakePayment(IFormCollection collection, double paymentAmount)
+        public async Task<IActionResult> MakePayment(IFormCollection collection, double paymentAmount, Models.Order order)
         {
             StripeConfiguration.ApiKey = "sk_test_51HfSXkEFx1Ks5Nyz8wSk7nbM01l4ECbTPczxs9gmnQeqbNeKlLc7bYsP573uJ2qbQEIkJhfvFvcUIPFLYYhXQFQz00XyHNXFNe";
             var options = new ChargeCreateOptions
@@ -54,15 +55,11 @@ namespace Sud.Controllers
             };
             var service = new ChargeService();
             service.Create(options);
-           
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            var order = db.Orders.Include(o => o.Address).Where(o => o.UserId == userId).FirstOrDefault();
-            order.OrderTotal -= paymentAmount;
-           
-            db.Update(order);
+            Models.Order payForOrder = db.Orders.OrderByDescending(o => o.OrderId).FirstOrDefault();
+            payForOrder.PaymentAmount += paymentAmount;
+            db.Orders.Update(payForOrder);
             await db.SaveChangesAsync();
-
             return RedirectToAction("CheckoutComplete");
         }
         [Authorize]
@@ -104,7 +101,6 @@ namespace Sud.Controllers
 
         public IActionResult CheckoutComplete()
         {
-
             ViewBag.CheckoutCompleteMessage = $"Thanks you for your order, We'll collect your order as requested!";
             return View();
         }
@@ -112,9 +108,8 @@ namespace Sud.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await um.GetUserAsync(HttpContext.User);
-            bool isAdmin = await um.IsInRoleAsync(user, "Admin");
-
-            if (isAdmin)
+            bool isEmployee = await um.IsInRoleAsync(user, "Employee");
+            if (isEmployee)
             {
                 var allOrders = await db.Orders.Include(o => o.OrderLines).Include(o => o.User).ToListAsync();
                 return View(allOrders);
@@ -137,12 +132,12 @@ namespace Sud.Controllers
                 .SingleOrDefaultAsync(m => m.OrderId == id);
             var user = await um.GetUserAsync(HttpContext.User);
             var userRoles = await um.GetRolesAsync(user);
-            bool isAdmin = userRoles.Any(r => r == "Employee");
+            bool isEmployee = userRoles.Any(r => r == "Employee");
             if (orders == null)
             {
                 return NotFound();
             }
-            if (isAdmin == false)
+            if (isEmployee == false)
             {
                 var userId = um.GetUserId(HttpContext.User);
                 if (orders.UserId != userId)
@@ -190,7 +185,7 @@ namespace Sud.Controllers
                 return View();
             }
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Employee")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -207,7 +202,7 @@ namespace Sud.Controllers
 
             return View(order);
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Employee")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
