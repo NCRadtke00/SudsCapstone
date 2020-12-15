@@ -3,11 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Stripe;
+
 
 namespace Sud.Repositories
 {
     public interface IOrderRepository
     {
-        Task CreateOrderAsync(Order order);
+        Task CreateOrderAsync(Models.Order order);
     }
 }
