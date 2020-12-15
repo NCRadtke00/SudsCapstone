@@ -45,7 +45,7 @@ namespace Sud.Controllers
         [HttpPost]
         public async Task<IActionResult> MakePayment(IFormCollection collection, double paymentAmount, Models.Order order)
         {
-            StripeConfiguration.ApiKey = "sk_test_51HfSXkEFx1Ks5Nyz8wSk7nbM01l4ECbTPczxs9gmnQeqbNeKlLc7bYsP573uJ2qbQEIkJhfvFvcUIPFLYYhXQFQz00XyHNXFNe";
+            StripeConfiguration.ApiKey = APIKeys.StripeSecretKey;
             var options = new ChargeCreateOptions
             {
                 Amount = (long)paymentAmount * 100,
