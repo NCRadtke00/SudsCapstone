@@ -32,6 +32,9 @@
                 @Html.DisplayNameFor(model => model.OrderTotal)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.PaymentAmount)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.OrderPlaced)
             </th>
             <th>
@@ -51,13 +54,16 @@
                     @Html.DisplayFor(modelItem => item.LastName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Address)
+                    @Html.DisplayFor(modelItem => item.Address.StreetAddress)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PhoneNumber)
                 </td>
                 <td>
                     @item.OrderTotal.ToString("c")
+                </td>
+                <td>
+                    @item.PaymentAmount.ToString("c")
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.OrderPlaced)
