@@ -44,7 +44,6 @@ namespace Sud.Controllers
         {
             Employee employee = new Employee();
             return View(employee);
-            //might need to change to->     return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
