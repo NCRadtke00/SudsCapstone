@@ -87,6 +87,7 @@ namespace Sud.Models
             db.ShoppingCartItems.RemoveRange(cartItems);
 
             await db.SaveChangesAsync();
+        
         }
         public double GetShoppingCartTotal()
         {
