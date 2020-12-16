@@ -10,7 +10,7 @@ using Sud.Data;
 namespace Sud.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201215041306_Initial")]
+    [Migration("20201215222618_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,22 +50,22 @@ namespace Sud.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "345e627f-07a1-430e-a3ce-87abec4e1bf4",
-                            ConcurrencyStamp = "44f28eb4-7ae0-4d7a-862c-c255bcc70e60",
+                            Id = "72b52d0e-2501-41c9-9876-a1c7ad8ed72a",
+                            ConcurrencyStamp = "2c1c350d-77f2-4a21-b8e6-36e39cbae3c8",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "cc243066-9d11-4c20-aacc-3b993c78b5ce",
-                            ConcurrencyStamp = "9cb62d7f-eba0-47d5-a00f-4f1e0c74a124",
+                            Id = "4bfc3cf6-51bb-475b-9a13-1ea31d25b918",
+                            ConcurrencyStamp = "c448324c-4805-49fe-b814-de0c2c7fd38e",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "69347a38-3686-4545-b63c-057d9ff7b1fb",
-                            ConcurrencyStamp = "19572308-e607-4a1a-95c5-3575c11618f6",
+                            Id = "891c90bd-eae6-4ae9-ac26-935c9a4dec1b",
+                            ConcurrencyStamp = "c8fd6ad6-9547-4ce9-8b1b-0b84b27a6d9d",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -520,6 +520,9 @@ namespace Sud.Migrations
                     b.Property<bool>("ConfirmPickUp")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("DropOffDay")
                         .HasColumnType("nvarchar(max)");
 
@@ -637,7 +640,7 @@ namespace Sud.Migrations
                         {
                             Id = 1,
                             ClothesId = 2,
-                            Date = new DateTime(2020, 12, 14, 22, 13, 6, 19, DateTimeKind.Local).AddTicks(6748),
+                            Date = new DateTime(2020, 12, 15, 16, 26, 17, 721, DateTimeKind.Local).AddTicks(7771),
                             Description = "Eveything smelled like a fresh medow, and was folded perfectly.",
                             Grade = 4,
                             Title = "WOW"
@@ -646,7 +649,7 @@ namespace Sud.Migrations
                         {
                             Id = 2,
                             ClothesId = 3,
-                            Date = new DateTime(2020, 12, 14, 22, 13, 6, 22, DateTimeKind.Local).AddTicks(4858),
+                            Date = new DateTime(2020, 12, 15, 16, 26, 17, 726, DateTimeKind.Local).AddTicks(802),
                             Description = "The guy picked everthing up, and dropped it off 6 hours later.",
                             Grade = 5,
                             Title = "Legen-dry"
