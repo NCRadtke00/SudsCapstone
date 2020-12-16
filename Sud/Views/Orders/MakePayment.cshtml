@@ -83,12 +83,15 @@
     </script>
 
 }
-<h1>Submit Payment</h1>
+<h1>You're almost done!</h1>
+<h2>Submit your payment here!</h2>
+<h3>Step 3 of 3!</h3>
 @{
-    var orderTotal = (Order)ViewData["OrderTotal"];
+//var orderTotal = DisplayOrderTotal();
+    // could also try @ViewBag.order.OrderTotal
 }
 <h4>
-    Order Total : @orderTotal
+    Order Total : $@Model.OrderTotal 
 </h4>
 <hr />
 <div class="row">
