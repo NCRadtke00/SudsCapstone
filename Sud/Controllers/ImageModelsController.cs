@@ -59,7 +59,7 @@ namespace Sud.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ImageId,Title,ImageName")] ImageModel imageModel)
+        public async Task<IActionResult> Create(/*[Bind("ImageId,Title,ImageName")]*/ ImageModel imageModel)
         {
             if (ModelState.IsValid)
             {
