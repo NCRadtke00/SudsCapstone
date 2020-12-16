@@ -15,6 +15,9 @@ using Stripe;
 using System.Security.Claims;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
+using System.Web;
+using System.IO;
+using Microsoft.Extensions.FileProviders;
 
 namespace Sud.Controllers
 {
@@ -34,11 +37,27 @@ namespace Sud.Controllers
             db = context;
             um = userManager;
         }
-        public async Task<IActionResult> MakePayment(int id)
+        //add methods to adding photo
+        //public async Task<IActionResult> AddPicture()
+        //{
+        //    return View();
+        //}
+        //[HttpPost]
+        //public async Task<IActionResult> AddPicture([Bind("Title,IamgeFile")] Models.Order order)
+        //{
+        //    Models.Order orderToAddPictureTo = db.Orders.OrderByDescending(o => o.OrderId).FirstOrDefault();
+
+        //    db.Orders.Update(orderToAddPictureTo);
+        //    await db.SaveChangesAsync();
+
+        //    return RedirectToAction("MakePayment");
+        //}
+
+        //method for adding photo's above
+        public async Task<IActionResult> MakePayment(int id, double orderTotal)
         {
-            //ViewData["OrderTotal"] = new SelectList(db.Orders, "OrderTotal", "OrderTotal", order.OrderTotal);
-            //ViewData["OrderTotal"] = (from Order in db.Orders where Order.OrderTotal == id select (double?)Order.OrderTotal);
-            //ViewData["AddressId"] = new SelectList(db.Addresses, "AddressId", "AddressId", order.AddressId);
+            Models.Order order = db.Orders.OrderByDescending(o => o.OrderId).FirstOrDefault();
+            order.OrderTotal = orderTotal;
             return View();
         }
 
@@ -62,6 +81,12 @@ namespace Sud.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("CheckoutComplete");
         }
+        //public IActionResult DisplayOrdertotal(double orderTotal)
+        //{
+        //    Models.Order order = db.Orders.OrderByDescending(o => o.OrderId).FirstOrDefault();
+        //    order.OrderTotal = orderTotal;
+        //    return View(); 
+        //}
         [Authorize]
         public IActionResult Checkout()
         {
@@ -94,7 +119,7 @@ namespace Sud.Controllers
             {
                 await or.CreateOrderAsync(order);
                 await sc.ClearCartAsync();
-                return RedirectToAction("MakePayment");
+                return RedirectToAction("MakePayment");//Change this to add photo have the save for add photo redirect to make payment
             }
             return View(order);
         }
@@ -149,7 +174,7 @@ namespace Sud.Controllers
                 .Where(x => x.OrderId == orders.OrderId);
             ViewBag.OrderDetailsList = orderDetailsList;
             return View(orders);
-        } 
+        }
         public IActionResult Create()
         {
             return View();
