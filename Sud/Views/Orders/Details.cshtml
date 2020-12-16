@@ -100,14 +100,6 @@
         <dd>
             @Model.PaymentAmount.ToString("c")
         </dd>
-        <dt>
-            @foreach (var photo in ViewBag.order.Photos)
-            {
-                <img src="~/images/@photo" width="120" />
-            }
-        </dt>
-
-
         </dl>
     </div>
     <div>
