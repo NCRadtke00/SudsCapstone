@@ -8,6 +8,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
+
 
 namespace Sud.Models
 {
@@ -52,9 +54,10 @@ namespace Sud.Models
         [BindNever]
         [ScaffoldColumn(false)]
         [DisplayName("Order Total")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public double OrderTotal { get; set; }
         [Display(Name = "Payment Amount")]
-        [DisplayFormat(DataFormatString = "{0:C}")] 
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public double PaymentAmount { get; set; }
         [BindNever]
         [ScaffoldColumn(false)]
@@ -65,10 +68,16 @@ namespace Sud.Models
         [Display(Name = "Check the box to confirm order has been dropped off!")]
         public bool ConfirmDropoff { get; set; }
 
-       // public IFormFile Photo { get; set; }
+        // public IFormFile Photo { get; set; }
         [ForeignKey("IdentityUser")]
         public string UserId { get; set; }
 
         public IdentityUser User { get; set; }
+
+
+        [ForeignKey("ImageModel")]
+        public string ImageId { get; set; }
+        public ImageModel Image { get; set; }
+
     }
 }
