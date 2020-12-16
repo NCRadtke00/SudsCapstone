@@ -84,15 +84,10 @@
 
 }
 <h1>You're almost done!</h1>
-<h2>Submit your payment here!</h2>
-<h3>Step 3 of 3!</h3>
-@{
-//var orderTotal = DisplayOrderTotal();
-    // could also try @ViewBag.order.OrderTotal
-}
-<h4>
-    Order Total : $@Model.OrderTotal 
-</h4>
+<h2>Submit your payment here! Step 3 of 3!</h2>
+<h2>
+    Order Total : $ @Model.OrderTotal
+</h2>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -120,7 +115,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="PaymentAmount" class="control-label" placeholder="25.00"></label>
-                <input asp-for="PaymentAmount" class="form-control"/>
+                <input asp-for="PaymentAmount" class="form-control" />
                 <small>Please input dollars and cents separated by a decimal place.</small>
                 <span asp-validation-for="PaymentAmount" class="text-danger"></span>
             </div>
