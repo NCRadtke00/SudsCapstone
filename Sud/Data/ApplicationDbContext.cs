@@ -225,6 +225,7 @@ namespace Sud.Data
         public DbSet<Customer> Customer { get; set; }
         public DbSet<Employee> Employee { get; set; }
         public DbSet<Address> Addresses { get; set; }
+        public DbSet<ImageModel> Images { get; set; }
 
     }
 }
