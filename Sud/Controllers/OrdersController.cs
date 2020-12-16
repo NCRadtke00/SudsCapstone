@@ -58,7 +58,7 @@ namespace Sud.Controllers
         {
             Models.Order order = db.Orders.OrderByDescending(o => o.OrderId).FirstOrDefault();
             order.OrderTotal = orderTotal;
-            return View();
+            return View(order);
         }
 
         [HttpPost]
@@ -119,7 +119,7 @@ namespace Sud.Controllers
             {
                 await or.CreateOrderAsync(order);
                 await sc.ClearCartAsync();
-                return RedirectToAction("MakePayment");//Change this to add photo have the save for add photo redirect to make payment
+                return RedirectToAction("MakePayment", order);//Change this to add photo have the save for add photo redirect to make payment
             }
             return View(order);
         }
