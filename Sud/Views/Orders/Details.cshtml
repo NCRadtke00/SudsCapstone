@@ -56,7 +56,7 @@
         <dt>
             <br />----- Order Details -----
         </dt>
-       
+
         @{double subtotal = 0;}
         @foreach (OrderDetail orderDetail in ViewBag.OrderDetailsList)
         {
@@ -93,15 +93,23 @@
         <dd>
             @Model.OrderTotal.ToString("c")
         </dd>
-        <hr/>
+        <hr />
         <dt>
             Payment Amount
         </dt>
         <dd>
             @Model.PaymentAmount.ToString("c")
         </dd>
-    </dl>
-</div>
-<div>
-    <a class="btn btn-primary" asp-action="Index" asp-controller="Home">Back to Order list</a>
-</div>
+        <dt>
+            @foreach (var photo in ViewBag.order.Photos)
+            {
+                <img src="~/images/@photo" width="120" />
+            }
+        </dt>
+
+
+        </dl>
+    </div>
+    <div>
+        <a class="btn btn-primary" asp-action="Index" asp-controller="Home">Back to Order list</a>
+    </div>
