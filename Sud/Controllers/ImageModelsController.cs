@@ -75,7 +75,9 @@ namespace Sud.Controllers
 
                 db.Add(imageModel);
                 await db.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                
+
+                return RedirectToAction("MakePayment", "Orders");
             }
             return View(imageModel);
         }

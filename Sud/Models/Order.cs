@@ -76,8 +76,8 @@ namespace Sud.Models
 
 
         [ForeignKey("ImageModel")]
-        public string ImageId { get; set; }
-        public ImageModel Image { get; set; }
+        public int ImageId { get; set; }
+        public ImageModel ImageModel { get; set; }
 
     }
 }

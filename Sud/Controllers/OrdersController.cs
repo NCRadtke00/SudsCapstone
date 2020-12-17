@@ -37,23 +37,27 @@ namespace Sud.Controllers
             db = context;
             um = userManager;
         }
-        //add methods to adding photo
+        ////add methods to adding photo
         //public async Task<IActionResult> AddPicture()
         //{
+        //    //Models.ImageModel imageModel = new Models.ImageModel();
+        //    //imageModel.ImageId = id;
         //    return View();
         //}
         //[HttpPost]
-        //public async Task<IActionResult> AddPicture([Bind("Title,IamgeFile")] Models.Order order)
+        //public async Task<IActionResult> AddPicture(int? id)
         //{
+            
         //    Models.Order orderToAddPictureTo = db.Orders.OrderByDescending(o => o.OrderId).FirstOrDefault();
-
+        //    //orderToAddPictureTo.ImageId = image.ImageId.ToString();
+             
         //    db.Orders.Update(orderToAddPictureTo);
         //    await db.SaveChangesAsync();
 
         //    return RedirectToAction("MakePayment");
         //}
 
-        //method for adding photo's above
+        ////method for adding photo's above
         public async Task<IActionResult> MakePayment(int id, double orderTotal)
         {
             Models.Order order = db.Orders.OrderByDescending(o => o.OrderId).FirstOrDefault();
@@ -81,12 +85,6 @@ namespace Sud.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("CheckoutComplete");
         }
-        //public IActionResult DisplayOrdertotal(double orderTotal)
-        //{
-        //    Models.Order order = db.Orders.OrderByDescending(o => o.OrderId).FirstOrDefault();
-        //    order.OrderTotal = orderTotal;
-        //    return View(); 
-        //}
         [Authorize]
         public IActionResult Checkout()
         {
@@ -119,7 +117,7 @@ namespace Sud.Controllers
             {
                 await or.CreateOrderAsync(order);
                 await sc.ClearCartAsync();
-                return RedirectToAction("MakePayment", order);//Change this to add photo have the save for add photo redirect to make payment
+                return RedirectToAction("MakePayment");//Change this to add photo have the save for add photo redirect to make payment
             }
             return View(order);
         }
