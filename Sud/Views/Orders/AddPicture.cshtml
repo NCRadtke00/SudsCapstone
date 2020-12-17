@@ -1,12 +1,11 @@
-﻿@model Sud.Models.ImageModel
+﻿@*@model Sud.Models.ImageModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "AddPicture";
 }
 
-<h1>Create</h1>
-
-<h4>ImageModel</h4>
+<h2>Add pictures to your order</h2>
+<h3>Adding picturs helps varify what your order was, as well as identify where the stain or spot that needs attention might be!</h3>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -18,21 +17,26 @@
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="ImageName" class="control-label"></label>
+                <input asp-for="ImageName" class="form-control" />
+                <span asp-validation-for="ImageName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="ImageFile" class="control-label"></label>
-                <input asp-for="ImageFile" accept="image/*"/>
+                <input asp-for="ImageFile" accept="image/*" />
                 <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="AddPicture" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-primary">Back to Index</a>
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+}*@
