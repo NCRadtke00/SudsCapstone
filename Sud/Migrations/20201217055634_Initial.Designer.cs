@@ -10,7 +10,7 @@ using Sud.Data;
 namespace Sud.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201215222618_Initial")]
+    [Migration("20201217055634_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,22 +50,22 @@ namespace Sud.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "72b52d0e-2501-41c9-9876-a1c7ad8ed72a",
-                            ConcurrencyStamp = "2c1c350d-77f2-4a21-b8e6-36e39cbae3c8",
+                            Id = "976a79fb-251d-4443-8762-89bc67014580",
+                            ConcurrencyStamp = "f1fbd574-8cdd-44e4-9b12-b34c957f76c4",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "4bfc3cf6-51bb-475b-9a13-1ea31d25b918",
-                            ConcurrencyStamp = "c448324c-4805-49fe-b814-de0c2c7fd38e",
+                            Id = "0fa7ddb8-e75f-4162-95c1-8bdbeebb5e7f",
+                            ConcurrencyStamp = "350cb913-4949-4dea-93d1-f01bc26ca011",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "891c90bd-eae6-4ae9-ac26-935c9a4dec1b",
-                            ConcurrencyStamp = "c8fd6ad6-9547-4ce9-8b1b-0b84b27a6d9d",
+                            Id = "91601afd-8e9d-4279-8527-fa98c4eed7a9",
+                            ConcurrencyStamp = "e7229a6d-852c-413e-8711-d35c133dbb69",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -504,6 +504,24 @@ namespace Sud.Migrations
                     b.ToTable("Employee");
                 });
 
+            modelBuilder.Entity("Sud.Models.ImageModel", b =>
+                {
+                    b.Property<int>("ImageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ImageName")
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ImageId");
+
+                    b.ToTable("Images");
+                });
+
             modelBuilder.Entity("Sud.Models.Order", b =>
                 {
                     b.Property<int>("OrderId")
@@ -520,9 +538,6 @@ namespace Sud.Migrations
                     b.Property<bool>("ConfirmPickUp")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("DropOffDay")
                         .HasColumnType("nvarchar(max)");
 
@@ -535,6 +550,9 @@ namespace Sud.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
+
+                    b.Property<int>("ImageId")
+                        .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -564,6 +582,8 @@ namespace Sud.Migrations
                     b.HasKey("OrderId");
 
                     b.HasIndex("AddressId");
+
+                    b.HasIndex("ImageId");
 
                     b.HasIndex("UserId");
 
@@ -640,7 +660,7 @@ namespace Sud.Migrations
                         {
                             Id = 1,
                             ClothesId = 2,
-                            Date = new DateTime(2020, 12, 15, 16, 26, 17, 721, DateTimeKind.Local).AddTicks(7771),
+                            Date = new DateTime(2020, 12, 16, 23, 56, 34, 268, DateTimeKind.Local).AddTicks(6219),
                             Description = "Eveything smelled like a fresh medow, and was folded perfectly.",
                             Grade = 4,
                             Title = "WOW"
@@ -649,7 +669,7 @@ namespace Sud.Migrations
                         {
                             Id = 2,
                             ClothesId = 3,
-                            Date = new DateTime(2020, 12, 15, 16, 26, 17, 726, DateTimeKind.Local).AddTicks(802),
+                            Date = new DateTime(2020, 12, 16, 23, 56, 34, 271, DateTimeKind.Local).AddTicks(7098),
                             Description = "The guy picked everthing up, and dropped it off 6 hours later.",
                             Grade = 5,
                             Title = "Legen-dry"
@@ -805,6 +825,12 @@ namespace Sud.Migrations
                     b.HasOne("Sud.Models.Address", "Address")
                         .WithMany()
                         .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Sud.Models.ImageModel", "ImageModel")
+                        .WithMany()
+                        .HasForeignKey("ImageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -65,6 +65,20 @@ namespace Sud.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Images",
+                columns: table => new
+                {
+                    ImageId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(50)", nullable: true),
+                    ImageName = table.Column<string>(type: "nvarchar(100)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Images", x => x.ImageId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Services",
                 columns: table => new
                 {
@@ -257,7 +271,7 @@ namespace Sud.Migrations
                     ConfirmPickUp = table.Column<bool>(nullable: false),
                     ConfirmDropoff = table.Column<bool>(nullable: false),
                     UserId = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true)
+                    ImageId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -267,6 +281,12 @@ namespace Sud.Migrations
                         column: x => x.AddressId,
                         principalTable: "Addresses",
                         principalColumn: "AddressId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Orders_Images_ImageId",
+                        column: x => x.ImageId,
+                        principalTable: "Images",
+                        principalColumn: "ImageId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Orders_AspNetUsers_UserId",
@@ -383,9 +403,9 @@ namespace Sud.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "72b52d0e-2501-41c9-9876-a1c7ad8ed72a", "2c1c350d-77f2-4a21-b8e6-36e39cbae3c8", "Admin", "ADMIN" },
-                    { "4bfc3cf6-51bb-475b-9a13-1ea31d25b918", "c448324c-4805-49fe-b814-de0c2c7fd38e", "Employee", "EMPLOYEE" },
-                    { "891c90bd-eae6-4ae9-ac26-935c9a4dec1b", "c8fd6ad6-9547-4ce9-8b1b-0b84b27a6d9d", "Customer", "CUSTOMER" }
+                    { "976a79fb-251d-4443-8762-89bc67014580", "f1fbd574-8cdd-44e4-9b12-b34c957f76c4", "Admin", "ADMIN" },
+                    { "0fa7ddb8-e75f-4162-95c1-8bdbeebb5e7f", "350cb913-4949-4dea-93d1-f01bc26ca011", "Employee", "EMPLOYEE" },
+                    { "91601afd-8e9d-4279-8527-fa98c4eed7a9", "e7229a6d-852c-413e-8711-d35c133dbb69", "Customer", "CUSTOMER" }
                 });
 
             migrationBuilder.InsertData(
@@ -423,12 +443,12 @@ namespace Sud.Migrations
             migrationBuilder.InsertData(
                 table: "Reviews",
                 columns: new[] { "Id", "ClothesId", "Date", "Description", "Grade", "IdentityUserId", "Title" },
-                values: new object[] { 1, 2, new DateTime(2020, 12, 15, 16, 26, 17, 721, DateTimeKind.Local).AddTicks(7771), "Eveything smelled like a fresh medow, and was folded perfectly.", 4, null, "WOW" });
+                values: new object[] { 1, 2, new DateTime(2020, 12, 16, 23, 56, 34, 268, DateTimeKind.Local).AddTicks(6219), "Eveything smelled like a fresh medow, and was folded perfectly.", 4, null, "WOW" });
 
             migrationBuilder.InsertData(
                 table: "Reviews",
                 columns: new[] { "Id", "ClothesId", "Date", "Description", "Grade", "IdentityUserId", "Title" },
-                values: new object[] { 2, 3, new DateTime(2020, 12, 15, 16, 26, 17, 726, DateTimeKind.Local).AddTicks(802), "The guy picked everthing up, and dropped it off 6 hours later.", 5, null, "Legen-dry" });
+                values: new object[] { 2, 3, new DateTime(2020, 12, 16, 23, 56, 34, 271, DateTimeKind.Local).AddTicks(7098), "The guy picked everthing up, and dropped it off 6 hours later.", 5, null, "Legen-dry" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -505,6 +525,11 @@ namespace Sud.Migrations
                 column: "AddressId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Orders_ImageId",
+                table: "Orders",
+                column: "ImageId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Orders_UserId",
                 table: "Orders",
                 column: "UserId");
@@ -568,6 +593,9 @@ namespace Sud.Migrations
 
             migrationBuilder.DropTable(
                 name: "Addresses");
+
+            migrationBuilder.DropTable(
+                name: "Images");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

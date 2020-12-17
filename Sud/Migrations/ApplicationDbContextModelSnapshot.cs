@@ -48,22 +48,22 @@ namespace Sud.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ce0d3de1-e87e-4d67-aff7-15b6e0d02311",
-                            ConcurrencyStamp = "3a8e41f5-0235-433c-b4f2-b40a607fc39a",
+                            Id = "976a79fb-251d-4443-8762-89bc67014580",
+                            ConcurrencyStamp = "f1fbd574-8cdd-44e4-9b12-b34c957f76c4",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "40cf51b9-9571-4769-af81-b415085c6111",
-                            ConcurrencyStamp = "5cb25ca9-ec50-4899-abdb-220f2ac438b5",
+                            Id = "0fa7ddb8-e75f-4162-95c1-8bdbeebb5e7f",
+                            ConcurrencyStamp = "350cb913-4949-4dea-93d1-f01bc26ca011",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "10f1e89a-d2f9-4e5b-b5ca-50cd1e415ea8",
-                            ConcurrencyStamp = "7ea6aa06-5909-4eac-af87-2957d5fa0a6f",
+                            Id = "91601afd-8e9d-4279-8527-fa98c4eed7a9",
+                            ConcurrencyStamp = "e7229a6d-852c-413e-8711-d35c133dbb69",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -549,10 +549,7 @@ namespace Sud.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<string>("ImageId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ImageId1")
+                    b.Property<int>("ImageId")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
@@ -584,7 +581,7 @@ namespace Sud.Migrations
 
                     b.HasIndex("AddressId");
 
-                    b.HasIndex("ImageId1");
+                    b.HasIndex("ImageId");
 
                     b.HasIndex("UserId");
 
@@ -661,7 +658,7 @@ namespace Sud.Migrations
                         {
                             Id = 1,
                             ClothesId = 2,
-                            Date = new DateTime(2020, 12, 16, 13, 9, 0, 934, DateTimeKind.Local).AddTicks(9575),
+                            Date = new DateTime(2020, 12, 16, 23, 56, 34, 268, DateTimeKind.Local).AddTicks(6219),
                             Description = "Eveything smelled like a fresh medow, and was folded perfectly.",
                             Grade = 4,
                             Title = "WOW"
@@ -670,7 +667,7 @@ namespace Sud.Migrations
                         {
                             Id = 2,
                             ClothesId = 3,
-                            Date = new DateTime(2020, 12, 16, 13, 9, 0, 940, DateTimeKind.Local).AddTicks(5062),
+                            Date = new DateTime(2020, 12, 16, 23, 56, 34, 271, DateTimeKind.Local).AddTicks(7098),
                             Description = "The guy picked everthing up, and dropped it off 6 hours later.",
                             Grade = 5,
                             Title = "Legen-dry"
@@ -829,9 +826,11 @@ namespace Sud.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Sud.Models.ImageModel", "Image")
+                    b.HasOne("Sud.Models.ImageModel", "ImageModel")
                         .WithMany()
-                        .HasForeignKey("ImageId1");
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
