@@ -3,50 +3,51 @@
 @{
     ViewData["Title"] = "Details";
 }
+<div class="jumbotron">
+    <h1>Review Details</h1>
 
-<h1>Review Details</h1>
-
-<div>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+    <div>
         <hr />
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <hr />
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Grade)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Grade)
-        </dd>
-        <hr />
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-        <hr />
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Clothes)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Clothes.Name)
-        </dd>
-        <hr />
-    </dl>
-</div>
-<div>
-    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> 
-    <a class="btn btn-primary" asp-action="Index">Back to List</a>
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+            <hr />
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <hr />
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Grade)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Grade)
+            </dd>
+            <hr />
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+            <hr />
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Clothes)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Clothes.Name)
+            </dd>
+            <hr />
+        </dl>
+    </div>
+    <div>
+        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+        <a class="btn btn-primary" asp-action="Index">Back to List</a>
+    </div>
 </div>
