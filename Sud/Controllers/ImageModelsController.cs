@@ -31,15 +31,16 @@ namespace Sud.Controllers
         }
 
         // GET: ImageModels/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? id, int newId)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
             var imageModel = await db.Images
-                .FirstOrDefaultAsync(m => m.ImageId == id);
+                 .FirstOrDefaultAsync(m => m.ImageId + 1 == id);
+                 
+               
             if (imageModel == null)
             {
                 return NotFound();
@@ -59,24 +60,23 @@ namespace Sud.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(/*[Bind("ImageId,Title,ImageName")]*/ ImageModel imageModel)
+        public async Task<IActionResult> Create([Bind("ImageId,Title,ImageFile")] ImageModel imageModel)
         {
             if (ModelState.IsValid)
             {
+                //Save image to wwwroot/image
                 string wwwRootPath = _hostEnvironment.WebRootPath;
                 string fileName = Path.GetFileNameWithoutExtension(imageModel.ImageFile.FileName);
-                string extention = Path.GetExtension(imageModel.ImageFile.FileName);
-                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extention;
-                string path = Path.Combine(wwwRootPath + "/Image" + fileName);
+                string extension = Path.GetExtension(imageModel.ImageFile.FileName);
+                imageModel.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                string path = Path.Combine(wwwRootPath + "/Image/", fileName);
                 using (var fileStream = new FileStream(path, FileMode.Create))
                 {
                     await imageModel.ImageFile.CopyToAsync(fileStream);
                 }
-
+                //Insert record
                 db.Add(imageModel);
                 await db.SaveChangesAsync();
-                
-
                 return RedirectToAction("MakePayment", "Orders");
             }
             return View(imageModel);
