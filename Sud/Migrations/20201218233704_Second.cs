@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Sud.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Second : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -403,9 +403,9 @@ namespace Sud.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "976a79fb-251d-4443-8762-89bc67014580", "f1fbd574-8cdd-44e4-9b12-b34c957f76c4", "Admin", "ADMIN" },
-                    { "0fa7ddb8-e75f-4162-95c1-8bdbeebb5e7f", "350cb913-4949-4dea-93d1-f01bc26ca011", "Employee", "EMPLOYEE" },
-                    { "91601afd-8e9d-4279-8527-fa98c4eed7a9", "e7229a6d-852c-413e-8711-d35c133dbb69", "Customer", "CUSTOMER" }
+                    { "1c400ddc-fd2e-48dc-8d09-5b0d472136d9", "bde4bb61-7868-4a93-8db8-10bd179a7d6c", "Admin", "ADMIN" },
+                    { "6e96261c-e87f-4d92-a0e8-61e132b25812", "cd81fa09-0b55-4595-b573-a7089dc9d03a", "Employee", "EMPLOYEE" },
+                    { "9fd24bb6-c5ee-4cdd-99d2-01a2cd719783", "3299da0f-1802-4d2d-885a-9b4a7e91b8bc", "Customer", "CUSTOMER" }
                 });
 
             migrationBuilder.InsertData(
@@ -443,12 +443,12 @@ namespace Sud.Migrations
             migrationBuilder.InsertData(
                 table: "Reviews",
                 columns: new[] { "Id", "ClothesId", "Date", "Description", "Grade", "IdentityUserId", "Title" },
-                values: new object[] { 1, 2, new DateTime(2020, 12, 16, 23, 56, 34, 268, DateTimeKind.Local).AddTicks(6219), "Eveything smelled like a fresh medow, and was folded perfectly.", 4, null, "WOW" });
+                values: new object[] { 1, 2, new DateTime(2020, 12, 18, 17, 37, 3, 673, DateTimeKind.Local).AddTicks(3636), "Eveything smelled like a fresh medow, and was folded perfectly.", 4, null, "WOW" });
 
             migrationBuilder.InsertData(
                 table: "Reviews",
                 columns: new[] { "Id", "ClothesId", "Date", "Description", "Grade", "IdentityUserId", "Title" },
-                values: new object[] { 2, 3, new DateTime(2020, 12, 16, 23, 56, 34, 271, DateTimeKind.Local).AddTicks(7098), "The guy picked everthing up, and dropped it off 6 hours later.", 5, null, "Legen-dry" });
+                values: new object[] { 2, 3, new DateTime(2020, 12, 18, 17, 37, 3, 676, DateTimeKind.Local).AddTicks(2950), "The guy picked everthing up, and dropped it off 6 hours later.", 5, null, "Legen-dry" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

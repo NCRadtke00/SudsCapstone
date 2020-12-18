@@ -10,8 +10,8 @@ using Sud.Data;
 namespace Sud.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201217055634_Initial")]
-    partial class Initial
+    [Migration("20201218233704_Second")]
+    partial class Second
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,22 +50,22 @@ namespace Sud.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "976a79fb-251d-4443-8762-89bc67014580",
-                            ConcurrencyStamp = "f1fbd574-8cdd-44e4-9b12-b34c957f76c4",
+                            Id = "1c400ddc-fd2e-48dc-8d09-5b0d472136d9",
+                            ConcurrencyStamp = "bde4bb61-7868-4a93-8db8-10bd179a7d6c",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "0fa7ddb8-e75f-4162-95c1-8bdbeebb5e7f",
-                            ConcurrencyStamp = "350cb913-4949-4dea-93d1-f01bc26ca011",
+                            Id = "6e96261c-e87f-4d92-a0e8-61e132b25812",
+                            ConcurrencyStamp = "cd81fa09-0b55-4595-b573-a7089dc9d03a",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "91601afd-8e9d-4279-8527-fa98c4eed7a9",
-                            ConcurrencyStamp = "e7229a6d-852c-413e-8711-d35c133dbb69",
+                            Id = "9fd24bb6-c5ee-4cdd-99d2-01a2cd719783",
+                            ConcurrencyStamp = "3299da0f-1802-4d2d-885a-9b4a7e91b8bc",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -660,7 +660,7 @@ namespace Sud.Migrations
                         {
                             Id = 1,
                             ClothesId = 2,
-                            Date = new DateTime(2020, 12, 16, 23, 56, 34, 268, DateTimeKind.Local).AddTicks(6219),
+                            Date = new DateTime(2020, 12, 18, 17, 37, 3, 673, DateTimeKind.Local).AddTicks(3636),
                             Description = "Eveything smelled like a fresh medow, and was folded perfectly.",
                             Grade = 4,
                             Title = "WOW"
@@ -669,7 +669,7 @@ namespace Sud.Migrations
                         {
                             Id = 2,
                             ClothesId = 3,
-                            Date = new DateTime(2020, 12, 16, 23, 56, 34, 271, DateTimeKind.Local).AddTicks(7098),
+                            Date = new DateTime(2020, 12, 18, 17, 37, 3, 676, DateTimeKind.Local).AddTicks(2950),
                             Description = "The guy picked everthing up, and dropped it off 6 hours later.",
                             Grade = 5,
                             Title = "Legen-dry"
