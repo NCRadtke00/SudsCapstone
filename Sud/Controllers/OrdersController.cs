@@ -15,9 +15,8 @@ using Stripe;
 using System.Security.Claims;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
-using System.Web;
+using Microsoft.AspNetCore.Hosting;
 using System.IO;
-using Microsoft.Extensions.FileProviders;
 
 namespace Sud.Controllers
 {
@@ -81,7 +80,39 @@ namespace Sud.Controllers
         }
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Checkout(Models.Order order)
+        public async Task<IActionResult> Checkout(Models.Order order, Models.ImageModel imageModel)
+        {
+            //string url = $"https://maps.googleapis.com/maps/api/geocode/json?address={order.Address.StreetAddress},+{order.Address.City},+{order.Address.State},{order.Address.ZipCode}&key=AIzaSyDXS87aNNUzLOl40Q1kuMBWqup20n-508M";
+            //HttpClient client = new HttpClient();
+            //HttpResponseMessage response = await client.GetAsync(url);
+            //string jsonResult = await response.Content.ReadAsStringAsync();
+            //if (response.IsSuccessStatusCode)
+            //{
+            //    JObject geoCode = JObject.Parse(jsonResult);
+            //    order.Address.Latitude = (double)geoCode["results"][0]["geometry"]["location"]["lat"];
+
+            //    order.Address.Longitude = (double)geoCode["results"][0]["geometry"]["location"]["lng"];
+            //}
+            GetGeoLocation(order);
+            var userId = um.GetUserId(HttpContext.User);
+            order.UserId = userId;
+            var items = await sc.GetShoppingCartItemsAsync();
+            sc.ShoppingCartItems = items;
+            if (sc.ShoppingCartItems.Count == 0)
+            {
+                ModelState.AddModelError("", "Your cart is empty.");
+            }
+            if (ModelState.IsValid)
+            {
+                await SaveImage(imageModel);
+                await or.CreateOrderAsync(order/*, imageModel*/);
+                await sc.ClearCartAsync();
+                return RedirectToAction("MakePayment");
+            }
+            return View(order);
+
+        }
+        public async Task<IActionResult> GetGeoLocation(Models.Order order)
         {
             string url = $"https://maps.googleapis.com/maps/api/geocode/json?address={order.Address.StreetAddress},+{order.Address.City},+{order.Address.State},{order.Address.ZipCode}&key=AIzaSyDXS87aNNUzLOl40Q1kuMBWqup20n-508M";
             HttpClient client = new HttpClient();
@@ -94,23 +125,25 @@ namespace Sud.Controllers
 
                 order.Address.Longitude = (double)geoCode["results"][0]["geometry"]["location"]["lng"];
             }
-            var userId = um.GetUserId(HttpContext.User);
-            order.UserId = userId;
-            var items = await sc.GetShoppingCartItemsAsync();
-            sc.ShoppingCartItems = items;
-            if (sc.ShoppingCartItems.Count == 0)
-            {
-                ModelState.AddModelError("", "Your cart is empty.");
-            }
-            if (ModelState.IsValid)
-            {
-                await or.CreateOrderAsync(order);
-                await sc.ClearCartAsync();
-                return RedirectToAction("MakePayment");//Change this to add photo have the save for add photo redirect to make payment
-            }
             return View(order);
         }
-
+        public async Task<IActionResult> SaveImage(Models.ImageModel imageModel)
+        {
+            
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(imageModel.ImageFile.FileName);
+                string extension = Path.GetExtension(imageModel.ImageFile.FileName);
+                imageModel.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                string path = Path.Combine(wwwRootPath + "/Image/", fileName);
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await imageModel.ImageFile.CopyToAsync(fileStream);
+                }
+                db.Add(imageModel);
+                return View(imageModel);
+                //await db.SaveChangesAsync();
+            
+        }
         public IActionResult CheckoutComplete()
         {
             ViewBag.CheckoutCompleteMessage = $"Thanks you for your order, We'll collect your order as requested!";
