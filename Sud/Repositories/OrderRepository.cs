@@ -21,6 +21,8 @@ using Stripe;
 using System.Security.Claims;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Sud.Repositories
 {
@@ -28,12 +30,18 @@ namespace Sud.Repositories
     {
         private readonly ApplicationDbContext db;
         private readonly ShoppingCart _shoppingCart;
-        public OrderRepository(ApplicationDbContext context, ShoppingCart shoppingCart)
+        //might need to remove this?
+        private readonly IWebHostEnvironment _hostEnvironment;
+
+        public OrderRepository(ApplicationDbContext context, ShoppingCart shoppingCart, IWebHostEnvironment hostEnvironment)
         {
             db = context;
             _shoppingCart = shoppingCart;
+            //might need to remove this?
+
+            this._hostEnvironment = hostEnvironment;
         }
-        public async Task CreateOrderAsync(Models.Order order)
+        public async Task CreateOrderAsync(Models.Order order/*, Models.ImageModel imageModel*/)
         {
             order.OrderPlaced = DateTime.Now;
             double totalPrice = 0;
@@ -52,6 +60,19 @@ namespace Sud.Repositories
                 db.OrderDetails.Add(orderDetail);
             }
             order.OrderTotal = totalPrice;
+            {
+                //string wwwRootPath = _hostEnvironment.WebRootPath;
+                //string fileName = Path.GetFileNameWithoutExtension(imageModel.ImageFile.FileName);
+                //string extension = Path.GetExtension(imageModel.ImageFile.FileName);
+                //imageModel.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                //string path = Path.Combine(wwwRootPath + "/Image/", fileName);
+                //using (var fileStream = new FileStream(path, FileMode.Create))
+                //{
+                //    await imageModel.ImageFile.CopyToAsync(fileStream);
+                //}
+                //db.Add(imageModel);
+                
+            }
             db.Orders.Add(order);
             await db.SaveChangesAsync();
         }

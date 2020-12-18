@@ -10,6 +10,6 @@ namespace Sud.Repositories
 {
     public interface IOrderRepository
     {
-        Task CreateOrderAsync(Models.Order order);
+        Task CreateOrderAsync(Models.Order order/*, Models.ImageModel imageModel*/);
     }
 }
