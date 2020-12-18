@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,39 +29,28 @@ namespace Sud.Controllers
         private readonly ApplicationDbContext db;
         private readonly UserManager<IdentityUser> um;
 
+        //might need to remove this?
+        private readonly IWebHostEnvironment _hostEnvironment;
+
+
         public OrdersController(IOrderRepository orderRepository,
-            ShoppingCart shoppingCart, ApplicationDbContext context, UserManager<IdentityUser> userManager)
+            ShoppingCart shoppingCart, ApplicationDbContext context, UserManager<IdentityUser> userManager, IWebHostEnvironment hostEnvironment)
         {
             or = orderRepository;
             sc = shoppingCart;
             db = context;
             um = userManager;
+
+            //might need to remove this?
+
+           this._hostEnvironment = hostEnvironment;
+
         }
-        ////add methods to adding photo
-        //public async Task<IActionResult> AddPicture()
-        //{
-        //    //Models.ImageModel imageModel = new Models.ImageModel();
-        //    //imageModel.ImageId = id;
-        //    return View();
-        //}
-        //[HttpPost]
-        //public async Task<IActionResult> AddPicture(int? id)
-        //{
-            
-        //    Models.Order orderToAddPictureTo = db.Orders.OrderByDescending(o => o.OrderId).FirstOrDefault();
-        //    //orderToAddPictureTo.ImageId = image.ImageId.ToString();
-             
-        //    db.Orders.Update(orderToAddPictureTo);
-        //    await db.SaveChangesAsync();
 
-        //    return RedirectToAction("MakePayment");
-        //}
-
-        ////method for adding photo's above
         public async Task<IActionResult> MakePayment(int id, double orderTotal)
         {
             Models.Order order = db.Orders.OrderByDescending(o => o.OrderId).FirstOrDefault();
-            order.OrderTotal = orderTotal;
+            orderTotal = order.OrderTotal;
             return View(order);
         }
 
