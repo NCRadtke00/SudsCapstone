@@ -24,10 +24,14 @@
                     <ul class="navbar-nav flex-grow-1">
                         <div class="navbar-collapse collapse">
                             <ul class="nav navbar-nav text-white">
-                                @*<li><a asp-controller="Clothes" asp-action="ListAll" class="nav-link text-white"> Clothes </a></li>*@
-                                @await Component.InvokeAsync("ServiceMenu")
+                                <li class="nav-item">
+                                    @await Component.InvokeAsync("ServiceMenu")
+                                </li>
                                 @if (SignInManager.IsSignedIn(User))
                                 {
+                                    @*<li class="nav-item">
+                                        @await Component.InvokeAsync("ServiceMenu")
+                                    </li>*@
                                     <li class="nav-item">
                                         <a asp-controller="Reviews" asp-action="Index" class="nav-link text-white"> Reviews </a>
                                     </li>
@@ -36,7 +40,7 @@
                                         <a asp-controller="Orders" asp-action="Index" class="nav-link text-white"> Order </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="ShoppingCart\Index" class="nav-link text-white">Shopping Cart</a>
+                                        <a asp-controller="ShoppingCart" asp-action="Index" class="nav-link text-white">Shopping Cart</a>
                                     </li>
                                 }
                                 else
