@@ -83,48 +83,50 @@
     </script>
 
 }
-<h1>You're almost done!</h1>
-<h2>Submit your payment here! Step 3 of 3!</h2>
-<h2>
-    Order Total : $ @Model.OrderTotal
-</h2>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="MakePayment">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="OrderId" />
-            <input type="hidden" asp-for="FirstName" />
-            <input type="hidden" asp-for="LastName" />
-            <input type="hidden" asp-for="AddressId" />
-            <input type="hidden" asp-for="OrderTotal" />
-            <input type="hidden" asp-for="PickUpDay" />
-            <input type="hidden" asp-for="DropOffDay" />
-            <input type="hidden" asp-for="PhoneNumber" />
-            <input type="hidden" asp-for="Email" />
-            <input type="hidden" asp-for="UserId" />
-            <input type="hidden" asp-for="ConfirmDropoff" />
-            <input type="hidden" asp-for="ConfirmPickUp" />
-            <div class="form-group">
-                <label for="card-element">
-                    Credit or Debit Card Info
-                </label>
-                <div id="card-element" style="width: 100%"></div>
-                <div id="card-errors" role="alert"></div>
+<div class="jumbotron">
+    <h1>You're almost done!</h1>
+    <h2>Submit your payment here! Step 3 of 3!</h2>
+    <h2>
+        Order Total : @Model.OrderTotal.ToString("c")
+    </h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="MakePayment">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="OrderId" />
+                <input type="hidden" asp-for="FirstName" />
+                <input type="hidden" asp-for="LastName" />
+                <input type="hidden" asp-for="AddressId" />
+                <input type="hidden" asp-for="OrderTotal" />
+                <input type="hidden" asp-for="PickUpDay" />
+                <input type="hidden" asp-for="DropOffDay" />
+                <input type="hidden" asp-for="PhoneNumber" />
+                <input type="hidden" asp-for="Email" />
+                <input type="hidden" asp-for="UserId" />
+                <input type="hidden" asp-for="ConfirmDropoff" />
+                <input type="hidden" asp-for="ConfirmPickUp" />
+                <div class="form-group">
+                    <label for="card-element">
+                        Credit or Debit Card Info
+                    </label>
+                    <div id="card-element" style="width: 100%"></div>
+                    <div id="card-errors" role="alert"></div>
 
-            </div>
-            <div class="form-group">
-                <label asp-for="PaymentAmount" class="control-label" placeholder="25.00"></label>
-                <input asp-for="PaymentAmount" class="form-control" />
-                <small>Please input dollars and cents separated by a decimal place.</small>
-                <span asp-validation-for="PaymentAmount" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+                </div>
+                <div class="form-group">
+                    <label asp-for="PaymentAmount" class="control-label" placeholder="25.00"></label>
+                    <input asp-for="PaymentAmount" class="form-control" />
+                    <small>Please input dollars and cents separated by a decimal place.</small>
+                    <span asp-validation-for="PaymentAmount" class="text-danger"></span>
+                </div>
+                <div class="form-group">
 
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Submit Payment" class="btn btn-primary" />
-            </div>
-        </form>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Submit Payment" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>

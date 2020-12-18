@@ -4,109 +4,115 @@
     var pageName = "Details";
     ViewData["Title"] = pageName;
 }
+<div class="jumbotron">
+    <h2>@pageName</h2>
 
-<h2>@pageName</h2>
 
-<div>
     <h4>Order</h4>
     <hr />
+
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Address.StreetAddress)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.OrderPlaced)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.OrderPlaced)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.User)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.User.Email)
-        </dd>
-        <dt>
-            <br />----- Order Details -----
-        </dt>
+        <div class="col-md-4">
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Address.StreetAddress)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.OrderPlaced)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.OrderPlaced)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.User)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.User.Email)
+            </dd>
+        </div>
+        <div class="col-md-6 col-md-offset-2">
+            <dt>
+                <br />----- Order Details -----
+            </dt>
 
-        @{double subtotal = 0;}
-        @foreach (OrderDetail orderDetail in ViewBag.OrderDetailsList)
-        {
-            <dt>
-                Item
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => orderDetail.Clothes.Name)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => orderDetail.Amount)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => orderDetail.Amount)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => orderDetail.Price)
-            </dt>
-            <dd>
-                @orderDetail.Price.ToString("c")
-            </dd>
-            <dt>
-                Sub Total
-            </dt>
-            <dd>
-                @{subtotal = orderDetail.Price * orderDetail.Amount;}
-                @subtotal.ToString("c")
-            </dd>
-        }
+            @{double subtotal = 0;}
+            @foreach (OrderDetail orderDetail in ViewBag.OrderDetailsList)
+            {
+                <dt>
+                    Item
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => orderDetail.Clothes.Name)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => orderDetail.Amount)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => orderDetail.Amount)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => orderDetail.Price)
+                </dt>
+                <dd>
+                    @orderDetail.Price.ToString("c")
+                </dd>
+                <dt>
+                    Sub Total
+                </dt>
+                <dd>
+                    @{subtotal = orderDetail.Price * orderDetail.Amount;}
+                    @subtotal.ToString("c")
+                </dd>
+            }
 
-        <dt>
-            Total Price
-        </dt>
-        <dd>
-            @Model.OrderTotal.ToString("c")
-        </dd>
-        <hr />
-        <dt>
-            Payment Amount
-        </dt>
-        <dd>
-            @Model.PaymentAmount.ToString("c")
-        </dd>
-        <dt>
-            <div>
-                <a class="btn btn-primary" asp-action="Details" asp-controller="ImageModels" asp-route-id="@Model.ImageId">Uploaded Image</a>
-            </div>
-        </dt>
-        </dl>
-    </div>
-    <div>
-        <a class="btn btn-primary" asp-action="Index" asp-controller="Home">Back to Order list</a>
-    </div>
+            <dt>
+                Total Price
+            </dt>
+            <dd>
+                @Model.OrderTotal.ToString("c")
+            </dd>
+            <br />
+            <dt>
+                Payment Amount
+            </dt>
+            <dd>
+                @Model.PaymentAmount.ToString("c")
+            </dd>
+            <dt>
+                <div>
+                    <a class="btn btn-primary" asp-action="Details" asp-controller="ImageModels" asp-route-id="@Model.ImageId">Uploaded Image</a>
+                </div>
+            </dt>
+        </div>
+    </dl>
+
+<div>
+    <a class="btn btn-primary" asp-action="Index" asp-controller="Home">Back to Order list</a>
+</div>
+</div>

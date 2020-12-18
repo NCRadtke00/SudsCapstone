@@ -3,56 +3,58 @@
 @{
     ViewData["Title"] = "Details";
 }
-<style>
-    * {
-        box-sizing: border-box;
-    }
+<div class="jumbotron">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    /* Create three equal columns that floats next to each other */
-    .columnD {
-        float: left;
-        width: 33.33%;
-        padding: 10px;
-        height: 300px; /* Should be removed. Only for demonstration */
-    }
+        /* Create three equal columns that floats next to each other */
+        .columnD {
+            float: left;
+            width: 33.33%;
+            padding: 10px;
+            height: 300px; /* Should be removed. Only for demonstration */
+        }
 
-    /* Clear floats after the columns */
-    .row:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-</style>
-<body>
-    <h1 class="text-dark">Welcome, @Html.DisplayFor(model => model.FirstName)</h1>
-    <form asp-action="Edit" asp-route-id="@Model.Id" method="get">
-        <button type="submit" class="btn btn-primary">Edit Account information</button>
-    </form>
-    
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+    <body>
+        <h1 class="text-dark">Welcome, @Html.DisplayFor(model => model.FirstName)</h1>
+        <form asp-action="Edit" asp-route-id="@Model.Id" method="get">
+            <button type="submit" class="btn btn-primary">Edit Account information</button>
+        </form>
 
-    <div class="row">
-        <div class="container">
-            <div class="card-deck">
-                <div class="card border-dark"
+
+        <div class="row">
+            <div class="container">
+                <div class="card-deck">
+                    <div class="card border-dark"
             </div>
-            </div>
-            @*<div class="columnD">
-                        <div class="card border-success" style="max-width: 25rem;">
-                            <div class="card-header h4 text-primary">Current Pick up day</div>
-                            <div class="card-body">
-                                <h4 class="card-title text-black-50"><strong>@Html.DisplayFor(model => model.PickUpDay)</strong></h4>
-                                <p class="card-text text-primary"><strong>Your collection is on</strong> <strong>@Html.DisplayFor(model => model.PickUpDay.Date)</strong> . <br /> Please have your order ready for collection.</p>
+                </div>
+                @*<div class="columnD">
+                            <div class="card border-success" style="max-width: 25rem;">
+                                <div class="card-header h4 text-primary">Current Pick up day</div>
+                                <div class="card-body">
+                                    <h4 class="card-title text-black-50"><strong>@Html.DisplayFor(model => model.PickUpDay)</strong></h4>
+                                    <p class="card-text text-primary"><strong>Your collection is on</strong> <strong>@Html.DisplayFor(model => model.PickUpDay.Date)</strong> . <br /> Please have your order ready for collection.</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="columnD">
-                        <div class="card border-success" style="max-width: 25rem;">
-                            <div class="card-header h4 text-primary">Current drop off day</div>
-                            <div class="card-body">
-                                <h4 class="card-title text-black-50"><strong>@Html.DisplayFor(model => model.DropOffDay)</strong></h4>
-                                <p class="card-text text-primary"><strong>Your delivery is on</strong> <strong>@Html.DisplayFor(model => model.DropOffDay.Date)</strong> .</p>
+                        <div class="columnD">
+                            <div class="card border-success" style="max-width: 25rem;">
+                                <div class="card-header h4 text-primary">Current drop off day</div>
+                                <div class="card-body">
+                                    <h4 class="card-title text-black-50"><strong>@Html.DisplayFor(model => model.DropOffDay)</strong></h4>
+                                    <p class="card-text text-primary"><strong>Your delivery is on</strong> <strong>@Html.DisplayFor(model => model.DropOffDay.Date)</strong> .</p>
+                                </div>
                             </div>
-                        </div>
-                </div>*@
-        </div>
-</body>
+                    </div>*@
+            </div>
+    </body>
+</div>
