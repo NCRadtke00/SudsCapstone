@@ -3,45 +3,46 @@
 @{
     ViewData["Title"] = "Details";
 }
+<div class="jumbotron">
+    <h1>Item Details</h1>
 
-<h1>Item Details</h1>
-
-<div>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageUrl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImageUrl)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsPopularItem)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsPopularItem)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Services)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Services.Name)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a> |
-    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ImageUrl)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.IsPopularItem)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.IsPopularItem)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Services)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Services.Name)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a> |
+        <a asp-action="Index" class="btn btn-primary">Back to List</a>
+    </div>
 </div>
