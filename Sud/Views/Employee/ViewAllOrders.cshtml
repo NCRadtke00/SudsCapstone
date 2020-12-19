@@ -4,68 +4,69 @@
     ViewData["Title"] = "ViewAllOrders";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h1>All Orders</h1>
-<hr />
-<script>
-    let addresses = [];
-</script>
-<p><a class="btn btn-primary" asp-action="Index">View Today's Pick Up's and Deliverys</a></p>
-<h3>Search By Day:</h3>
-<p>
-    <a class="btn btn-primary" asp-action="ViewOrdersByDay" asp-route-dayofWeek="Monday">Monday</a>
-    <a class="btn btn-primary" asp-action="ViewOrdersByDay" asp-route-dayOfWeek="Tuesday">Tuesday</a>
-    <a class="btn btn-primary" asp-action="ViewOrdersByDay" asp-route-dayOfWeek="Wednesday">Wednesday</a>
-    <a class="btn btn-primary" asp-action="ViewOrdersByDay" asp-route-dayOfWeek="Thursday">Thursday</a>
-    <a class="btn btn-primary" asp-action="ViewOrdersByDay" asp-route-dayOfWeek="Friday">Friday</a>
-    <a class="btn btn-primary" asp-action="ViewOrdersByDay" asp-route-dayOfWeek="Saturday">Saturday</a>
-    <a class="btn btn-primary" asp-action="ViewOrdersByDay" asp-route-dayofWeek="Sunday">Sunday</a>
-    <a class="btn btn-primary" asp-action="ViewOrdersByDay">View All Orders </a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PickUpDay)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DropOffDay)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="jumbotron">
+    <h1>All Orders</h1>
+    <hr />
+    <script>
+        let addresses = [];
+    </script>
+    <p><a class="btn btn-primary" asp-action="Index">View Today's Pick Up's and Deliverys</a></p>
+    <h3>Search By Day:</h3>
+    <p>
+        <a class="btn btn-primary" asp-action="ViewOrdersByDay" asp-route-dayofWeek="Monday">Monday</a>
+        <a class="btn btn-primary" asp-action="ViewOrdersByDay" asp-route-dayOfWeek="Tuesday">Tuesday</a>
+        <a class="btn btn-primary" asp-action="ViewOrdersByDay" asp-route-dayOfWeek="Wednesday">Wednesday</a>
+        <a class="btn btn-primary" asp-action="ViewOrdersByDay" asp-route-dayOfWeek="Thursday">Thursday</a>
+        <a class="btn btn-primary" asp-action="ViewOrdersByDay" asp-route-dayOfWeek="Friday">Friday</a>
+        <a class="btn btn-primary" asp-action="ViewOrdersByDay" asp-route-dayOfWeek="Saturday">Saturday</a>
+        <a class="btn btn-primary" asp-action="ViewOrdersByDay" asp-route-dayofWeek="Sunday">Sunday</a>
+        <a class="btn btn-primary" asp-action="ViewOrdersByDay">View All Orders </a>
+    </p>
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address.StreetAddress)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PickUpDay)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DropOffDay)
-                </td>
-                <td>
-                    <a asp-action="OrderDetails" asp-route-id="@item.OrderId" class="btn btn-primary">View Order Details</a>
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PickUpDay)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DropOffDay)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
-
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address.StreetAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PickUpDay)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DropOffDay)
+                    </td>
+                    <td>
+                        <a asp-action="OrderDetails" asp-route-id="@item.OrderId" class="btn btn-primary">View Order Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

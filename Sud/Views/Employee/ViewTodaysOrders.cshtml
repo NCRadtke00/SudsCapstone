@@ -3,63 +3,64 @@
     ViewData["Title"] = "ViewTodaysOrders";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h1>Pick Ups and Deliverys for @DateTime.Today.ToString("D")</h1>
-<script>let addresses = [];</script>
-<p><a asp-action="ViewAllOrders" class="btn btn-primary">View All Orders</a></p>
+<div class="jumbotron">
+    <h1>Pick Ups and Deliverys for @DateTime.Today.ToString("D")</h1>
+    <script>let addresses = [];</script>
+    <p><a asp-action="ViewAllOrders" class="btn btn-primary">View All Orders</a></p>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PickUpDay)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DropOffDay)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <script>
-                addresses.push([@item.Address.Latitude, @item.Address.Longitude]);
-            </script>
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address.StreetAddress)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PickUpDay)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DropOffDay)
-                </td>
-                <td>
-                    <a asp-action="ConfirmPickUp" asp-route-id="@item.OrderId" class="btn btn-primary">Confirm Pick Up</a>
-                    <a asp-action="ConfirmDropOff" asp-route-id="@item.OrderId" class="btn btn-primary">Confirm Drop Off</a>
-                    <a asp-action="OrderDetails" asp-route-id="@item.OrderId" class="btn btn-primary">View Order Details</a>
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PickUpDay)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DropOffDay)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
-
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <script>
+                addresses.push([@item.Address.Latitude, @item.Address.Longitude]);
+                </script>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address.StreetAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PickUpDay)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DropOffDay)
+                    </td>
+                    <td>
+                        <a asp-action="ConfirmPickUp" asp-route-id="@item.OrderId" class="btn btn-primary">Confirm Pick Up</a>
+                        <a asp-action="ConfirmDropOff" asp-route-id="@item.OrderId" class="btn btn-primary">Confirm Drop Off</a>
+                        <a asp-action="OrderDetails" asp-route-id="@item.OrderId" class="btn btn-primary">View Order Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 <div id="map" style="height: 600px; width: 100%;"></div>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_adpkJU5A-_g8bLhkVesFuczwOOpiPtg&callback=initMap&libraries=&v=weekly"
