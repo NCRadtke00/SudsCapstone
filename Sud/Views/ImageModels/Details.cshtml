@@ -30,9 +30,10 @@
     </dl>
 
     <div>
-        <p>place button to return to prior page</p>
+        <a asp-action="Details" asp-route-id="@Model.ImageId" class="btn btn-primary">Details</a>
+
         @*<p>these dont work</p>
-            <a asp-action="Edit" asp-route-id="@Model.ImageId" class="btn btn-primary">Edit</a>
-            <a asp-action="Index" class="btn btn-primary">Back to List</a>*@
+        <a asp-action="Edit" asp-route-id="@Model.ImageId" class="btn btn-primary">Edit</a>
+        <a asp-action="Index" class="btn btn-primary">Back to List</a>*@
     </div>
 </div>
