@@ -21,8 +21,8 @@ namespace Sud.Controllers
             db = context;
             _userManager = userManager;
         }
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> AdminIndex()
+        [Authorize(Roles = "Employee")]
+        public async Task<IActionResult> EmployeeIndex()
         {
             var reviews = await db.Reviews.Include(r => r.Clothes).Include(r => r.User).ToListAsync();
             return View(reviews);
@@ -31,9 +31,9 @@ namespace Sud.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            bool isAdmin = await _userManager.IsInRoleAsync(user, "Admin");
+            bool isEmployee = await _userManager.IsInRoleAsync(user, "Admin");
 
-            if (isAdmin)
+            if (isEmployee)
             {
                 var allReviews = db.Reviews.Include(r => r.Clothes).Include(r => r.User).ToList();
                 return View(allReviews);
