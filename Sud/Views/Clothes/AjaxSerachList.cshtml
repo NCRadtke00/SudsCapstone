@@ -1,8 +1,9 @@
 ﻿@model List<Clothes>
 
 <h4>Search Results</h4>
-
-@foreach (var clothes in Model)
-{
-    @Html.Partial("ClothesSummary", clothes)
-}
+<div class="row">
+    @foreach (var clothes in Model)
+    {
+        @Html.Partial("ClothesSummary", clothes)
+    }
+</div>

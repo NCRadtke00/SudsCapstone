@@ -7,10 +7,13 @@
 
 <h2>@ModelName</h2>
 <hr />
+<div class="row">
+    @foreach (var clothes in Model)
+    {
+        <div class="column">
+            @Html.Partial("ClothesSummary", clothes)
+        </div>
+    }
+</div>
 
-@foreach (var clothes in Model)
-{
-    @Html.Partial("ClothesSummary", clothes)
-}
-<br />
 
