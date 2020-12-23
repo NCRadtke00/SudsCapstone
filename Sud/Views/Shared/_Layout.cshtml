@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,21 +24,18 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <div class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav text-white">
-                                <li class="nav-item">
+                            <ul class="nav navbar-nav">
+                                <li class="nav-item text-primary">
                                     @await Component.InvokeAsync("ServiceMenu")
                                 </li>
+
                                 @if (SignInManager.IsSignedIn(User))
                                 {
-                                    @*<li class="nav-item">
-                                        @await Component.InvokeAsync("ServiceMenu")
-                                    </li>*@
                                     <li class="nav-item">
-                                        <a asp-controller="Reviews" asp-action="Index" class="nav-link text-white"> Reviews </a>
+                                        <a asp-controller="Reviews" asp-action="EmployeeIndex" class="nav-link text-white"> Reviews </a>
                                     </li>
-
                                     <li class="nav-item">
-                                        <a asp-controller="Orders" asp-action="Index" class="nav-link text-white"> Order </a>
+                                        <a asp-controller="Orders" asp-action="Index" class="nav-link text-white"> Orders </a>
                                     </li>
                                     <li class="nav-item">
                                         <a asp-controller="ShoppingCart" asp-action="Index" class="nav-link text-white">Shopping Cart</a>
