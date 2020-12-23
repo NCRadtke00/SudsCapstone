@@ -5,14 +5,17 @@
     ViewData["Title"] = pageName;
 }
 <div class="jumbotron">
-    <h2>@pageName</h2>
-
-
-    <h4>Order</h4>
+    <h2>Order @pageName</h2>
     <hr />
-
-    <dl class="dl-horizontal">
-        <div class="col-md-4">
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="75"
+             aria-valuemin="0" aria-valuemax="100" style="width:100%">
+            Complete
+        </div>
+    </div>
+    <dl class="row">
+        <div class="column text-white">
+            <h3>Order Details</h3>
             <dt>
                 @Html.DisplayNameFor(model => model.FirstName)
             </dt>
@@ -56,17 +59,11 @@
                 @Html.DisplayFor(model => model.User.Email)
             </dd>
         </div>
-        <div class="col-md-6 col-md-offset-2">
-            <dt>
-                <br />----- Order Details -----
-            </dt>
-
+        <div class="column text-white">
+            <h3>Order items</h3>
             @{double subtotal = 0;}
             @foreach (OrderDetail orderDetail in ViewBag.OrderDetailsList)
             {
-                <dt>
-                    Item
-                </dt>
                 <dd>
                     @Html.DisplayFor(model => orderDetail.Clothes.Name)
                 </dd>
@@ -81,7 +78,7 @@
                 </dt>
                 <dd>
                     @orderDetail.Price.ToString("c")
-                </dd>
+                </dd> 
                 <dt>
                     Sub Total
                 </dt>
@@ -90,29 +87,30 @@
                     @subtotal.ToString("c")
                 </dd>
             }
-
+            </div>
+        <div class="column text-white">
             <dt>
-                Total Price
+                <h4>Total Price</h4>
             </dt>
             <dd>
                 @Model.OrderTotal.ToString("c")
             </dd>
             <br />
             <dt>
-                Payment Amount
+                <h4>Payment Amount</h4>
             </dt>
             <dd>
                 @Model.PaymentAmount.ToString("c")
             </dd>
             <dt>
                 <div>
-                    <a class="btn btn-primary" asp-action="Details" asp-controller="ImageModels" asp-route-id="@Model.ImageId">Uploaded Image</a>
+                    <a class="btn btn-light" asp-action="Details" asp-controller="ImageModels" asp-route-id="@Model.ImageId">Uploaded Image</a>
                 </div>
             </dt>
         </div>
     </dl>
 
-<div>
-    <a class="btn btn-primary" asp-action="Index" asp-controller="Home">Back to Order list</a>
-</div>
+    <div>
+        <a class="btn btn-light" asp-action="Index" asp-controller="Home">Back to Order list</a>
+    </div>
 </div>
