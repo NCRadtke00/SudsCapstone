@@ -12,7 +12,7 @@ using Sud.Repositories;
 
 namespace Sud.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Employee")]
     public class ServicesController : Controller
     {
         private readonly ApplicationDbContext db;

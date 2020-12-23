@@ -21,7 +21,7 @@ namespace Sud.Controllers
             db = context;
             _userManager = userManager;
         }
-        [Authorize(Roles = "Employee")]
+       
         public async Task<IActionResult> EmployeeIndex()
         {
             var reviews = await db.Reviews.Include(r => r.Clothes).Include(r => r.User).ToListAsync();
