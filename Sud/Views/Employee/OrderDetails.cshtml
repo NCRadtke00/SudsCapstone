@@ -11,7 +11,7 @@
         <div class="container">
             <div class="row">
                 <dl class="col-lg-6">
-                    <div class="row">
+                    <div class="row text-white">
                         <dt class="col-sm-4">
                             @Html.DisplayNameFor(model => model.FirstName)
                         </dt>
@@ -32,7 +32,7 @@
                             @Html.DisplayNameFor(model => model.Address)
                         </dt>
                         <dd class="col-sm-8">
-                            @Html.DisplayFor(model => model.Address)
+                            @Html.DisplayFor(model => model.Address.StreetAddress)
                         </dd>
                     </div>
                     <div class="row">
@@ -53,14 +53,14 @@
                     </div>
                     <input type="hidden" asp-for="Address.Latitude" />
                     <input type="hidden" asp-for="Address.Longitude" />
-                    <a asp-action="Details" asp-route-id="@Model.OrderId" asp-controller="Orders" class="btn btn-primary">Details</a>
+                    <a asp-action="Details" asp-route-id="@Model.OrderId" asp-controller="Orders" class="btn btn-light">Details</a>
                 </dl>
             </div>
         </div>
     </div>
 
     <div>
-        <a asp-action="Index" class="btn btn-primary">View Today's Orders</a>
-        <a asp-action="ViewAllOrders" class="btn btn-primary">View All Orders</a>
+        <a asp-action="Index" class="btn btn-light">View Today's Orders</a>
+        <a asp-action="ViewAllOrders" class="btn btn-light">View All Orders</a>
     </div>
 </div>

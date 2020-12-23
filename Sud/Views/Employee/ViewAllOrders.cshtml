@@ -10,19 +10,19 @@
     <script>
         let addresses = [];
     </script>
-    <p><a class="btn btn-primary" asp-action="Index">View Today's Pick Up's and Deliverys</a></p>
+    <p><a class="btn btn-light" asp-action="Index">View Today's Pick Up's and Deliverys</a></p>
     <h3>Search By Day:</h3>
     <p>
-        <a class="btn btn-primary" asp-action="ViewOrdersByDay" asp-route-dayofWeek="Monday">Monday</a>
-        <a class="btn btn-primary" asp-action="ViewOrdersByDay" asp-route-dayOfWeek="Tuesday">Tuesday</a>
-        <a class="btn btn-primary" asp-action="ViewOrdersByDay" asp-route-dayOfWeek="Wednesday">Wednesday</a>
-        <a class="btn btn-primary" asp-action="ViewOrdersByDay" asp-route-dayOfWeek="Thursday">Thursday</a>
-        <a class="btn btn-primary" asp-action="ViewOrdersByDay" asp-route-dayOfWeek="Friday">Friday</a>
-        <a class="btn btn-primary" asp-action="ViewOrdersByDay" asp-route-dayOfWeek="Saturday">Saturday</a>
-        <a class="btn btn-primary" asp-action="ViewOrdersByDay" asp-route-dayofWeek="Sunday">Sunday</a>
-        <a class="btn btn-primary" asp-action="ViewOrdersByDay">View All Orders </a>
+        <a class="btn btn-light" asp-action="ViewOrdersByDay" asp-route-dayofWeek="Monday">Monday</a>
+        <a class="btn btn-light" asp-action="ViewOrdersByDay" asp-route-dayOfWeek="Tuesday">Tuesday</a>
+        <a class="btn btn-light" asp-action="ViewOrdersByDay" asp-route-dayOfWeek="Wednesday">Wednesday</a>
+        <a class="btn btn-light" asp-action="ViewOrdersByDay" asp-route-dayOfWeek="Thursday">Thursday</a>
+        <a class="btn btn-light" asp-action="ViewOrdersByDay" asp-route-dayOfWeek="Friday">Friday</a>
+        <a class="btn btn-light" asp-action="ViewOrdersByDay" asp-route-dayOfWeek="Saturday">Saturday</a>
+        <a class="btn btn-light" asp-action="ViewOrdersByDay" asp-route-dayofWeek="Sunday">Sunday</a>
+        <a class="btn btn-light" asp-action="ViewOrdersByDay">View All Orders </a>
     </p>
-    <table class="table">
+    <table class="table text-white">
         <thead>
             <tr>
                 <th>
@@ -63,7 +63,7 @@
                         @Html.DisplayFor(modelItem => item.DropOffDay)
                     </td>
                     <td>
-                        <a asp-action="OrderDetails" asp-route-id="@item.OrderId" class="btn btn-primary">View Order Details</a>
+                        <a asp-action="OrderDetails" asp-route-id="@item.OrderId" class="btn btn-light">View Order Details</a>
                     </td>
                 </tr>
             }

@@ -6,9 +6,9 @@
 <div class="jumbotron">
     <h1>Pick Ups and Deliverys for @DateTime.Today.ToString("D")</h1>
     <script>let addresses = [];</script>
-    <p><a asp-action="ViewAllOrders" class="btn btn-primary">View All Orders</a></p>
+    <p><a asp-action="ViewAllOrders" class="btn btn-light">View All Orders</a></p>
 
-    <table class="table">
+    <table class="table text-white">
         <thead>
             <tr>
                 <th>
@@ -52,9 +52,9 @@
                         @Html.DisplayFor(modelItem => item.DropOffDay)
                     </td>
                     <td>
-                        <a asp-action="ConfirmPickUp" asp-route-id="@item.OrderId" class="btn btn-primary">Confirm Pick Up</a>
-                        <a asp-action="ConfirmDropOff" asp-route-id="@item.OrderId" class="btn btn-primary">Confirm Drop Off</a>
-                        <a asp-action="OrderDetails" asp-route-id="@item.OrderId" class="btn btn-primary">View Order Details</a>
+                        <a asp-action="ConfirmPickUp" asp-route-id="@item.OrderId" class="btn btn-light">Confirm Pick Up</a>
+                        <a asp-action="ConfirmDropOff" asp-route-id="@item.OrderId" class="btn btn-light">Confirm Drop Off</a>
+                        <a asp-action="OrderDetails" asp-route-id="@item.OrderId" class="btn btn-light">View Order Details</a>
                     </td>
                 </tr>
             }
@@ -79,7 +79,8 @@
             for (var i = 0; i < addresses.length; i++) {
                 var marker = new google.maps.Marker({
                     position: new google.maps.LatLng(addresses[i][0], addresses[i][1]),
-                    map: map
+                    map: map,
+                    zoom: 13,
                 });
                 bounds.extend(marker.position);
             }
