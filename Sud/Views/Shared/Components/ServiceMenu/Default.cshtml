@@ -1,19 +1,20 @@
 ﻿@model IEnumerable<Services>
-
-<li class="dropdown">
-    <a asp-controller="Clothes" asp-action="ListAll"
-       class="dropdown-toggle text-white" data-toggle="dropdown"> Services <b class="caret"></b></a>
-    <ul class="dropdown-menu">
-        @foreach (var services in Model)
-        {
-            <li>
-                <a asp-controller="Clothes" asp-action="ListServices"
-                   asp-route-serviceName="@services.Name">@services.Name</a>
-            </li>
-        }
-        <li class="divider"></li>
-        <li>
-            <a class="btn btn-primary" asp-controller="Clothes" asp-action="ListAll" asp-route-services="">View all</a>
+    <ul class="nav navbar-nav text-primary">
+        <li class="dropdown">
+            <a asp-controller="Clothes" asp-action="ListAll"
+               class="dropdown-toggle text-white" data-toggle="dropdown"> Services <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                @foreach (var services in Model)
+                {
+                    <li>
+                        <a asp-controller="Clothes" asp-action="ListServices"
+                           asp-route-serviceName="@services.Name" class="btn btn-primary">@services.Name</a>
+                    </li>
+                }
+                <li class="divider"></li>
+                <li>
+                    <a class="btn btn-primary" asp-controller="Clothes" asp-action="ListAll" asp-route-services="">View all</a>
+                </li>
+            </ul>
         </li>
-    </ul>
-</li>
+        </ul>
