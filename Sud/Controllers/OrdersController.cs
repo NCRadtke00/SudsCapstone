@@ -82,18 +82,17 @@ namespace Sud.Controllers
         [HttpPost]
         public async Task<IActionResult> Checkout(Models.Order order, Models.ImageModel imageModel)
         {
-            //string url = $"https://maps.googleapis.com/maps/api/geocode/json?address={order.Address.StreetAddress},+{order.Address.City},+{order.Address.State},{order.Address.ZipCode}&key=AIzaSyDXS87aNNUzLOl40Q1kuMBWqup20n-508M";
-            //HttpClient client = new HttpClient();
-            //HttpResponseMessage response = await client.GetAsync(url);
-            //string jsonResult = await response.Content.ReadAsStringAsync();
-            //if (response.IsSuccessStatusCode)
-            //{
-            //    JObject geoCode = JObject.Parse(jsonResult);
-            //    order.Address.Latitude = (double)geoCode["results"][0]["geometry"]["location"]["lat"];
+            string url = $"https://maps.googleapis.com/maps/api/geocode/json?address={order.Address.StreetAddress},+{order.Address.City},+{order.Address.State},{order.Address.ZipCode}&key=AIzaSyDXS87aNNUzLOl40Q1kuMBWqup20n-508M";
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync(url);
+            string jsonResult = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)    
+            {
+                JObject geoCode = JObject.Parse(jsonResult);
+                order.Address.Latitude = (double)geoCode["results"][0]["geometry"]["location"]["lat"];
 
-            //    order.Address.Longitude = (double)geoCode["results"][0]["geometry"]["location"]["lng"];
-            //}
-            GetGeoLocation(order);
+                order.Address.Longitude = (double)geoCode["results"][0]["geometry"]["location"]["lng"];
+            }
             var userId = um.GetUserId(HttpContext.User);
             order.UserId = userId;
             var items = await sc.GetShoppingCartItemsAsync();
@@ -105,31 +104,16 @@ namespace Sud.Controllers
             if (ModelState.IsValid)
             {
                 await SaveImage(imageModel);
-                await or.CreateOrderAsync(order/*, imageModel*/);
+                await or.CreateOrderAsync(order);
                 await sc.ClearCartAsync();
                 return RedirectToAction("MakePayment");
             }
             return View(order);
 
         }
-        public async Task<IActionResult> GetGeoLocation(Models.Order order)
-        {
-            string url = $"https://maps.googleapis.com/maps/api/geocode/json?address={order.Address.StreetAddress},+{order.Address.City},+{order.Address.State},{order.Address.ZipCode}&key=AIzaSyDXS87aNNUzLOl40Q1kuMBWqup20n-508M";
-            HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync(url);
-            string jsonResult = await response.Content.ReadAsStringAsync();
-            if (response.IsSuccessStatusCode)
-            {
-                JObject geoCode = JObject.Parse(jsonResult);
-                order.Address.Latitude = (double)geoCode["results"][0]["geometry"]["location"]["lat"];
 
-                order.Address.Longitude = (double)geoCode["results"][0]["geometry"]["location"]["lng"];
-            }
-            return View(order);
-        }
         public async Task<IActionResult> SaveImage(Models.ImageModel imageModel)
         {
-            
                 string wwwRootPath = _hostEnvironment.WebRootPath;
                 string fileName = Path.GetFileNameWithoutExtension(imageModel.ImageFile.FileName);
                 string extension = Path.GetExtension(imageModel.ImageFile.FileName);
@@ -141,8 +125,6 @@ namespace Sud.Controllers
                 }
                 db.Add(imageModel);
                 return View(imageModel);
-                //await db.SaveChangesAsync();
-            
         }
         public IActionResult CheckoutComplete()
         {
