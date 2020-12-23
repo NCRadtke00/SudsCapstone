@@ -1,33 +1,37 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+﻿
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
 }
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+    color: #0366d6;
 }
-
+.btn-light {
+    background-color: white;
+    color: blue;
+}
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
 
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 /*@media (min-width: 768px) {
   html {
@@ -36,31 +40,32 @@ html {
 }*/
 
 .border-top {
-  border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
 }
+
 .border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
 }
 
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
 button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+    font-size: 1rem;
+    line-height: inherit;
 }
 
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 /*body {*/
-  /* Margin bottom by footer height */
-  /*margin-bottom: 60px;
+/* Margin bottom by footer height */
+/*margin-bottom: 60px;
 }*/
 body {
     /*padding-top: 50px;
@@ -70,7 +75,8 @@ body {
     background-size: auto;
     max-height: 100%;
     max-width: 100%;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
 }
 
 .body-content {
@@ -117,6 +123,7 @@ textarea {
 .item {
     border-radius: 4px;
 }
+
 .thumbnail {
     padding: 0;
 }
@@ -140,10 +147,12 @@ textarea {
 .review-stars {
     max-width: 150px;
 }
-.imageThumbnail{
-    height:100px;
-    width:auto;
+
+.imageThumbnail {
+    height:100%;
+    width: 100%;
 }
+
 .StripeElement {
     box-sizing: border-box;
     height: 40px;
@@ -167,8 +176,9 @@ textarea {
 .StripeElement--webkit-autofill {
     background-color: #fefde5 !important;
 }
+
 .jumbotron {
-    background-color: skyblue;
+    background-color: rgba(0,0,225,0.6);
 }
 
 .row {
@@ -181,17 +191,18 @@ textarea {
 
 /* Create four equal columns that sits next to each other */
 .column {
-    -ms-flex: 25%; /* IE10 */
-    flex: 25%;
-    max-width: 25%;
-    padding: 0 4px;
+    -ms-flex: 33.333%; /* IE10 */
+    flex: 33.333%;
+    max-width: 33.333%;
+    max-height: 33.333%;
+    padding: 4px 4px;
 }
 
-    .column img {
+ /*   .column img {
         margin-top: 8px;
         vertical-align: middle;
-        width: 100%;
-    }
+        width: auto;
+    }*/
 
 /* Responsive layout - makes a two column-layout instead of four columns */
 @media screen and (max-width: 800px) {
@@ -211,3 +222,26 @@ textarea {
     }
 }
 
+h1, h2, h3, h4, h5, h6 {
+    color: white;
+}
+
+p {
+    color: white;
+}
+
+a {
+    color: white;
+}
+
+.card {
+    background-color: rgba(0,0,225,0.6);
+}
+
+dt {
+    color: white;
+}
+
+dd {
+    color: white;
+}
