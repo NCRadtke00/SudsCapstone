@@ -3,7 +3,7 @@
     ViewData["Title"] = "Account Overview";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="jumbotron">
+<div class="jumbotron text-white">
     <h1>Welcome @Model.LastName , @Model.FirstName !</h1>
     <h2>This is your account overview.</h2>
     <div>
@@ -30,8 +30,8 @@
             </dd>
         </div>
         <div>
-            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit account</a>
-            <a asp-action="Index" asp-controller="Home" class="btn btn-primary"> return to Home page</a>
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-light">Edit account</a>
+            <a asp-action="Index" asp-controller="Home" class="btn btn-light"> return to Home page</a>
         </div>
     </div>
 </div>
