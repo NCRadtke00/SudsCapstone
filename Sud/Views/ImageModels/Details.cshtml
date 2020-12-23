@@ -28,12 +28,12 @@
             <img src="~/Image/@Model.ImageName" asp-append-version="true" width="250px" height="250px" />
         </dd>
     </dl>
-
+    
     <div>
-        <a asp-action="Details" asp-route-id="@Model.ImageId" class="btn btn-primary">Details</a>
-
-        @*<p>these dont work</p>
-        <a asp-action="Edit" asp-route-id="@Model.ImageId" class="btn btn-primary">Edit</a>
-        <a asp-action="Index" class="btn btn-primary">Back to List</a>*@
+        <a class="btn btn-light" asp-action="Index" asp-controller="Home">Back to Order list</a>
+        @if ( ViewContext.HttpContext.User.IsInRole("Employee"))
+        {
+            <a class="btn btn-light" asp-controller="Orders" asp-action="OrderInProgress" value="submit">Order Is Being cleaned</a>
+        }
     </div>
 </div>
