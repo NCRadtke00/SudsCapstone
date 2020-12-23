@@ -60,19 +60,6 @@ namespace Sud.Repositories
                 db.OrderDetails.Add(orderDetail);
             }
             order.OrderTotal = totalPrice;
-            {
-                //string wwwRootPath = _hostEnvironment.WebRootPath;
-                //string fileName = Path.GetFileNameWithoutExtension(imageModel.ImageFile.FileName);
-                //string extension = Path.GetExtension(imageModel.ImageFile.FileName);
-                //imageModel.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-                //string path = Path.Combine(wwwRootPath + "/Image/", fileName);
-                //using (var fileStream = new FileStream(path, FileMode.Create))
-                //{
-                //    await imageModel.ImageFile.CopyToAsync(fileStream);
-                //}
-                //db.Add(imageModel);
-                
-            }
             db.Orders.Add(order);
             await db.SaveChangesAsync();
         }
