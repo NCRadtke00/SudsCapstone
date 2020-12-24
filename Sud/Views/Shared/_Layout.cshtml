@@ -31,15 +31,28 @@
 
                                 @if (SignInManager.IsSignedIn(User))
                                 {
+                                    //can revert the 3 links below and make them for @if (ViewContext.HttpContext.User.IsInRole("Customer"))
+                                    //{
                                     <li class="nav-item">
                                         <a asp-controller="Reviews" asp-action="EmployeeIndex" class="nav-link text-white"> Reviews </a>
                                     </li>
+                                    ////something is broken with orders index atm for employees
                                     <li class="nav-item">
                                         <a asp-controller="Orders" asp-action="Index" class="nav-link text-white"> Orders </a>
                                     </li>
                                     <li class="nav-item">
                                         <a asp-controller="ShoppingCart" asp-action="Index" class="nav-link text-white">Shopping Cart</a>
                                     </li>
+                                    //}
+                                    @if (ViewContext.HttpContext.User.IsInRole("Employee"))
+                                    {
+                                        <li class="nav-item">
+                                            <a asp-controller="Services" asp-action="Create" class="nav-link text-white">Add New Service</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a asp-controller="Clothes" asp-action="Create" class="nav-link text-white">Add New Item</a>
+                                        </li>
+                                    }
                                 }
                                 else
                                 {
