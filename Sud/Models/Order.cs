@@ -67,6 +67,9 @@ namespace Sud.Models
         public bool ConfirmPickUp { get; set; }
         [Display(Name = "Check the box to confirm order has been dropped off!")]
         public bool ConfirmDropoff { get; set; }
+        [Display(Name = "Check the box to confirm the order is being cleaned!")]
+        public bool ConfirmCleaning { get; set; }
+        public double StatusBar { get; set; }
 
         // public IFormFile Photo { get; set; }
         [ForeignKey("IdentityUser")]
