@@ -16,18 +16,18 @@
     <table class="table text-white">
         <thead>
             <tr>
-                @*<th>
+                <th>
                     @Html.DisplayNameFor(model => model.FirstName)
-                </th>*@
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.LastName)
                 </th>
                 @*<th>
                     @Html.DisplayNameFor(model => model.Address)
-                </th>
+                </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.PhoneNumber)
-                </th>*@
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.OrderTotal)
                 </th>
@@ -47,18 +47,18 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    @*<td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.FirstName)
-                    </td>*@
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.LastName)
                     </td>
                     @*<td>
                         @Html.DisplayFor(modelItem => item.Address.StreetAddress)
-                    </td>
+                    </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.PhoneNumber)
-                    </td>*@
+                    </td>
                     <td>
                         @item.OrderTotal.ToString("c")
                     </td>
@@ -73,7 +73,6 @@
                     </td>
                     <td>
                         <a asp-action="Details" asp-route-id="@item.OrderId" class="btn btn-light">Details</a>
-                        @*<a asp-action="Delete" asp-route-id="@item.OrderId" class="btn btn-primary">Delete</a>*@
                     </td>
                 </tr>
             }

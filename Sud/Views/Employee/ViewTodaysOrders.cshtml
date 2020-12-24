@@ -12,6 +12,9 @@
         <thead>
             <tr>
                 <th>
+                    Order Details
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.FirstName)
                 </th>
                 <th>
@@ -37,6 +40,9 @@
                 </script>
                 <tr>
                     <td>
+                        <a asp-action="OrderDetails" asp-route-id="@item.OrderId" class="btn btn-light">View Order Details</a>
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.FirstName)
                     </td>
                     <td>
@@ -53,8 +59,8 @@
                     </td>
                     <td>
                         <a asp-action="ConfirmPickUp" asp-route-id="@item.OrderId" class="btn btn-light">Confirm Pick Up</a>
+                        <a asp-action="ConfirmCleaning" asp-route-id="@item.OrderId" class="btn btn-light">Order being cleaned</a>
                         <a asp-action="ConfirmDropOff" asp-route-id="@item.OrderId" class="btn btn-light">Confirm Drop Off</a>
-                        <a asp-action="OrderDetails" asp-route-id="@item.OrderId" class="btn btn-light">View Order Details</a>
                     </td>
                 </tr>
             }

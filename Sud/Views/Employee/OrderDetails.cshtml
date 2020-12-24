@@ -53,6 +53,10 @@
                     </div>
                     <input type="hidden" asp-for="Address.Latitude" />
                     <input type="hidden" asp-for="Address.Longitude" />
+                    @if (ViewContext.HttpContext.User.IsInRole("Employee"))
+                    {
+                        <a class="btn btn-light" asp-action="ConfirmCleaning" asp-route-id="@Model.OrderId" value="submit">Order is being Cleaned</a>
+                    }
                     <a asp-action="Details" asp-route-id="@Model.OrderId" asp-controller="Orders" class="btn btn-light">Details</a>
                 </dl>
             </div>

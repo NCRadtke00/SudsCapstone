@@ -31,9 +31,5 @@
     
     <div>
         <a class="btn btn-light" asp-action="Index" asp-controller="Home">Back to Order list</a>
-        @if ( ViewContext.HttpContext.User.IsInRole("Employee"))
-        {
-            <a class="btn btn-light" asp-controller="Orders" asp-action="OrderInProgress" value="submit">Order Is Being cleaned</a>
-        }
     </div>
 </div>
