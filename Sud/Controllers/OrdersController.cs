@@ -27,11 +27,7 @@ namespace Sud.Controllers
         private readonly ShoppingCart sc;
         private readonly ApplicationDbContext db;
         private readonly UserManager<IdentityUser> um;
-
-        //might need to remove this?
         private readonly IWebHostEnvironment _hostEnvironment;
-
-
         public OrdersController(IOrderRepository orderRepository,
             ShoppingCart shoppingCart, ApplicationDbContext context, UserManager<IdentityUser> userManager, IWebHostEnvironment hostEnvironment)
         {
@@ -39,20 +35,14 @@ namespace Sud.Controllers
             sc = shoppingCart;
             db = context;
             um = userManager;
-
-            //might need to remove this?
-
-           this._hostEnvironment = hostEnvironment;
-
+            this._hostEnvironment = hostEnvironment;
         }
-
         public async Task<IActionResult> MakePayment(int id, double orderTotal)
         {
             Models.Order order = db.Orders.OrderByDescending(o => o.OrderId).FirstOrDefault();
             orderTotal = order.OrderTotal;
             return View(order);
         }
-
         [HttpPost]
         public async Task<IActionResult> MakePayment(IFormCollection collection, double paymentAmount, Models.Order order)
         {
@@ -86,7 +76,7 @@ namespace Sud.Controllers
             HttpClient client = new HttpClient();
             HttpResponseMessage response = await client.GetAsync(url);
             string jsonResult = await response.Content.ReadAsStringAsync();
-            if (response.IsSuccessStatusCode)    
+            if (response.IsSuccessStatusCode)
             {
                 JObject geoCode = JObject.Parse(jsonResult);
                 order.Address.Latitude = (double)geoCode["results"][0]["geometry"]["location"]["lat"];
@@ -109,26 +99,42 @@ namespace Sud.Controllers
                 return RedirectToAction("MakePayment");
             }
             return View(order);
-
         }
 
         public async Task<IActionResult> SaveImage(Models.ImageModel imageModel)
         {
-                string wwwRootPath = _hostEnvironment.WebRootPath;
-                string fileName = Path.GetFileNameWithoutExtension(imageModel.ImageFile.FileName);
-                string extension = Path.GetExtension(imageModel.ImageFile.FileName);
-                imageModel.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-                string path = Path.Combine(wwwRootPath + "/Image/", fileName);
-                using (var fileStream = new FileStream(path, FileMode.Create))
-                {
-                    await imageModel.ImageFile.CopyToAsync(fileStream);
-                }
-                db.Add(imageModel);
-                return View(imageModel);
+            string wwwRootPath = _hostEnvironment.WebRootPath;
+            string fileName = Path.GetFileNameWithoutExtension(imageModel.ImageFile.FileName);
+            string extension = Path.GetExtension(imageModel.ImageFile.FileName);
+            imageModel.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+            string path = Path.Combine(wwwRootPath + "/Image/", fileName);
+            using (var fileStream = new FileStream(path, FileMode.Create))
+            {
+                await imageModel.ImageFile.CopyToAsync(fileStream);
+            }
+            db.Add(imageModel);
+            return View(imageModel);
         }
         public IActionResult CheckoutComplete()
         {
             ViewBag.CheckoutCompleteMessage = $"Thanks you for your order, We'll collect your order as requested!";
+
+            return View();
+        }
+        public async Task<IActionResult> OrderInProgress(Models.Order order)
+        {
+            if ((order.ConfirmPickUp == true) && (order.ConfirmCleaning == false) && (order.ConfirmDropoff == false))
+            {
+                order.StatusBar = 33.33;
+            }
+            else if ((order.ConfirmPickUp == true) && (order.ConfirmCleaning == true) && (order.ConfirmDropoff == false))
+            {
+                order.StatusBar = 66.67;
+            }
+            else if ((order.ConfirmPickUp == true) && (order.ConfirmCleaning == true) && (order.ConfirmDropoff == true))
+            {
+                order.StatusBar = 100;
+            }
             return View();
         }
         [Authorize]

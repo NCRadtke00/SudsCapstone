@@ -59,9 +59,6 @@ namespace Sud.Controllers
             }
             return View(employee);
         }
-
-
-
         public async Task<IActionResult> ViewOrdersByDay(string dayOfWeek)
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -114,6 +111,7 @@ namespace Sud.Controllers
         private static void CompletePickUp(Order order)
         {
             order.ConfirmPickUp = true;
+            order.StatusBar = 50;
         }
         public async Task<IActionResult> ConfirmDropOff(int? id)
         {
@@ -125,8 +123,20 @@ namespace Sud.Controllers
         private static void CompleteDropOff(Order order)
         {
             order.ConfirmDropoff = true;
+            order.StatusBar = 100;
         }
-
+        public async Task<IActionResult> ConfirmCleaning(int? id)
+        {
+            var order = _db.Orders.Where(c => c.OrderId == id).FirstOrDefault();
+            CompleteCleaning(order);
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+        private static void CompleteCleaning(Order order)
+        {
+            order.ConfirmCleaning = true;
+            order.StatusBar = 75;
+        }
 
 
         private List<Order> GetCustomersOrders(Employee employee)
