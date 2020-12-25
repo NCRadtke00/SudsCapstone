@@ -21,11 +21,7 @@ namespace Sud.ActionFilters
             var controller = context.RouteData.Values["controller"];
             if (controller.Equals("Home"))
             {
-                if (_claimsPrincipal.IsInRole("Admin"))
-                {
-                    context.Result = new RedirectToActionResult("Index", "Admin", null);
-                }
-                else if (_claimsPrincipal.IsInRole("Employee"))
+                if (_claimsPrincipal.IsInRole("Employee"))
                 {
                     context.Result = new RedirectToActionResult("Index", "Employee", null);
                 }
