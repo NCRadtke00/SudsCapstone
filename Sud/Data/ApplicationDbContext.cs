@@ -21,13 +21,6 @@ namespace Sud.Data
                 .HasData(
                 new IdentityRole
                 {
-                    Name = "Admin",
-                    NormalizedName = "ADMIN"
-                });
-            builder.Entity<IdentityRole>()
-                .HasData(
-                new IdentityRole
-                {
                     Name = "Employee",
                     NormalizedName = "EMPLOYEE"
                 });
