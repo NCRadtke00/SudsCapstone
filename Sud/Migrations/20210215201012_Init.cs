@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Sud.Migrations
 {
-    public partial class Second : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -270,6 +270,8 @@ namespace Sud.Migrations
                     OrderPlaced = table.Column<DateTime>(nullable: false),
                     ConfirmPickUp = table.Column<bool>(nullable: false),
                     ConfirmDropoff = table.Column<bool>(nullable: false),
+                    ConfirmCleaning = table.Column<bool>(nullable: false),
+                    StatusBar = table.Column<double>(nullable: false),
                     UserId = table.Column<string>(nullable: true),
                     ImageId = table.Column<int>(nullable: false)
                 },
@@ -403,9 +405,8 @@ namespace Sud.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "1c400ddc-fd2e-48dc-8d09-5b0d472136d9", "bde4bb61-7868-4a93-8db8-10bd179a7d6c", "Admin", "ADMIN" },
-                    { "6e96261c-e87f-4d92-a0e8-61e132b25812", "cd81fa09-0b55-4595-b573-a7089dc9d03a", "Employee", "EMPLOYEE" },
-                    { "9fd24bb6-c5ee-4cdd-99d2-01a2cd719783", "3299da0f-1802-4d2d-885a-9b4a7e91b8bc", "Customer", "CUSTOMER" }
+                    { "e89aee6a-f68a-4699-8f23-072db79aef06", "219d0222-aee9-477b-a990-94d36bec0dbd", "Employee", "EMPLOYEE" },
+                    { "16b170f6-23d8-4a14-8197-4e8a47c508d4", "854ad243-3cf4-4675-8960-1a8f36cbc72e", "Customer", "CUSTOMER" }
                 });
 
             migrationBuilder.InsertData(
@@ -443,12 +444,12 @@ namespace Sud.Migrations
             migrationBuilder.InsertData(
                 table: "Reviews",
                 columns: new[] { "Id", "ClothesId", "Date", "Description", "Grade", "IdentityUserId", "Title" },
-                values: new object[] { 1, 2, new DateTime(2020, 12, 18, 17, 37, 3, 673, DateTimeKind.Local).AddTicks(3636), "Eveything smelled like a fresh medow, and was folded perfectly.", 4, null, "WOW" });
+                values: new object[] { 1, 2, new DateTime(2021, 2, 15, 14, 10, 11, 676, DateTimeKind.Local).AddTicks(8338), "Eveything smelled like a fresh medow, and was folded perfectly.", 4, null, "WOW" });
 
             migrationBuilder.InsertData(
                 table: "Reviews",
                 columns: new[] { "Id", "ClothesId", "Date", "Description", "Grade", "IdentityUserId", "Title" },
-                values: new object[] { 2, 3, new DateTime(2020, 12, 18, 17, 37, 3, 676, DateTimeKind.Local).AddTicks(2950), "The guy picked everthing up, and dropped it off 6 hours later.", 5, null, "Legen-dry" });
+                values: new object[] { 2, 3, new DateTime(2021, 2, 15, 14, 10, 11, 680, DateTimeKind.Local).AddTicks(3869), "The guy picked everthing up, and dropped it off 6 hours later.", 5, null, "Legen-dry" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
