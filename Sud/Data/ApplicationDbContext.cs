@@ -128,7 +128,7 @@ namespace Sud.Data
                 new Clothes
                 {
                     Id = 9,
-                    Name = " Additional Charge for Down, Silk, and other rare fabrics materials",
+                    Name = " Additional Charge for Down",
                     Price = 5.00,
                     ImageUrl = " https://images.allergybuyersclub.com/img/CD-CO-WLAS-500.jpg ",
                     IsPopularItem = false,
@@ -182,7 +182,7 @@ namespace Sud.Data
                 new Clothes
                 {
                     Id = 15,
-                    Name = "DRESS-FANCY/EVENING",
+                    Name = "EVENING DRESS",
                     Price = 9.60,
                     ImageUrl = "https://i.etsystatic.com/13385002/r/il/af0dbd/1197944229/il_570xN.1197944229_8bpp.jpg",
                     IsPopularItem = false,
