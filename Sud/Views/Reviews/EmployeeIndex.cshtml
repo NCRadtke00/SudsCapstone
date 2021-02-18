@@ -27,9 +27,12 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Clothes)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.User)
-                </th>
+                @if (ViewContext.HttpContext.User.IsInRole("Employee"))
+                {
+                    <th>
+                        @Html.DisplayNameFor(model => model.User)
+                    </th>
+                }
                 <th></th>
             </tr>
         </thead>
@@ -52,9 +55,12 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Clothes.Name)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.User.Id)
-                    </td>
+                    @if (ViewContext.HttpContext.User.IsInRole("Employee"))
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User.Id)
+                        </td>
+                    }
                     <td>
                         <a class="btn btn-light text-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
                         <a asp-action="Details" class="btn btn-light text-primary" asp-route-id="@item.Id">Details</a>
