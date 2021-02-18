@@ -4,6 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
+<style>
+    
+</style>
 <div class="jumbotron">
     <h2>We'll need some information from you to complete your order</h2>
     <h3>Step 1 of 2, you're almost done!</h3>
@@ -13,92 +16,93 @@
         <h4>Please fill in the information below</h4>
         <hr />
         <div asp-validation-summary="All" class="text-danger"></div>
-        <div class="form-group">
-            <label asp-for="FirstName" class="col-md-2 control-label"></label>
-            <div class="col-md-5">
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+        <div class="row"> @* added row to stop from goofy stack *@
+            <div class="form-group">
+                <label asp-for="FirstName" class="col-md-2 control-label"></label>
+                <div class="col-md-5">
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="LastName" class="col-md-2 control-label"></label>
-            <div class="col-md-5">
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
+            <div class="form-group">
+                <label asp-for="LastName" class="col-md-2 control-label"></label>
+                <div class="col-md-5">
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Address.StreetAddress" class="col-md-2 control-label"></label>
-            <div class="col-md-5">
-                <input asp-for="Address.StreetAddress" class="form-control" />
-                <span asp-validation-for="Address.StreetAddress" class="text-danger"></span>
+            <div class="form-group">
+                <label asp-for="Address.StreetAddress" class="col-md-2 control-label"></label>
+                <div class="col-md-5">
+                    <input asp-for="Address.StreetAddress" class="form-control" />
+                    <span asp-validation-for="Address.StreetAddress" class="text-danger"></span>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Address.City" class="col-md-2 control-label"></label>
-            <div class="col-md-5">
-                <input asp-for="Address.City" class="form-control" />
-                <span asp-validation-for="Address.City" class="text-danger"></span>
+            <div class="form-group">
+                <label asp-for="Address.City" class="col-md-2 control-label"></label>
+                <div class="col-md-5">
+                    <input asp-for="Address.City" class="form-control" />
+                    <span asp-validation-for="Address.City" class="text-danger"></span>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Address.State" class="col-md-2 control-label"></label>
-            <div class="col-md-5">
-                <input asp-for="Address.State" class="form-control" />
-                <span asp-validation-for="Address.State" class="text-danger"></span>
+            <div class="form-group">
+                <label asp-for="Address.State" class="col-md-2 control-label"></label>
+                <div class="col-md-5">
+                    <input asp-for="Address.State" class="form-control" />
+                    <span asp-validation-for="Address.State" class="text-danger"></span>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Address.ZipCode" class="col-md-2 control-label"></label>
-            <div class="col-md-5">
-                <input asp-for="Address.ZipCode" class="form-control" />
-                <span asp-validation-for="Address.ZipCode" class="text-danger"></span>
+            <div class="form-group">
+                <label asp-for="Address.ZipCode" class="col-md-2 control-label"></label>
+                <div class="col-md-5">
+                    <input asp-for="Address.ZipCode" class="form-control" />
+                    <span asp-validation-for="Address.ZipCode" class="text-danger"></span>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="PhoneNumber" class="col-md-2 control-label"></label>
-            <div class="col-md-5">
-                <input asp-for="PhoneNumber" class="form-control" />
-                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="col-md-2 control-label"></label>
+                <div class="col-md-5">
+                    <input asp-for="PhoneNumber" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Email" class="col-md-2 control-label"></label>
-            <div class="col-md-5">
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+            <div class="form-group">
+                <label asp-for="Email" class="col-md-2 control-label"></label>
+                <div class="col-md-5">
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
             </div>
-        </div>
-        <br/>
-        <div class="form-group">
-            <label asp-for="PickUpDay" class="control-label"></label><br />
-            <select asp-for="PickUpDay" asp-items="PickUpDay.PickupDay">
-                <option value="">Choose a day</option>
-            </select>
-            <span asp-validation-for="PickUpDay" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="DropOffDay" class="control-label"></label><br />
-            <select asp-for="DropOffDay" asp-items="DropOffDay.DropoffDay">
-                <option value="">Choose a day</option>
-            </select>
-            <span asp-validation-for="DropOffDay" class="text-danger"></span>
-        </div>
-        <br />
-        <div class="form-group">
-            <label asp-for="ImageModel.Title" class="control-label"></label>
-            <input asp-for="ImageModel.Title" class="form-control" />
-            <span asp-validation-for="ImageModel.Title" class="text-danger"></span>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="ImageModel.ImageFile" class="control-label"></label>
-            <input asp-for="ImageModel.ImageFile" accept="image/*" />
-            <span asp-validation-for="ImageModel.ImageFile" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-5">
-                <input type="submit" class="btn btn-light" value="Complete order" />
+            <br />
+            <div class="form-group">
+                <label asp-for="PickUpDay" class="control-label"></label><br />
+                <select asp-for="PickUpDay" asp-items="PickUpDay.PickupDay">
+                    <option value="">Choose a day</option>
+                </select>
+                <span asp-validation-for="PickUpDay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DropOffDay" class="control-label"></label><br />
+                <select asp-for="DropOffDay" asp-items="DropOffDay.DropoffDay">
+                    <option value="">Choose a day</option>
+                </select>
+                <span asp-validation-for="DropOffDay" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="ImageModel.Title" class="control-label"></label>
+                <input asp-for="ImageModel.Title" class="form-control" />
+                <span asp-validation-for="ImageModel.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageModel.ImageFile" class="control-label"></label>
+                <input asp-for="ImageModel.ImageFile" accept="image/*" />
+                <span asp-validation-for="ImageModel.ImageFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-5">
+                    <input type="submit" class="btn btn-light" value="Complete order" />
+                </div>
             </div>
         </div>
     </form>
