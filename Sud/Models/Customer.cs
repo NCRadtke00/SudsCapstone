@@ -20,22 +20,9 @@ namespace Sud.Models
         public string Email { get; set; }
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
-        //adding below
         [ForeignKey("Address")]
         public int AddressId { get; set; }
         public Address Address { get; set; }
-        //[ForeignKey("PickUpDay")]
-        //[Display(Name = "Pickup Day")]
-        //public int PickUpDayId { get; set; }
-        //public PickUpDay PickUpDay { get; set; }
-        //[ForeignKey("DropOffDay")]
-        //[Display(Name = "Drop off Day")]
-        //public int DropOffDayId { get; set; }
-        //public DropOffDay DropOffDay { get; set; }
-        //[NotMapped]
-        //public SelectList Days { get; set; }
-        //[NotMapped]
-        //public SelectList Dates { get; set; }
         [Display(Name = "Check the box to confirm order has been pick up!")]
         public bool ConfirmPickUp { get; set; }
         [Display(Name = "Check the box to confirm order has been dropped off!")]
@@ -44,8 +31,6 @@ namespace Sud.Models
         public DateTime? DatePickedUp { get; set; }
         [NotMapped]
         public DateTime? DateDropoff { get; set; }
-
-        //adding above
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }
