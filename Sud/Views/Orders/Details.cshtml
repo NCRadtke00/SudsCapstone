@@ -7,9 +7,12 @@
 <div class="jumbotron">
     <h2>Order @pageName</h2>
     <hr />
-    <div class="progress">
-        <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="@Html.DisplayFor(model => model.StatusBar)" aria-valuemin="0" aria-valuemax="100" style="width:@Html.DisplayFor(model => model.StatusBar)%">
-            @Html.DisplayFor(model => model.StatusBar) % Complete
+    <div>
+        <h4>Order Status </h4>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="@Html.DisplayFor(model => model.StatusBar)" aria-valuemin="0" aria-valuemax="100" style="width:@Html.DisplayFor(model => model.StatusBar)%">
+                @Html.DisplayFor(model => model.StatusBar) % Complete
+            </div>
         </div>
     </div>
     <dl class="row">

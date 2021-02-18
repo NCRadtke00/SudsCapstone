@@ -1,0 +1,196 @@
+var itm1 = new Item { Name = " 50lb bag", Price = 7.00, Category = cat1, Description = "Please use the Extra-Large mesh bag.” ImageUrl = " https://www.dhresource.com/0x0/f2/albu/g8/M00/9D/98/rBVaV16NgMmAfTd8AAMVeqw4gzY314.jpg/set-of-4-drawstring-mesh-laundry-bag-wash.jpg” IsPopularItem = false };
+
+var itm2 = new Item { Name = " 40lb bag", Price = 6.00, Category = cat1, Description = "Please use the Large mesh bag.” ImageUrl = " https://www.dhresource.com/0x0/f2/albu/g8/M00/9D/98/rBVaV16NgMmAfTd8AAMVeqw4gzY314.jpg/set-of-4-drawstring-mesh-laundry-bag-wash.jpg” IsPopularItem = true };
+
+var itm3 = new Item { Name = " 30lb bag", Price = 5.00, Category = cat1, Description = "Please use the Medium mesh bag.” ImageUrl = " https://www.dhresource.com/0x0/f2/albu/g8/M00/9D/98/rBVaV16NgMmAfTd8AAMVeqw4gzY314.jpg/set-of-4-drawstring-mesh-laundry-bag-wash.jpg” IsPopularItem = false };
+
+var itm4 = new Item { Name = " 20lb bag", Price = 4.00, Category = cat1, Description = "Please use the Small mesh bag.” ImageUrl = " https://www.dhresource.com/0x0/f2/albu/g8/M00/9D/98/rBVaV16NgMmAfTd8AAMVeqw4gzY314.jpg/set-of-4-drawstring-mesh-laundry-bag-wash.jpg” IsPopularItem = false };
+
+var itm5 = new Item { Name = " Fold laundry", Price = 2.00, Category = cat3, Description = "Folded Laundry 2.00 per 10 pounds” ImageUrl = " https://4jlaundromat.com/wp-content/uploads/2016/10/shutterstock_250385533.jpg ” IsPopularItem = true };
+
+var itm6 = new Item { Name = " Delivery fee", Price = 4.00, Category = cat3, Description = "Please use the Extra-Large mesh bag.” ImageUrl = " https://www.rexrx.com/_next/static/images/free-delivery-0a4599ba95770c3c93c524d1626e7d76.png ” IsPopularItem = false };
+
+var itm7 = new Item { Name = "Same Day Rush Service", Price = 20.00, Category = cat3, Description = "Same day pick up and drop off, requires 5 hours.” ImageUrl = " https://images.squarespace-cdn.com/content/v1/5e599564293347515fe2eabc/1583701071232-CFTFT5DHM16PJ08P6M6D/ke17ZwdGBToddI8pDm48kEoJmA0Abk1RrrM77uDVNFhZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIecCtomI4OQXCfULyDTUGqI_q-TQiniCLvIy8yIJMAmQKMshLAGzx4R3EDFOm1kBS/rushservice.jpg ” IsPopularItem = false };
+
+var itm8 = new Item { Name = "Next day Rush Service", Price = 10.00, Category = cat3, Description = "Next day rush service” ImageUrl = " https://images.squarespace-cdn.com/content/v1/5e599564293347515fe2eabc/1583701071232-CFTFT5DHM16PJ08P6M6D/ke17ZwdGBToddI8pDm48kEoJmA0Abk1RrrM77uDVNFhZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIecCtomI4OQXCfULyDTUGqI_q-TQiniCLvIy8yIJMAmQKMshLAGzx4R3EDFOm1kBS/rushservice.jpg ” IsPopularItem = true };
+
+var itm9 = new Item { Name = " Additional Charge for Down", Price = 5.00, Category = cat3, Description = “Please apply this charge for each down item being dry cleaned” ImageUrl = " https://images.allergybuyersclub.com/img/CD-CO-WLAS-500.jpg ” IsPopularItem = false };
+
+var itm10 = new Item { Name = " 2PC SUIT", Price = 10.50, Category = cat2, Description = " Jacket and slacks of a suit.” ImageUrl = “ https://images-na.ssl-images-amazon.com/images/I/814MCsg4BrL._AC_UL1500_.jpg ” IsPopularItem = false };
+
+var itm11 = new Item { Name = " 2PC DRESS", Price = 11.50, Category = cat2, Description = "2 pc dress” ImageUrl = “ https://ae01.alicdn.com/kf/H38607873036b479183e42158db72def2A/Cultiseed-Female-Dress-Set-2020-Women-New-Sexy-Strapless-Puff-Sleeve-2pc-Dress-Set-Suits-Ladies.jpg ” IsPopularItem = false };
+
+var itm12 = new Item { Name = "3PC SUIT", Price = 12.50, Category = cat2, Description = "Jacket, Vest and Slacks of a suit.” ImageUrl = “https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQQsevtEvUk7_dBBHP9x8Vwg25ILuQhBVnJUg&usqp=CAU”, IsPopularItem = true };
+
+var itm13 = new Item { Name = "BLOUSE (WOMAN’S)", Price = 3.60, Category = cat2, Description = "Woman’s Blouse.” ImageUrl = " https://media.missguided.com/i/missguided/TW423587_01 ” IsPopularItem = false };
+
+var itm14 = new Item { Name = "DRESS", Price = 7.70, Category = cat2, Description = "Please use the Extra-Large mesh bag.” ImageUrl = " https://www.dhresource.com/0x0/f2/albu/g8/M00/9D/98/rBVaV16NgMmAfTd8AAMVeqw4gzY314.jpg/set-of-4-drawstring-mesh-laundry-bag-wash.jpg”, IsPopularItem =  true };
+
+var itm15 = new Item { Name = "DRESS-FANCY/EVENING", Price = 9.60, Category = cat2, Description = "Please use the Extra-Large mesh bag.” ImageUrl = "https://i.etsystatic.com/13385002/r/il/af0dbd/1197944229/il_570xN.1197944229_8bpp.jpg", IsPopularItem = false };
+
+
+
+
+
+
+
+
+
+
+                    new Product()
+                    {
+                        ItemId = 7, ItemName = "GOWNS", IMGUrl = "https://i.pinimg.com/originals/49/e2/23/49e2230bb5ae873356664aecc253e464.jpg", Cost = 12.90
+                    },
+                    new Product()
+                    {
+                        ItemId = 8, ItemName = "OVERCOAT-SHORT", IMGUrl = "https://media.tedbaker.com/t_d_pdp_zoom,q_auto:best,f_auto/Product/Mens/156226_NAVY_1?", Cost = 8.80
+                    },
+                    new Product()
+                    {
+                        ItemId = 9, ItemName = "OVERCOAT-LONG", IMGUrl = "https://ae01.alicdn.com/kf/H9e2b442b4b3048ce856bd374b6ee4057w/Men-Overcoat-Vintage-Long-Trench-Coat-Men-new-Jacket-Coats-Mens-Business-black-Casual-Long-Solid.jpg", Cost = 7.15
+                    },
+                    new Product()
+                    {
+                        ItemId = 10, ItemName = "PANTS", IMGUrl = "https://www.blackdiamondequipment.com/on/demandware.static/-/Sites-bdel/default/dw30706960/products/S19_Product_Images/S19_Apparel/743000_0002_Black_MCIRQUEPANTS.jpg", Cost = 4.95
+                    },
+                    new Product()
+                    {
+                        ItemId = 11, ItemName = "ROBES-CHOIR/PASTOR", IMGUrl = "https://lh3.googleusercontent.com/proxy/TxWQM5Tg1m5Q92qfL_fPjowJLrS-ayOI-hPBE0HUlMezdgN_oyzXEAzrMkcg3cPS-R49d2z7uWePn4-_ygoZoRFo-Tp6cIWp3wpT3Q", Cost = 13.75
+                    },
+                    new Product()
+                    {
+                        ItemId = 12, ItemName = "ROBES-SHORT", IMGUrl = "https://n.nordstrommedia.com/ImageGallery/store/product/Zoom/6/_107652806.jpg?h=365&w=240&dpr=2", Cost = 6.60
+                    },
+                    new Product()
+                    {
+                        ItemId = 13, ItemName = "SHORTS", IMGUrl = "https://images-na.ssl-images-amazon.com/images/I/51t1KzlwwkL._AC_UL1001_.jpg", Cost = 3.30
+                    },
+                    new Product()
+                    {
+                        ItemId = 14, ItemName = "SHIRTS", IMGUrl = "https://ae01.alicdn.com/kf/HTB1dizAbbus3KVjSZKbq6xqkFXax/Legible-Casual-Social-Formal-shirt-Men-long-Sleeve-Shirt-Business-Slim-Office-Shirt-male-Cotton-Mens.jpg", Cost = 4.30
+                    },
+                    new Product()
+                    {
+                        ItemId = 15, ItemName = "SPORT COATS", IMGUrl = "https://image.menswearhouse.com/is/image/TMW/MW40_133X_19_NAUTICA_CHAMOIS_SET?$40MainPDP$", Cost = 5.50
+                    },
+                    new Product()
+                    {
+                        ItemId = 16, ItemName = "SKIRTS", IMGUrl = "https://bananarepublicfactory.gapfactory.com/webcontent/0019/498/585/cn19498585.jpg", Cost = 4.40
+                    },
+                    new Product()
+                    {
+                        ItemId = 17, ItemName = "SWEATERS", IMGUrl = "https://cdni.llbean.net/is/image/wim/264682_47901_41?hei=1095&wid=950&resMode=sharp2&defaultImage=llbstage/A0211793_2", Cost = 5.25
+                    },
+                    new Product()
+                    {
+                        ItemId = 18, ItemName = "STOLE/SHAWL/SCARFS LONG.", IMGUrl = "https://cdn.glamcheck.com/fashion/files/2010/03/Difference-between-scarf-and-stole-2.jpg", Cost = 2.20
+                    },
+                    new Product()
+                    {
+                        ItemId = 19, ItemName = "TIE/CUMMERBUND", IMGUrl = "https://cdn11.bigcommerce.com/s-2iveh3ifm0/images/stencil/1280x1280/products/2393/14664/apitwxdud__98791.1515446462.jpg?c=2", Cost = 2.50
+                    },
+                    new Product()
+                    {
+                        ItemId = 20, ItemName = "VEST", IMGUrl = "https://stylesatlife.com/wp-content/uploads/2019/12/15-Different-Styles-of-Ladies-Vest-Designs-in-Fashion-2020.jpg", Cost = 3.30
+                    },
+                    new Product()
+                    {
+                        ItemId = 21, ItemName = "BELT", IMGUrl = "https://cdn.shopify.com/s/files/1/1193/7002/products/1.5-inch-shrunken-american-bison-gunbelts_f38080ca-faba-4600-9fb8-ebba9c30fb89.jpg?v=1598734551", Cost = 2.20
+                    },
+                    new GarmentList
+                    {
+                        ItemId = 22, ItemName = "MILITARY SHIRTS-MEN/WOMEN", IMGUrl = "https://supplyroom.s3.amazonaws.com/categoryimages/171.png", Cost = 4.75
+                    },
+                    new Product()
+                    {
+                        ItemId = 23, ItemName = "MILITARY BLOUSE-GREEN/DRESS BLUE(JACKET)", IMGUrl = "https://cdn.uniforms-4u.com/pd/3232/big-u-usmc-dress-blues-enlisted-coat-20661.png", Cost = 5.50
+                    },
+                    new Product()
+                    {
+                        ItemId = 24, ItemName = "MILITARY COLLAR", IMGUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTYvqKXf03wHqlCZTmHddCYFXE9b1pNg_VGMQ&usqp=CAU", Cost = 2.25
+                    },
+                    new Product()
+                    {
+                        ItemId = 25, ItemName = "MILITARY SWEATER", IMGUrl = "https://i.pinimg.com/originals/87/8c/79/878c794fae8b8066f621230d2718d0f8.jpg", Cost = 4.40
+                    },
+                    new Product()
+                    {
+                        ItemId = 26, ItemName = "MILITARY GARRISON COVER", IMGUrl = "https://cdn.uniforms-4u.com/pd/3133/big-u-navy-officer-chief-petty-officer-khaki-garrison-hat-8724.png", Cost = 2.20
+                    },
+                    new Product()
+                    {
+                        ItemId = 27, ItemName = "MILITARY CAMMIES", IMGUrl = "https://s3-us-west-2.amazonaws.com/ourmilitary-production-wp/wp-content/uploads/2019/06/10103536/3-patterns.jpg", Cost = 8.00
+                    },
+                    new Product()
+                    {
+                        ItemId = 28, ItemName = "TWIN COMFORTER/SPREADS", IMGUrl = "https://ak1.ostkcdn.com/images/products/28152508/MarCielo-Bed-Sheets-for-Kids-Twin-Sheets-for-Girls-Boys-Children-b77a473d-2bf6-4e6b-a932-52a688fade42_600.jpg?impolicy=medium", Cost = 13.20
+                    },
+                    new Product()
+                    {
+                        ItemId = 29, ItemName = "FULL COMFORTER/SPREADS/BLANKETS", IMGUrl = "https://target.scene7.com/is/image/Target/GUEST_b48ab793-841f-43ab-87a7-4e9523dd6453?wid=488&hei=488&fmt=pjpeg", Cost = 18.70
+                    },
+                    new Product()
+                    {
+                        ItemId = 30, ItemName = "QUEEN COMFORTER/SPREADS/BLANKETS", IMGUrl = "https://cdn1.ykso.co/luxdecorcollection/product/quatrefoil-pattern-bed-queen-sheets-set-1800-bedding-wrinkle-fade-stain-resistant-hypoallergenic-4-piece-sheet-set-aqua-blue-white/images/f9ea18d/1546547074/generous.jpg", Cost = 26.40
+                    },
+                    new Product()
+                    {
+                        ItemId = 31, ItemName = "KING COMFORTER/SPREADS/BLANKETS", IMGUrl = "https://slimages.macysassets.com/is/image/MCY/products/8/optimized/11036298_fpx.tif?op_sharpen=1&wid=500&hei=613&fit=fit,1&$filtersm$", Cost = 29.70
+                    },
+                    new Product()
+                    {
+                        ItemId = 32, ItemName = "Additional Charge for Down", IMGUrl = "https://images.allergybuyersclub.com/img/CD-CO-WLAS-500.jpg", Cost = 5.50
+                    },
+                    new Product()
+                    {
+                        ItemId = 33, ItemName = "PILLOW CASES/SHAMS", IMGUrl = "https://images-na.ssl-images-amazon.com/images/I/51cGVqSiQPL._AC_SX522_.jpg", Cost = 2.75
+                    },
+                    new Product()
+                    {
+                        ItemId = 34, ItemName = "PLACEMAT", IMGUrl = "https://images-na.ssl-images-amazon.com/images/I/91O10IQyHnL._AC_SX522_.jpg", Cost = 1.95
+                    },
+                    new Product()
+                    {
+                        ItemId = 35, ItemName = "CUSHION COVERS-SMALL", IMGUrl = "https://www.dhresource.com/0x0/f2/albu/g10/M01/CB/CB/rBVaVl1LoKOAOJglAAabs_ZQAfQ968.jpg/1pcs-modern-cushion-covers-minimalist-small.jpg", Cost = 3.30
+                    },
+                    new Product()
+                    {
+                        ItemId = 36, ItemName = "CUSHION COVERS-LARGE", IMGUrl = "https://images-na.ssl-images-amazon.com/images/I/91sES2Cyv%2BL._AC_SX522_.jpg", Cost = 5.50
+                    },
+                    new Product()
+                    {
+                        ItemId = 37, ItemName = "SOFA COVER", IMGUrl = "https://images-na.ssl-images-amazon.com/images/I/813EKkKXX8L._AC_SL1500_.jpg", Cost = 5.50
+                    },
+                    new Product()
+                    {
+                        ItemId = 38, ItemName = "TABLECLOTH-SMALL", IMGUrl = "https://images-na.ssl-images-amazon.com/images/I/71cNr8MZKzL._AC_SL1001_.jpg", Cost = 3.30
+                    },
+                    new Product()
+                    {
+                        ItemId = 39, ItemName = "TABLECLOTH-MED", IMGUrl = "https://images-na.ssl-images-amazon.com/images/I/51IfVOepTKL._AC_SX522_.jpg", Cost = 4.40
+                    },
+                    new Product()
+                    {
+                        ItemId = 40, ItemName = "TABLECLOTH-LARGE", IMGUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSdoRTKVFOfXHZi7TjcXldKITGXgmqtu3Lpzw&usqp=CAU", Cost = 5.50
+                    },
+                    new Product()
+                    {
+                        ItemId = 41, ItemName = "TABLECLOTH-XLARGE", IMGUrl = "https://images-na.ssl-images-amazon.com/images/I/711fllPDT%2BL._AC_SL1100_.jpg", Cost = 8.25
+                    },
+                    new Product()
+                    {
+                        ItemId = 42, ItemName = "TABLE RUNNER-SHORT", IMGUrl = "https://www.coricamo.com/86356-thickbox_pp/cross-stitch-kit-with-a-runner-long-table-runner-with-fruit.jpg", Cost = 2.75
+                    },
+                    new Product()
+                    {
+                        ItemId = 43, ItemName = "TABLE RUNNER-LONG", IMGUrl = "https://images-na.ssl-images-amazon.com/images/I/71Nr-OBX25L._AC_SX522_.jpg", Cost = 3.85
+                    },
+                    new Product()
+                    {
+                        ItemId = 44, ItemName = "DRAPES NON PLEATED-PER PANEL", IMGUrl = "https://i.ytimg.com/vi/2aTWP3zMPzg/hqdefault.jpg", Cost = 14.30
+                    },
+                    new Product()
+                    {
+                        ItemId = 45, ItemName = "DRAPES PLEATED-PER PLEAT", IMGUrl="https://i.pinimg.com/originals/b5/d8/6f/b5d86f907af1ef5cc0bf6412a34ce572.jpg", Cost = 1.65
+                    },
+           

@@ -38,7 +38,7 @@
                                     </li>
                                     ////something is broken with orders index atm for employees
                                     <li class="nav-item">
-                                        <a asp-controller="Orders" asp-action="Index" class="nav-link text-white"> Orders </a>
+                                        <a asp-controller="Orders" asp-action="Index" class="nav-link text-white"> Past Orders </a>
                                     </li>
                                     <li class="nav-item">
                                         <a asp-controller="ShoppingCart" asp-action="Index" class="nav-link text-white">Shopping Cart</a>
@@ -76,11 +76,12 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-white bg-primary">
-        <a asp-area="" asp-controller="Home" asp-action="About" class="text-white"><b>About the project</b></a>
-        &copy; Radtke, Nicholas 2020, viewed on @DateTime.Now.Date
-    </footer>
+    <div>
+        <footer id="footer"class="border-top footer text-white bg-primary">
+            <a asp-area="" asp-controller="Home" asp-action="About" class="text-white"><b>About the project</b></a>
+            &copy; Radtke, Nicholas 2020, viewed on @DateTime.Now.Date
+        </footer>
+    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
