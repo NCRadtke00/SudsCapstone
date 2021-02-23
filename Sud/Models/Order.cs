@@ -34,8 +34,10 @@ namespace Sud.Models
         public int AddressId { get; set; }
         public Address Address { get; set; }
         [Display(Name = "Pick Up Day")]
+        [Required]
         public string PickUpDay { get; set; }
         [Display(Name = "Drop Off Day")]
+        [Required]
         public string DropOffDay { get; set; }
 
         [Required(ErrorMessage = "Please enter your phone number")]
@@ -79,6 +81,7 @@ namespace Sud.Models
 
 
         [ForeignKey("ImageModel")]
+        
         public int ImageId { get; set; }
         public ImageModel ImageModel { get; set; }
 

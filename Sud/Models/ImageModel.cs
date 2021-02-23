@@ -22,6 +22,7 @@ namespace Sud.Models
         public string ImageName { get; set; }
         [NotMapped]
         [DisplayName("Upload File")]
+        [Required]
         public IFormFile ImageFile { get; set; }
         
     }
