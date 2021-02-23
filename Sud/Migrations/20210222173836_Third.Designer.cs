@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sud.Data;
 
 namespace Sud.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210222173836_Third")]
+    partial class Third
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,15 +50,15 @@ namespace Sud.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8d565a0e-fccb-42f5-88d5-8461a91bd3a2",
-                            ConcurrencyStamp = "ca1e6cf4-328e-41ac-a32e-7a46d509ee22",
+                            Id = "746ed44f-f223-46f2-b6ed-46c24803f019",
+                            ConcurrencyStamp = "df3b4875-c1ff-4dc1-888f-56be7e17e5bf",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "1d8c09a5-c79c-4313-9d99-033e193bf305",
-                            ConcurrencyStamp = "d24ca2ce-edaf-48f3-8edf-8844a5a03fb7",
+                            Id = "d146f3aa-43a9-4fa0-9458-a87bf95dbc89",
+                            ConcurrencyStamp = "7ac4311e-faa8-4c01-b828-76df55be11f9",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -659,7 +661,7 @@ namespace Sud.Migrations
                         {
                             Id = 1,
                             ClothesId = 2,
-                            Date = new DateTime(2021, 2, 22, 11, 49, 1, 170, DateTimeKind.Local).AddTicks(410),
+                            Date = new DateTime(2021, 2, 22, 11, 38, 35, 969, DateTimeKind.Local).AddTicks(7834),
                             Description = "Eveything smelled like a fresh medow, and was folded perfectly.",
                             Grade = 4,
                             Title = "WOW"
@@ -668,7 +670,7 @@ namespace Sud.Migrations
                         {
                             Id = 2,
                             ClothesId = 3,
-                            Date = new DateTime(2021, 2, 22, 11, 49, 1, 172, DateTimeKind.Local).AddTicks(5822),
+                            Date = new DateTime(2021, 2, 22, 11, 38, 35, 972, DateTimeKind.Local).AddTicks(4655),
                             Description = "The guy picked everthing up, and dropped it off 6 hours later.",
                             Grade = 5,
                             Title = "Legen-dry"
